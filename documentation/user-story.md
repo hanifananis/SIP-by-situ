@@ -1,5 +1,7 @@
 # User Story
 
-1. User dapat menginput email dan password pada halaman login, sehingga user dapat login ke aplikasi
-1. ...
-1. ...
+## Sebagai User
+![user-story-user](documentation/img/user-story-1.png)
+
+## Sebagai Admin
+![user-story-admin](documentation/img/user-story-2.png)
