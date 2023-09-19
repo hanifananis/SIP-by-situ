@@ -8,3 +8,13 @@ SIP (Sistem Informasi Pemilu) adalah sebuah aplikasi perangkat lunak yang diranc
 - Rafa Azka Ulinnuha - 140810200033
 - Kharisma Fitri Nurunnisa Siahaan - 140810200047
 - Hanifan Ayusti Khairunnisa - 140810200065
+
+## General Role
+- Quality Assurance : Hanifan Ayusti Khairunnisa
+- Designer : Nanda Raihan Sukma
+- Front End Developer : Rafa Azka Ulinnuha
+- Back End Developer : Kharisma Fitri Nurunnisa Siahaan
+
+## Link Penting
+- Trello : https://trello.com/b/BMvOH09T/sip-by-situ
+- Figma : https://www.figma.com/file/ChxkrRxdQF5vedo3k1jUhr/PilihCerdas?type=design&node-id=2%3A4&mode=design&t=JLHSWjWaxPpBMKKx-1
