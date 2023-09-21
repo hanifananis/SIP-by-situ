@@ -1,7 +1,9 @@
 # Proyek Perangkat Lunak II - SIP
 
 ## Deskripsi Aplikasi
-SIP (Sistem Informasi Pemilu) adalah sebuah aplikasi perangkat lunak yang dirancang untuk memberikan informasi yang lengkap dan terkini terkait dengan pemilihan umum, terutama pemilihan presiden, anggota DPR, dan partai politik di Indonesia. Aplikasi ini memungkinkan pengguna untuk mengakses data pemilu dengan mudah, memberikan pemahaman yang lebih baik tentang pemilihan umum, dan memfasilitasi partisipasi politik yang lebih aktif. Dengan SIP, pengguna dapat menjelajahi informasi pemilihan umum dengan cepat dan akurat, menjadikannya alat yang penting dalam mendorong keterlibatan warga negara dalam proses demokrasi.
+SIP (Sistem Informasi Pemilu) adalah sebuah aplikasi perangkat lunak yang dirancang untuk memberikan informasi yang lengkap dan terkini terkait dengan pemilihan umum, terutama pemilihan presiden, anggota DPR, dan partai politik di Indonesia. 
+
+Dengan SIP (Sistem Informasi Pemilu), pengguna dapat dengan cepat dan akurat menjelajahi data-data pemilihan umum yang telah tercatat sebelumnya. Tujuan utama aplikasi ini adalah untuk memberikan pemahaman yang lebih baik tentang sejarah pemilihan umum dan hasilnya, serta memfasilitasi partisipasi politik yang lebih aktif. Dengan akses mudah ke data pemilu sebelumnya, SIP menjadi alat yang penting dalam membantu warga negara memahami perkembangan demokrasi dan membuat keputusan yang berdasarkan informasi yang akurat.
 
 ## Anggota Kelompok
 - Nanda Raihan Sukma - 140810200015
