@@ -32,7 +32,7 @@ export default function Register() {
         rounded={'2xl'}
         bg={'#5D1416'}
         p={8}
-        mt={28}
+        my={28}
         width={{base:"86%", md:"46%", lg:"36%", xl:"26%"}}>
           <Stack spacing={4}>
             <Text 
@@ -111,12 +111,29 @@ export default function Register() {
                 </InputRightElement>
               </InputGroup>
             </FormControl>
-            <Link 
-              href='#' 
-              textDecorationLine={'underline'}
-              fontSize={'sm'}>
-              Lupa kata sandi?
-            </Link>
+            <FormControl id="password">
+              <FormLabel
+                fontSize={'sm'}>
+                  Konfirmasi Kata Sandi
+              </FormLabel>
+              <InputGroup>
+                <Input
+                placeholder='Masukkan konfirmasi kata sandi'
+                _placeholder={{ opacity: 1, color: 'inherit' }}
+                  fontSize="sm"
+                  bg="rgba(255, 255, 255, 0.12)"
+                  variant='unstyled'
+                  padding={4}
+                type={showPassword ? 'text' : 'password'} />
+                <InputRightElement h={'full'}>
+                  <Button
+                    variant='unstyled'
+                    onClick={() => setShowPassword((showPassword) => !showPassword)}>
+                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+            </FormControl>
             <Stack spacing={6} pt={2}>
               <Button
                 size="lg"
@@ -127,7 +144,7 @@ export default function Register() {
                 _hover={{
                   bg: 'blue.500',
                 }}>
-                Masuk
+                Daftar
               </Button>
               <Box position='relative'>
                 <Divider />
@@ -147,18 +164,18 @@ export default function Register() {
                   _hover={{
                     bg: 'blue.500',
                   }}>
-                  Masuk dengan Google
+                  Daftar dengan Google
               </Button>
             </Stack>
             <Stack pt={6}>
               <Text 
                 fontSize={'sm'}
                 align={'center'}>
-                  Belum punya akun? 
+                  Sudah punya akun? 
                 <Link 
-                  href='#' 
+                  href='/login' 
                   textDecorationLine={'underline'}>
-                    Daftar</Link>
+                    Masuk</Link>
                 </Text>
             </Stack>
           </Stack>

@@ -32,7 +32,7 @@ export default function Login() {
         rounded={'2xl'}
         bg={'#5D1416'}
         p={8}
-        mt={28}
+        my={28}
         width={{base:"86%", md:"46%", lg:"36%", xl:"26%"}}>
           <Stack spacing={4}>
             <Text 
@@ -124,7 +124,7 @@ export default function Login() {
                 align={'center'}>
                   Belum punya akun? 
                 <Link 
-                  href='#' 
+                  href='/register' 
                   textDecorationLine={'underline'}>
                     Daftar</Link>
                 </Text>
