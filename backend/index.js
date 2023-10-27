@@ -4,6 +4,7 @@ import cors from "cors"
 import UserRoute from "./routes/UserRoute.js"
 import CommentRoute from "./routes/CommentRoute.js"
 import LoginRegisterRoute from "./routes/LoginRegisterRoute.js"
+import PartaiInfoRoute from "./routes/PartaiInfoRoute.js"
 
 const app = express()
 
@@ -21,5 +22,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(UserRoute)
 app.use(CommentRoute)
 app.use(LoginRegisterRoute)
+app.use(PartaiInfoRoute)
 
 app.listen(5000, ()=> console.log('Server up and running on port 5000'))
