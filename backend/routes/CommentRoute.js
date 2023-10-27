@@ -15,4 +15,4 @@ router.get('/comments', getComments)
 router.put('/comments/:commentId', updateComment)
 router.delete('/comments/:commentId', deleteComment)
 
-module.exports = router
+export default router;
