@@ -15,6 +15,15 @@ const user = mongoose.Schema({
         type:String,
         required: true
     },
+    no_telp:{
+        type:String,
+        required: true
+    },
+    roles: {
+        type: String,
+        enum: ['admin', 'user'],
+        default: 'user'
+      },
 })
 
 user.set('timestamps', true)
@@ -37,6 +46,20 @@ user.pre("save", function(next) {
             next()
         })
     })
+})
+
+user.methods.comparePassword = function (candidatePassword, cb) {
+    bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
+      if (err) return cb(err)
+      cb(null, isMatch)
+    })
+  }
+user.virtual('id').get(function () {
+    return this._id.toHexString()
+})
+
+user.set('toObject', {
+    virtuals: true
 })
 
 export default mongoose.model('Users', user)
