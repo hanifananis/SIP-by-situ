@@ -1,5 +1,5 @@
 import { Flex, Heading, Grid } from '@chakra-ui/react'
-import CardTransparant from '../components/CardTransparant'
+import CardTransparent from '../components/CardTransparent'
 import React from 'react'
 
 const LearnMore = () => {
@@ -36,7 +36,7 @@ const LearnMore = () => {
       >Pelajari Pemilu 2024</Heading>
       <Grid gap={4}>
         {cardData.map((cardData, index) => (     
-          <CardTransparant 
+          <CardTransparent 
           key={index}
           {...cardData } />
         ))}

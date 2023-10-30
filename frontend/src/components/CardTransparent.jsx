@@ -1,7 +1,7 @@
 import { Card, CardHeader, CardBody, Heading } from '@chakra-ui/react'
 import React from 'react'
 
-const CardTransparant = ({ title, value }) => {
+const CardTransparent = ({ title, value }) => {
   return (
     <Card
       bgColor={'white'}
@@ -22,4 +22,4 @@ const CardTransparant = ({ title, value }) => {
   )
 }
 
-export default CardTransparant
+export default CardTransparent
