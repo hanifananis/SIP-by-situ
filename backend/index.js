@@ -5,13 +5,20 @@ import UserRoute from "./routes/UserRoute.js"
 import CommentRoute from "./routes/CommentRoute.js"
 import LoginRegisterRoute from "./routes/LoginRegisterRoute.js"
 import PartaiInfoRoute from "./routes/PartaiInfoRoute.js"
+import dotenv from 'dotenv'
+dotenv.config()
 
 const app = express()
-
-mongoose.connect('mongodb://localhost:27017/sip_db',{
+var mongoOptions = {
     useNewUrlParser: true,
     useUnifiedTopology: true
-})
+}
+if(process.env.MONGO_URI){
+    mongoose.connect(process.env.MONGO_URI + '/' + process.env.MONGO_DBNAME,mongoOptions)
+} else{
+    mongoose.connect('mongodb://' + process.env.MONGO_HOST + ':' + process.env.MONGO_PORT + '/' + process.env.MONGO_DBNAME,mongoOptions)
+
+}
 const db = mongoose.connection
 db.on('error', (error)=>console.log(error))
 db.once('open', () => console.log ('MongoDB connected'))

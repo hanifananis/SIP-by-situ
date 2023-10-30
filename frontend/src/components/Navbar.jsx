@@ -21,7 +21,6 @@ const Navbar = () => {
           <Link 
             href='/'>
             <Button
-              as={"a"}
               bgColor={'#5D1416'}
               color={'inherit'}
               rounded={50}
@@ -86,15 +85,22 @@ const Navbar = () => {
           icon={<HamburgerIcon />}
           display={{sm: 'flex', md:'flex', lg: 'none', xl: 'none'}}
         />
-        <Button
-          bgColor={'#4F7B58'}
-          color={'inherit'}
-          rounded={50}
-          fontSize={'sm'}
-          px={6}
-          display={{base: 'none', lg: 'flex', xl: 'flex'}}>
-          Login
-        </Button>
+        <Link
+        href='/login'>
+          <Button
+            bgColor={'#4F7B58'}
+            color={'inherit'}
+            rounded={50}
+            fontSize={'sm'}
+            px={6}
+            _hover={{
+              bgColor: 'white',
+              color: '#4F7B58'
+            }}
+            display={{base: 'none', lg: 'flex', xl: 'flex'}}>
+            Login
+          </Button>
+        </Link>
     </Flex>
   )
 }

@@ -5,7 +5,7 @@ const Cards = () => {
   const posts = [
     {
       id: 1,
-      title: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+      title: "Lorem, ipsum dolor sit amet consectetur adipisicing elit",
       desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam maiores id nam sed vitae distinctio aspernatur explicabo debitis, repellat repellendus enim ab quibusdam sunt, consequatur repudiandae nisi eaque commodi ullam.",
       img: "./src/assets/bg-auth.png"
     },
@@ -26,6 +26,7 @@ const Cards = () => {
         Partai Politik
       </Text>
       <Flex 
+        justify={'space-between'}
         alignItems={'center'}
         gap={8}>
         {posts.map(post => (
@@ -45,7 +46,7 @@ const Cards = () => {
               px={14}
               w={'full'}
               textAlign={'center'}>
-              {post.img}
+              {post.title}
               </Box>
               <Text fontSize={'lg'}>Lorem Ipsum</Text>
               <Link to={`/partai-politik/${post.id}`}>
