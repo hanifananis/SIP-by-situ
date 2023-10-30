@@ -9,7 +9,9 @@ const CardTransparant = ({ title, value }) => {
       borderColor={'#540302'}
     >
       <CardHeader>
-        <Heading size='md'>{title}</Heading>
+        <Heading
+          fontSize={28}
+          fontWeight={'semibold'}>{title}</Heading>
       </CardHeader>
 
       <CardBody>
