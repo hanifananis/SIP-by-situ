@@ -5,7 +5,7 @@ const Cards = () => {
   const posts = [
     {
       id: 1,
-      title: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
+      title: "Lorem, ipsum dolor sit amet consectetur adipisicing elit",
       desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam maiores id nam sed vitae distinctio aspernatur explicabo debitis, repellat repellendus enim ab quibusdam sunt, consequatur repudiandae nisi eaque commodi ullam.",
       img: "./src/assets/bg-auth.png"
     },
