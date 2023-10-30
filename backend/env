@@ -1,0 +1,5 @@
+# MongoDB Configuration
+MONGO_URI= 
+MONGO_HOST= 
+MONGO_PORT= 
+MONGO_DBNAME=
