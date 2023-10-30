@@ -26,6 +26,7 @@ const Cards = () => {
         Partai Politik
       </Text>
       <Flex 
+        justify={'space-between'}
         alignItems={'center'}
         gap={8}>
         {posts.map(post => (
@@ -45,7 +46,7 @@ const Cards = () => {
               px={14}
               w={'full'}
               textAlign={'center'}>
-              {post.img}
+              {post.title}
               </Box>
               <Text fontSize={'lg'}>Lorem Ipsum</Text>
               <Link to={`/partai-politik/${post.id}`}>
