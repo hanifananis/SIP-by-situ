@@ -22,6 +22,7 @@ import Footer from './components/Footer';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
+import LearnMore from './pages/LearnMore';
 
 import theme from './theme';
 import PartaiPolitik from './pages/PartaiPolitik'
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "/partai-politik/:id",
         element: <Detail />,
+      }, 
+      {
+        path: "/pemilu-2024",
+        element: <LearnMore />,
       }, 
     ]
   }
