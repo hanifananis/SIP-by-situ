@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client'
 
 import '@fontsource/plus-jakarta-sans/200.css'
@@ -15,6 +15,7 @@ import {
   createBrowserRouter,
   Outlet,
   RouterProvider,
+  useLocation
 } from "react-router-dom"
 
 import Navbar from './components/Navbar';
@@ -28,12 +29,24 @@ import theme from './theme';
 import PartaiPolitik from './pages/PartaiPolitik'
 import Detail from './components/Partai/Detail'
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top when the pathname changes
+  }, [pathname]);
+
+  return null; // This component doesn't render anything
+}
+
+
 function Layout() {
   return (
     <ChakraProvider theme={theme}>
       <Navbar />
       <Outlet />
       <Footer />
+      <ScrollToTop /> 
     </ChakraProvider>
   );
 }
@@ -66,7 +79,7 @@ const router = createBrowserRouter([
       {
         path: "/pemilu-2024",
         element: <LearnMore />,
-      }, 
+      },
     ]
   }
 ]);
