@@ -1,4 +1,5 @@
-import { Flex, Text, Image, Heading, Button, GridItem } from '@chakra-ui/react'
+import { Flex, Text, Image, Heading, Button, GridItem } from '@chakra-ui/react';
+import Candidate from './Candidate';
 
 const CandidatesCard = ({ title, capres_name, cawapres_name }) => {
   return (
@@ -17,38 +18,8 @@ const CandidatesCard = ({ title, capres_name, cawapres_name }) => {
         { title }
         </Text>
         <Flex>
-            <Flex 
-                flexDirection={'column'}
-                align={'center'}>
-            <Image src='/assets/person.png' height={"90%"} width={"90%"}></Image>
-            <Heading 
-                mt={4}
-                fontWeight={'medium'}
-                fontSize={18}>
-                { capres_name }
-            </Heading>
-            <Text 
-                mt={1}
-                fontWeight={'medium'}>
-                Calon Presiden
-            </Text>
-            </Flex>
-            <Flex 
-            flexDirection={'column'}
-            align={'center'}>
-            <Image src='/assets/person.png' height={"90%"} width={"90%"}></Image>
-            <Heading 
-                mt={4}
-                fontWeight={'medium'}
-                fontSize={18}>
-                { cawapres_name }
-            </Heading>
-            <Text 
-                mt={1}
-                fontWeight={'medium'}>
-                Calon Wakil Presiden
-            </Text>
-            </Flex>
+            <Candidate name={ capres_name } position="Calon Presiden" />
+            <Candidate name={ cawapres_name } position="Calon Wakil Presiden" />
         </Flex>
         <Button
             mt={4}
@@ -63,4 +34,4 @@ const CandidatesCard = ({ title, capres_name, cawapres_name }) => {
   )
 }
 
-export default CandidatesCard
+export default CandidatesCard;

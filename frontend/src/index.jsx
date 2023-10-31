@@ -28,6 +28,7 @@ import LearnMore from './pages/LearnMore';
 import theme from './theme';
 import PartaiPolitik from './pages/PartaiPolitik'
 import Detail from './components/Partai/Detail'
+import Calon from './pages/Calon';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: "/pemilu-2024",
         element: <LearnMore />,
+      },
+      {
+        path: "/calon-2024",
+        element: <Calon />,
       },
     ]
   }
