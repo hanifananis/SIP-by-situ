@@ -1,16 +1,11 @@
 import { Flex, Text, Box, Image } from '@chakra-ui/react'
+import Banner from '../Banner'
 
 const Hero = () => {
   return (
     <Flex 
         flexDirection={'column'}>
-        <Text 
-            align={'center'} 
-            fontSize={48} 
-            fontWeight={'bold'}
-            mb={12}>
-            Sistem Informasi Pemilu
-        </Text>
+        <Banner title={"Sistem Informasi Pemilu"} />
         <Flex 
           gap={12}
           flexDirection={{base:'column', md:'row'}}

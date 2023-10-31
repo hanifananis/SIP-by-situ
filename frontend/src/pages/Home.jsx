@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import Hero from '../components/Home/Hero';
 import PartaiCards from '../components/Home/PartaiCards';
-import LearnMore from '../components/Home/LearnMore';
+import PelajariPemilu from '../components/Home/PelajariPemilu';
 import Candidates from '../components/Home/Candidates';
 import Flashback from '../components/Home/Flashback';
 
@@ -13,7 +13,7 @@ const Home = () => {
       gap={14}>
         <Hero />
         <PartaiCards />
-        <LearnMore />
+        <PelajariPemilu />
         <Candidates />
         <Flashback />
     </Flex>
