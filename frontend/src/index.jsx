@@ -22,12 +22,12 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Home from './pages/Home';
+import LandingPage from './pages/LandingPage';
 import LearnMore from './pages/LearnMore';
 
 import theme from './theme';
 import PartaiPolitik from './pages/PartaiPolitik'
-import Detail from './components/Partai/Detail'
+import Detail from './pages/Partai/Detail'
 import Calon from './pages/Calon';
 
 function ScrollToTop() {
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <LandingPage />,
       },
       {
         path: "/login",
@@ -82,7 +82,7 @@ const router = createBrowserRouter([
         element: <LearnMore />,
       },
       {
-        path: "/calon-2024",
+        path: "/calon-2024/:id",
         element: <Calon />,
       },
     ]

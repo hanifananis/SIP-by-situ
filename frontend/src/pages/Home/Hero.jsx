@@ -1,5 +1,5 @@
 import { Flex, Text, Box, Image } from '@chakra-ui/react'
-import Banner from '../Banner'
+import Banner from '../../components/Banner'
 
 const Hero = () => {
   return (
