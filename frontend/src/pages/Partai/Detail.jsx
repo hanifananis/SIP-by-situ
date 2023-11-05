@@ -1,22 +1,19 @@
-import React from 'react'
-import RedirectPage from '../components/RedirectPage'
-import { Accordion, Flex } from '@chakra-ui/react'
-import DetailHeader from '../components/DetailHeader'
-import Candidates from '../components/Candidates'
-import GreenAccordion from '../components/GreenAccordion'
+import { Flex, Heading, Accordion } from '@chakra-ui/react'
+import GreenAccordion from '../../components/GreenAccordion';
+import RedirectPage from '../../components/RedirectPage';
+import DetailHeader from '../../components/DetailHeader';
 
-const Calon = ({ title }, props) => {
-  const data = props.data || []; 
+const Detail = () => {
 
-  const values = [
+  const posts = [
     {
       id: 1,
-      title: "Visi dan Misi",
+      title: "Deskripsi",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     },
     {
       id: 2,
-      title: "Proker",
+      title: "Tokoh",
       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     },
     {
@@ -31,24 +28,30 @@ const Calon = ({ title }, props) => {
       flexDirection={'column'}
       marginY={16}
       marginX={{base:20, xl:48}}>
-        <RedirectPage title={'Calon'} />
-        <DetailHeader 
-          title={title}
-        />
-        {data.map((d) => (
-          <Candidates key={d.id} data={[val]} />
-        ))}
+      <RedirectPage 
+        title={"Partai"}
+      />
+      <DetailHeader 
+        title={'Nama Partai'}
+        img={'../assets/image 5.png'}
+      />
+      <Heading
+        mt={12}
+        mb={2}
+        fontSize={48}>
+          Profil Partai
+      </Heading>
         <Accordion allowMultiple>
-        {values.map(val => (
-          <GreenAccordion 
-            key={val.id}
-            title={val.title}
-            desc={val.desc}
-          />
-        ))}
+          {posts.map(post => (
+            <GreenAccordion 
+              key={post.id} 
+              title={post.title} 
+              desc={post.desc} 
+            />
+          ))}
         </Accordion>
     </Flex>
   )
 }
 
-export default Calon
+export default Detail

@@ -40,6 +40,26 @@ function ScrollToTop() {
   return null; // This component doesn't render anything
 }
 
+const data = [
+  {
+    id: 1,
+    title: "Calon 1",
+    capres_name: "Anies",
+    cawapres_name: "Nanda"
+  },
+  {
+    id: 2,
+    title: "Calon 2",
+    capres_name: "Rafa",
+    cawapres_name: "Karis"
+  },
+  {
+    id: 3,
+    title: "Calon 3",
+    capres_name: "Ganjar",
+    cawapres_name: "Prabowo"
+  }
+];
 
 function Layout() {
   return (
@@ -59,7 +79,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <LandingPage />,
+        element: <LandingPage data={data} />,
       },
       {
         path: "/login",

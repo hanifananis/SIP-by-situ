@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import React from 'react'
 import Banner from '../components/Banner'
-import Cards from '../components/Partai/Cards'
+import Cards from '../pages/Partai/Cards'
 import SearchBar from '../components/SearchBar'
 
 const PartaiPolitik = () => {
