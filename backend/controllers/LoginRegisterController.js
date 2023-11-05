@@ -1,36 +1,35 @@
 import User from "../models/User.js"; // Replace with the actual path to your User model
-import bcrypt from 'bcrypt';
+import argon2 from 'argon2';
 import jwt from 'jsonwebtoken'; 
 
 export const registerUser = async (req, res) => {
     try {
-        console.log(req.body)
-        
         const { name, email, no_telp, password, confirmPassword } = req.body;
-    
+
         // Check if the passwords match
         if (password !== confirmPassword) {
             return res.status(400).json({ message: 'Passwords do not match' });
         }
 
+        const hashedPassword = await argon2.hash(password);
+
         const user = new User({
             name,
             email,
-            password,
+            password: hashedPassword,
             no_telp,
         });
 
         // Save the user to the database
         await user.save();
-        
+
         const token = generateToken(user);
 
         res.status(201).json({ message: 'User registered successfully', token });
     } catch (error) {
-      res.status(500).json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
 };
-  
 
 export const loginUser = async (req, res) => {
     try {
@@ -44,20 +43,16 @@ export const loginUser = async (req, res) => {
         }
 
         // Compare the provided password with the stored hashed password
-        bcrypt.compare(password, user.password, (err, isMatch) => {
-            if (err) {
-                return res.status(500).json({ message: 'An error occurred' });
-            }
+        const isMatch = await argon2.verify(user.password, password);
 
-            if (!isMatch) {
-                return res.status(401).json({ message: 'Invalid password' });
-            }
+        if (!isMatch) {
+            return res.status(401).json({ message: 'Invalid password' });
+        }
 
-            // Password is correct; you can generate a token for authentication here
-            const token = generateToken(user);
+        // Password is correct; you can generate a token for authentication here
+        const token = generateToken(user);
 
-            res.status(200).json({ message: 'Login successful', token });
-        });
+        res.status(200).json({ message: 'Login successful', token });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
