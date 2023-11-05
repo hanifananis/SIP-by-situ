@@ -22,12 +22,13 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Home from './pages/Home';
+import LandingPage from './pages/LandingPage';
 import LearnMore from './pages/LearnMore';
 
 import theme from './theme';
 import PartaiPolitik from './pages/PartaiPolitik'
-import Detail from './components/Partai/Detail'
+import Detail from './pages/Partai/Detail'
+import Calon from './pages/Calon';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -39,6 +40,26 @@ function ScrollToTop() {
   return null; // This component doesn't render anything
 }
 
+const data = [
+  {
+    id: 1,
+    title: "Calon 1",
+    capres_name: "Anies",
+    cawapres_name: "Nanda"
+  },
+  {
+    id: 2,
+    title: "Calon 2",
+    capres_name: "Rafa",
+    cawapres_name: "Karis"
+  },
+  {
+    id: 3,
+    title: "Calon 3",
+    capres_name: "Ganjar",
+    cawapres_name: "Prabowo"
+  }
+];
 
 function Layout() {
   return (
@@ -58,7 +79,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <LandingPage data={data} />,
       },
       {
         path: "/login",
@@ -79,6 +100,10 @@ const router = createBrowserRouter([
       {
         path: "/pemilu-2024",
         element: <LearnMore />,
+      },
+      {
+        path: "/calon-2024/:id",
+        element: <Calon />,
       },
     ]
   }

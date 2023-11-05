@@ -1,66 +1,45 @@
-import { Flex, Text, Image, Heading, Button, GridItem } from '@chakra-ui/react'
+import { Button, Grid, GridItem } from '@chakra-ui/react';
+import Candidates from './Candidates';
+import { Link } from 'react-router-dom';
 
-const CandidatesCard = ({ title, capres_name, cawapres_name }) => {
+const CandidatesCard = (props) => {
+  const data = props.data || []; 
+
   return (
-    <GridItem
-        border={1}
-        borderColor={'red'}
-        bgColor={'white'}
-        p={8}
-        minW={'md'}
-        align={'center'}
-        gap={8}
-        rounded={'2xl'}>
-        <Text
-            fontWeight={'bold'}
-            fontSize={24}>
-        { title }
-        </Text>
-        <Flex>
-            <Flex 
-                flexDirection={'column'}
-                align={'center'}>
-            <Image src='/assets/person.png' height={"90%"} width={"90%"}></Image>
-            <Heading 
-                mt={4}
-                fontWeight={'medium'}
-                fontSize={18}>
-                { capres_name }
-            </Heading>
-            <Text 
-                mt={1}
-                fontWeight={'medium'}>
-                Calon Presiden
-            </Text>
-            </Flex>
-            <Flex 
-            flexDirection={'column'}
-            align={'center'}>
-            <Image src='/assets/person.png' height={"90%"} width={"90%"}></Image>
-            <Heading 
-                mt={4}
-                fontWeight={'medium'}
-                fontSize={18}>
-                { cawapres_name }
-            </Heading>
-            <Text 
-                mt={1}
-                fontWeight={'medium'}>
-                Calon Wakil Presiden
-            </Text>
-            </Flex>
-        </Flex>
-        <Button
-            mt={4}
-            bgColor={'#4F7B58'}
-            color={'white'}
-            rounded={'3xl'}
-            fontSize={'sm'}
-            w={'full'}>
-            Lihat Profil { title }
-        </Button>
-    </GridItem>
-  )
+    <Grid
+      gap={12}
+      flexDirection={{base:'column', md:'row'}}
+      marginX={20}
+      templateColumns={{base:'repeat(2, 1fr)', xl:'repeat(3, 1fr)'}}>
+      {data.map((val) => (
+        <GridItem
+          key={val.id}
+          border={1}
+          borderColor={'red'}
+          bgColor={'white'}
+          p={8}
+          minW={'md'}
+          align={'center'}
+          rounded={'2xl'}
+        >
+          <Candidates data={[val]} />
+          <Link to={`/calon-2024/${val.id}`}>
+            <Button
+              onClick={''}
+              mt={4}
+              bgColor={'#4F7B58'}
+              color={'white'}
+              rounded={'3xl'}
+              fontSize={'sm'}
+              w={'full'}
+            >
+              Lihat Profil {val.title}
+            </Button>
+          </Link>
+        </GridItem>
+      ))}
+    </Grid>
+  );
 }
 
-export default CandidatesCard
+export default CandidatesCard;
