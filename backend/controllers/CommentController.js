@@ -3,7 +3,13 @@ import Comment from "../models/Comment.js";
 export const getComments = async (req, res) => {
     try {
         const comments = await Comment.find().populate('user');
-        res.json(comments);
+        const commentsWithStrIds = comments.map(comment => {
+            return {
+                ...comment.toObject(),
+                _id: comment._id.toString()
+            };
+        });
+        res.json(commentsWithStrIds);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -12,11 +18,19 @@ export const getComments = async (req, res) => {
 export const getCommentById = async (req, res) => {
     try {
         const comment = await Comment.findById(req.params.id).populate('user');
-        res.json(comment);
+        if (comment) {
+            const commentWithStrId = {
+                ...comment.toObject(),
+                _id: comment._id.toString()
+            };
+            res.json(commentWithStrId);
+        } else {
+            res.status(404).json({ message: "Comment not found." });
+        }
     } catch (error) {
-        res.status(404).json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
-};
+}
 
 export const createComment = async (req, res) => {
     const { userId, content } = req.body;
