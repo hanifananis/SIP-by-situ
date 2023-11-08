@@ -11,7 +11,7 @@ const partaiInfoData = [
     x_sosmed: '',
     website: 'https://pkb.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Kebangkitan_Bangsa',
-    foto: 'https://example.com/pkb.jpg',
+    foto: 'Logo_PKB.png',
   },
   {
     name: 'Partai Gerakan Indonesia Raya (Gerindra)',
@@ -21,7 +21,7 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/Gerindra/',
     website: 'https://gerindra.or.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Gerakan_Indonesia_Raya',
-    foto: 'https://example.com/gerindra.jpg',
+    foto: 'Logo_Gerindra.png',
   },
   {
     name: 'Partai Demokrasi Indonesia Perjuangan (PDI-P)',
@@ -31,7 +31,7 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/PDIPerjuangan',
     website: 'https://pdiperjuangan.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Demokrasi_Indonesia_Perjuangan',
-    foto: 'https://example.com/pdip.jpg',
+    foto: 'Logo_PDIP.png',
   },
   {
     name: 'Partai Golongan Karya (Golkar)',
@@ -41,7 +41,7 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/golkar_id/',
     website: 'https://www.partaigolkar.com/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Golongan_Karya',
-    foto: 'https://example.com/golkar.jpg',
+    foto: 'Logo_Golkar.png',
   },
   {
     name: 'Partai Nasional Demokrat (NasDem)',
@@ -51,7 +51,7 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/NasDem',
     website: 'https://nasdem.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Nasional_Demokrat',
-    foto: 'https://example.com/nasdem.jpg',
+    foto: 'Logo_NasDem.png',
   },
   {
     name: 'Partai Buruh',
@@ -61,7 +61,7 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/EXCOPARTAIBURUH',
     website: 'https://partaiburuh.or.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Buruh_(Indonesia)',
-    foto: 'https://example.com/nasdem.jpg',
+    foto: 'Logo_Buruh.png',
   },
   {
     name: 'Partai Gelombang Rakyat Indonesia (Gelora)',
@@ -71,7 +71,7 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/partaigeloraid',
     website: 'https://www.partaigelora.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Gelombang_Rakyat_Indonesia',
-    foto: 'https://example.com/gelora.jpg',
+    foto: 'Logo_Gelora.png',
   },
   {
     name: 'Partai Keadilan Sejahtera (PKS)',
@@ -81,7 +81,7 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/PKSejahtera',
     website: 'https://pks.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Keadilan_Sejahtera',
-    foto: 'https://example.com/pks.jpg',
+    foto: 'Logo_PKS.jpeg',
   },
   {
     name: 'Partai Kebangkitan Nusantara (PKN)',
@@ -91,7 +91,7 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/pimnaspkn',
     website: 'https://pimnas-pkn.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Kebangkitan_Nusantara',
-    foto: 'https://example.com/pkn.jpg',
+    foto: 'Logo_PKN.png',
   },
   {
     name: 'Partai Hati Nurani Rakyat (Hanura)',
@@ -101,7 +101,7 @@ const partaiInfoData = [
     x_sosmed: '',
     website: 'https://partaihanura.or.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Hati_Nurani_Rakyat',
-    foto: 'https://example.com/hanura.jpg',
+    foto: 'Logo_Hanura.png',
   },
   {
     name: 'Partai Garda Perubahan Indonesia (Garuda)',
@@ -111,7 +111,7 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/dpppartaigaruda',
     website: 'https://partaigaruda.org/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Garda_Perubahan_Indonesia',
-    foto: 'https://example.com/garuda.jpg',
+    foto: 'Logo_Garuda.png',
   },
   {
     name: 'Partai Amanat Nasional (PAN)',
@@ -121,7 +121,7 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/official_PAN',
     website: 'https://pan.or.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Amanat_Nasional',
-    foto: 'https://example.com/pan.jpg',
+    foto: 'Logo_PAN.png',
   },
   {
     name: 'Partai Bulan Bintang (PBB)',
@@ -131,7 +131,7 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/OfficialDPP_PBB',
     website: 'https://partaibulanbintang.or.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Bulan_Bintang',
-    foto: 'https://example.com/pbb.jpg',
+    foto: 'Logo_PBB.jpg',
   },
   {
     name: 'Partai Demokrat',
@@ -141,7 +141,7 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/PDemokrat',
     website: 'https://www.demokrat.or.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Demokrat',
-    foto: 'https://example.com/demokrat.jpg',
+    foto: 'Logo_Demokrat.png',
   },
   {
     name: 'Partai Solidaritas Indonesia (PSI)',
@@ -151,7 +151,7 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/psi.id',
     website: 'https://psi.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Solidaritas_Indonesia',
-    foto: 'https://example.com/psi.jpg',
+    foto: 'Logo_PSI.png',
   },
   {
     name: 'Partai Persatuan Indonesia (Perindo)',
@@ -161,7 +161,7 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/PartaiPerindo',
     website: 'https://www.partaiperindo.com/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Persatuan_Indonesia',
-    foto: 'https://example.com/perindo.jpg',
+    foto: 'Logo_Perindo.jpeg',
   },
   {
     name: 'Partai Persatuan Pembangunan (PPP)',
@@ -171,7 +171,7 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/@DPP_PPP',
     website: 'https://www.ppp.or.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Persatuan_Pembangunan',
-    foto: 'https://example.com/ppp.jpg',
+    foto: 'Logo_PPP.png',
   },
   {
     name: 'Partai Nangroe Aceh (PNA)',
@@ -181,7 +181,7 @@ const partaiInfoData = [
     x_sosmed: '',
     website: '',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Nanggroe_Aceh',
-    foto: 'https://example.com/pna.jpg',
+    foto: 'Logo_PNA.jpeg',
   },
   {
     name: 'Partai Generasi Atjeh Beusaboh Tha\'at Dan Taqwa (Gabthat)',
@@ -201,7 +201,7 @@ const partaiInfoData = [
     x_sosmed: '',
     website: 'https://www.partaidarulaceh.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Darul_Aceh',
-    foto: 'https://example.com/pda.jpg',
+    foto: 'Logo_PDA.jpeg',
   },
   {
     name: 'Partai Aceh',
@@ -211,7 +211,7 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/dpp_partaiaceh',
     website: 'https://www.partaiaceh.org/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Aceh',
-    foto: 'https://example.com/pa.jpg',
+    foto: 'Logo_Aceh.jpeg',
   },
   {
     name: 'Partai Adil Sejahtera Aceh (PAS Aceh)',
@@ -221,7 +221,7 @@ const partaiInfoData = [
     x_sosmed: '',
     website: 'https://pas-aceh.com/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Adil_Sejahtera_Aceh',
-    foto: 'https://example.com/pas.jpg',
+    foto: 'Logo_PAS.png',
   },
   {
     name: 'Partai Soliditas Independent Rakyat Aceh (SIRA)',
@@ -231,7 +231,7 @@ const partaiInfoData = [
     x_sosmed: '',
     website: 'https://www.partaisira.org/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_SIRA',
-    foto: 'https://example.com/sira.jpg',
+    foto: 'Logo_SIRA.png',
   },
   {
     name: 'Partai Ummat',
@@ -241,7 +241,7 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/dpp_partaiummat',
     website: 'https://partaiummat.id/id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Ummat',
-    foto: 'https://example.com/partaiummat.jpg',
+    foto: 'Logo_Ummat.jpeg',
   },
 ];
 
