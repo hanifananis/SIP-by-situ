@@ -1,37 +1,36 @@
 import mongoose from "mongoose";
 import argon2 from "argon2";
 
-const user = mongoose.Schema({
-    name:{
-        type:String,
-        required: true,
-    },
-  email:{
-    type:String,
+const userSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
     required: true,
     index: { unique: true },
   },
-  password:{
-    type:String,
+  password: {
+    type: String,
     required: true,
   },
-  no_telp:{
-    type:String,
+  no_telp: {
+    type: String,
     required: true,
   },
   roles: {
     type: String,
-    enum: ['admin', 'user'],
-    default: 'user',
+    enum: ["contributor", "admin", "user"],
+    default: "user",
   },
 });
 
-user.set('timestamps', true);
+userSchema.set("timestamps", true);
 
-user.pre("save", async function (next) {
+userSchema.pre("save", async function (next) {
   const user = this;
 
-  // Check if the password field is modified or if it's a new user
   if (!user.isModified("password")) return next();
 
   try {
@@ -45,7 +44,7 @@ user.pre("save", async function (next) {
   }
 });
 
-user.methods.comparePassword = async function (candidatePassword, cb) {
+userSchema.methods.comparePassword = async function (candidatePassword, cb) {
   try {
     const isMatch = await argon2.verify(this.password, candidatePassword);
     cb(null, isMatch);
@@ -54,12 +53,4 @@ user.methods.comparePassword = async function (candidatePassword, cb) {
   }
 };
 
-user.virtual('id').get(function () {
-  return this._id.toHexString();
-});
-
-user.set('toObject', {
-  virtuals: true,
-});
-
-export default mongoose.model('Users', user);
+export default mongoose.model("Users", userSchema);

@@ -3,7 +3,13 @@ import Paslon from "../models/Paslon.js";
 export const getPaslons = async (req, res) => {
     try {
         const paslons = await Paslon.find();
-        res.json(paslons);
+        const paslonsWithStrIds = paslons.map(paslon => {
+            return {
+                ...paslon.toObject(),
+                _id: paslon._id.toString()
+            };
+        });
+        res.json(paslonsWithStrIds);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -12,9 +18,17 @@ export const getPaslons = async (req, res) => {
 export const getPaslonById = async (req, res) => {
     try {
         const paslon = await Paslon.findById(req.params.id);
-        res.json(paslon);
+        if (paslon) {
+            const paslonWithStrId = {
+                ...paslon.toObject(),
+                _id: paslon._id.toString()
+            };
+            res.json(paslonWithStrId);
+        } else {
+            res.status(404).json({ message: "Paslon not found." });
+        }
     } catch (error) {
-        res.status(404).json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
 }
 
