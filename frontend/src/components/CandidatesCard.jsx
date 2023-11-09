@@ -1,19 +1,33 @@
+import React, { useEffect, useState } from 'react';
 import { Button, Grid, GridItem } from '@chakra-ui/react';
 import Candidates from './Candidates';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const CandidatesCard = (props) => {
-  const data = props.data || []; 
+const CandidatesCard = () => {
+  const [data, setData] = useState([]);
+  
+  useEffect(() => {
+    axios.get('http://localhost:5000/paslons')
+      .then(response => {
+        setData(response.data);
+      })
+      .catch(error => {
+        console.error('Error Fetching Data: ', error);
+      });
+  }, []);
+
 
   return (
     <Grid
       gap={12}
-      flexDirection={{base:'column', md:'row'}}
+      flexDirection={{ base: 'column', md: 'row' }}
       marginX={20}
-      templateColumns={{base:'repeat(2, 1fr)', xl:'repeat(3, 1fr)'}}>
+      templateColumns={{ base: 'repeat(2, 1fr)', xl: 'repeat(3, 1fr)' }}
+    >
       {data.map((val) => (
         <GridItem
-          key={val.id}
+          key={val.id} 
           border={1}
           borderColor={'red'}
           bgColor={'white'}
@@ -23,7 +37,7 @@ const CandidatesCard = (props) => {
           rounded={'2xl'}
         >
           <Candidates data={[val]} />
-          <Link to={`/calon-2024/${val.id}`}>
+          <Link to={`/calon-2024/${val._id}`}> {/* Adjust the route and key as needed */}
             <Button
               onClick={''}
               mt={4}
@@ -33,7 +47,7 @@ const CandidatesCard = (props) => {
               fontSize={'sm'}
               w={'full'}
             >
-              Lihat Profil {val.title}
+              Lihat Profil {val.no_urut}
             </Button>
           </Link>
         </GridItem>

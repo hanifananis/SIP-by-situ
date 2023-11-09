@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client'
 
 import '@fontsource/plus-jakarta-sans/200.css'
@@ -17,6 +17,8 @@ import {
   RouterProvider,
   useLocation
 } from "react-router-dom"
+
+import axios from 'axios';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -40,27 +42,6 @@ function ScrollToTop() {
   return null; // This component doesn't render anything
 }
 
-const data = [
-  {
-    id: 1,
-    title: "Calon 1",
-    capres_name: "Anies",
-    cawapres_name: "Nanda"
-  },
-  {
-    id: 2,
-    title: "Calon 2",
-    capres_name: "Rafa",
-    cawapres_name: "Karis"
-  },
-  {
-    id: 3,
-    title: "Calon 3",
-    capres_name: "Ganjar",
-    cawapres_name: "Prabowo"
-  }
-];
-
 function Layout() {
   return (
     <ChakraProvider theme={theme}>
@@ -79,7 +60,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <LandingPage data={data} />,
+        element: <LandingPage />,
       },
       {
         path: "/login",
