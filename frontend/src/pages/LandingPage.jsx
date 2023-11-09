@@ -5,7 +5,7 @@ import PelajariPemilu from './Home/PelajariPemilu';
 import CandidatesSlot from './Home/CandidatesSlot';
 import Flashback from './Home/Flashback';
 
-const LandingPage = ({data}) => {
+const LandingPage = () => {
   return (
     <Flex 
       flexDirection={'column'}
@@ -14,7 +14,7 @@ const LandingPage = ({data}) => {
         <Hero />
         <PartaiCards />
         <PelajariPemilu />
-        <CandidatesSlot data={data} />
+        <CandidatesSlot />
         <Flashback />
     </Flex>
   )

@@ -1,7 +1,7 @@
 import { Flex, Text } from '@chakra-ui/react'
 import CandidatesCard from '../../components/CandidatesCard'
 
-const CandidatesSlot = ({data}) => {
+const CandidatesSlot = () => {
   return (
     <Flex 
         flexDirection={'column'}
@@ -11,13 +11,13 @@ const CandidatesSlot = ({data}) => {
         pb={16}
         color={'black'}>
         <Text 
-            fontSize={42} 
-            fontWeight={'bold'}
-            mb={8}
-            color={'white'}>
+          fontSize={42} 
+          fontWeight={'bold'}
+          mb={8}
+          color={'white'}>
             Capres dan Cawapres 2024
         </Text>
-        <CandidatesCard data={data} />
+        <CandidatesCard />
     </Flex>
   )
 }

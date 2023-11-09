@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import RedirectPage from '../components/RedirectPage'
 import { Accordion, Flex } from '@chakra-ui/react'
 import DetailHeader from '../components/DetailHeader'
-import Candidates from '../components/Candidates'
 import GreenAccordion from '../components/GreenAccordion'
+import axios from 'axios';
+import { useParams } from 'react-router-dom'
 
-const Calon = ({ title }, props) => {
-  const data = props.data || []; 
+const Calon = () => {
+  const [data, setData] = useState([]);
+  const { _id } = useParams();
+  
+  useEffect(() => {
+    axios.get(`http://localhost:5000/paslons/${_id}`)
+      .then(response => {
+        setData(response.data);
+      })
+      .catch(error => {
+        console.error('Error Fetching Data: ', error);
+      });
+  }, [_id]);
+
 
   const values = [
     {
@@ -32,11 +45,11 @@ const Calon = ({ title }, props) => {
       marginY={16}
       marginX={{base:20, xl:48}}>
         <RedirectPage title={'Calon'} />
-        <DetailHeader 
-          title={title}
-        />
-        {data.map((d) => (
-          <Candidates key={d.id} data={[val]} />
+        {data.map((item) => (
+          <DetailHeader 
+            key={item._id}
+            title={item.no_urut}
+          />
         ))}
         <Accordion allowMultiple>
         {values.map(val => (
