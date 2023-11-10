@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Grid, GridItem } from '@chakra-ui/react';
+import { Button, Grid, GridItem, Text } from '@chakra-ui/react';
 import Candidates from './Candidates';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -36,7 +36,14 @@ const CandidatesCard = () => {
           align={'center'}
           rounded={'2xl'}
         >
-          <Candidates data={[val]} />
+          <Text
+            fontWeight={'bold'}
+            fontSize={24}
+            mb={6}
+          >
+            Calon {val.no_urut}
+          </Text>
+          <Candidates data={[val]} height={60} width={80} />
           <Link to={`/calon-2024/${val._id}`}> {/* Adjust the route and key as needed */}
             <Button
               onClick={''}
@@ -47,7 +54,7 @@ const CandidatesCard = () => {
               fontSize={'sm'}
               w={'full'}
             >
-              Lihat Profil {val.no_urut}
+              Lihat Profil Calon {val.no_urut}
             </Button>
           </Link>
         </GridItem>

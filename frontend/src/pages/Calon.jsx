@@ -5,6 +5,7 @@ import DetailHeader from '../components/DetailHeader'
 import GreenAccordion from '../components/GreenAccordion'
 import axios from 'axios';
 import { useParams } from 'react-router-dom'
+import Candidates from '../components/Candidates'
 
 const Calon = () => {
   const [data, setData] = useState([]);
@@ -14,12 +15,12 @@ const Calon = () => {
     axios.get(`http://localhost:5000/paslons/${_id}`)
       .then(response => {
         setData(response.data);
+        console.log(response.data);
       })
       .catch(error => {
         console.error('Error Fetching Data: ', error);
       });
   }, [_id]);
-
 
   const values = [
     {
@@ -45,12 +46,11 @@ const Calon = () => {
       marginY={16}
       marginX={{base:20, xl:48}}>
         <RedirectPage title={'Calon'} />
-        {data.map((item) => (
           <DetailHeader 
-            key={item._id}
-            title={item.no_urut}
+            key={data._id}
+            title={`Calon ${data.no_urut}`}
           />
-        ))}
+          <Candidates data={[data]} height={72} width={60} />
         <Accordion allowMultiple>
         {values.map(val => (
           <GreenAccordion 
