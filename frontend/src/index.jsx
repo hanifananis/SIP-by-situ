@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client'
 
 import '@fontsource/plus-jakarta-sans/200.css'
@@ -83,7 +83,7 @@ const router = createBrowserRouter([
         element: <LearnMore />,
       },
       {
-        path: "/calon-2024/:id",
+        path: "/calon-2024/:_id",
         element: <Calon />,
       },
     ]

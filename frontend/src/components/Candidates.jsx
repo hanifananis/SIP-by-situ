@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import Candidate from './Candidate';
 
 const Candidates = (props) => {
@@ -14,16 +14,12 @@ const Candidates = (props) => {
           gap={8}
           mb={6}
           mx={'auto'}
+          alignItems={'center'}
         >
-          <Text
-            fontWeight={'bold'}
-            fontSize={24}
-          >
-            {val.no_urut}
-          </Text>
-          <Flex>
-            <Candidate name={val.capres} position="Calon Presiden" />
-            <Candidate name={val.cawapres} position="Calon Wakil Presiden" />
+          <Flex
+          gap={6}>
+            <Candidate name={val.capres} position="Calon Presiden" img={val.capres_img_url} height={props.height} width={props.width} />
+            <Candidate name={val.cawapres} position="Calon Wakil Presiden" img={val.cawapres_img_url} height={props.height} width={props.width} />
           </Flex>
         </Flex>
       ))}

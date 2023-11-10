@@ -1,11 +1,11 @@
 import { Flex, Text, Image, Heading } from '@chakra-ui/react'
 
-const Candidate = ({ name, position }) => {
+const Candidate = ({ name, position, img, height, width }) => {
   return (
     <Flex 
         flexDirection={'column'}
         align={'center'}>
-        <Image src='/assets/person.png' height={"90%"} width={"90%"}></Image>
+        <Image src={ img } h={ height } w={ width }></Image>
         <Heading 
             mt={4}
             fontWeight={'medium'}
