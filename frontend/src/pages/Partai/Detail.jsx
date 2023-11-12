@@ -1,9 +1,24 @@
 import { Flex, Heading, Accordion } from '@chakra-ui/react'
-import GreenAccordion from '../../components/GreenAccordion';
-import RedirectPage from '../../components/RedirectPage';
-import DetailHeader from '../../components/DetailHeader';
+import GreenAccordion from '../../components/GreenAccordion'
+import RedirectPage from '../../components/RedirectPage'
+import DetailHeader from '../../components/DetailHeader'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
 const Detail = () => {
+  const [data, setData] = useState([]);
+  const { _id } = useParams();
+
+  useEffect(() => {
+    axios.get(`http://localhost:5000/partaiInfos/${_id}`)
+      .then(response => {
+        setData(response.data);
+      })
+      .catch(error => {
+        console.error('Error Fetching Data: ', error);
+      });
+  }, [_id]);
 
   const posts = [
     {
@@ -32,8 +47,8 @@ const Detail = () => {
         title={"Partai"}
       />
       <DetailHeader 
-        title={'Nama Partai'}
-        img={'../assets/image 5.png'}
+        key={data._id}
+        title={data.name}
       />
       <Heading
         mt={12}
