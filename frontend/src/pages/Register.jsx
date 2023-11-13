@@ -16,8 +16,9 @@ import {
   AbsoluteCenter,
 } from '@chakra-ui/react'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
+import axios from 'axios'
 
 export default function Register() {
   const [name, setName] = useState("")
@@ -31,10 +32,21 @@ export default function Register() {
 
   function signUp()
   {
-    let data = [name, email, no_telp, password, confirmPassword];
-    
+    axios.post(`http://localhost:5000/register`, {
+      name: name,
+      email: email,
+      no_telp: no_telp,
+      password: password,
+      confirmPassword: confirmPassword
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
-
+  
   return (
     <Flex
       minH={'100vh'}
@@ -133,7 +145,7 @@ export default function Register() {
                 </InputRightElement>
               </InputGroup>
             </FormControl>
-            <FormControl id="password">
+            <FormControl id="confirmPassword">
               <FormLabel
                 fontSize={'sm'}>
                   Konfirmasi Kata Sandi
@@ -168,7 +180,7 @@ export default function Register() {
                 _hover={{
                   bg: 'blue.500',
                 }}
-                onClick={signUp()}
+                onClick={signUp}
                 >
                 Daftar
               </Button>
@@ -200,7 +212,8 @@ export default function Register() {
                   Sudah punya akun? 
                 <Link 
                   href='/login' 
-                  textDecorationLine={'underline'}>
+                  textDecorationLine={'underline'}
+                  ml={1}>
                     Masuk</Link>
                 </Text>
             </Stack>
