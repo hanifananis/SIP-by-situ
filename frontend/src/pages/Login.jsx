@@ -125,7 +125,8 @@ export default function Login() {
                   Belum punya akun? 
                 <Link 
                   href='/register' 
-                  textDecorationLine={'underline'}>
+                  textDecorationLine={'underline'}
+                  ml={1}>
                     Daftar</Link>
                 </Text>
             </Stack>

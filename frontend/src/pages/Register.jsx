@@ -20,7 +20,20 @@ import { useState } from 'react'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 
 export default function Register() {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [no_telp, setNoTelp] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+
   const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+
+  function signUp()
+  {
+    let data = [name, email, no_telp, password, confirmPassword];
+    
+  }
 
   return (
     <Flex
@@ -39,7 +52,8 @@ export default function Register() {
               fontSize='2xl'
               align={'center'}
               fontWeight={'bold'}>
-                Register</Text>
+                Register
+            </Text>
             <FormControl id="nama">
               <FormLabel
                 fontSize={'sm'}>
@@ -54,6 +68,8 @@ export default function Register() {
                   variant='unstyled'
                   padding={4}
                   type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
             </FormControl>
             <FormControl id="email">
@@ -70,6 +86,8 @@ export default function Register() {
                   variant='unstyled'
                   padding={4}
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
             </FormControl>
             <FormControl id="no-telepon">
@@ -86,6 +104,8 @@ export default function Register() {
                   variant='unstyled'
                   padding={4}
                   type="text"
+                  value={no_telp}
+                  onChange={(e) => setNoTelp(e.target.value)}
                 />
             </FormControl>
             <FormControl id="password">
@@ -97,11 +117,13 @@ export default function Register() {
                 <Input
                 placeholder='Masukkan kata sandi'
                 _placeholder={{ opacity: 1, color: 'inherit' }}
-                  fontSize="sm"
-                  bg="rgba(255, 255, 255, 0.12)"
-                  variant='unstyled'
-                  padding={4}
-                type={showPassword ? 'text' : 'password'} />
+                fontSize="sm"
+                bg="rgba(255, 255, 255, 0.12)"
+                variant='unstyled'
+                padding={4}
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)} />
                 <InputRightElement h={'full'}>
                   <Button
                     variant='unstyled'
@@ -120,16 +142,18 @@ export default function Register() {
                 <Input
                 placeholder='Masukkan konfirmasi kata sandi'
                 _placeholder={{ opacity: 1, color: 'inherit' }}
-                  fontSize="sm"
-                  bg="rgba(255, 255, 255, 0.12)"
-                  variant='unstyled'
-                  padding={4}
-                type={showPassword ? 'text' : 'password'} />
+                fontSize="sm"
+                bg="rgba(255, 255, 255, 0.12)"
+                variant='unstyled'
+                padding={4}
+                type={showConfirmPassword ? 'text' : 'password'}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)} />
                 <InputRightElement h={'full'}>
                   <Button
                     variant='unstyled'
-                    onClick={() => setShowPassword((showPassword) => !showPassword)}>
-                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                    onClick={() => setShowConfirmPassword((showConfirmPassword) => !showConfirmPassword)}>
+                    {showConfirmPassword ? <ViewIcon /> : <ViewOffIcon />}
                   </Button>
                 </InputRightElement>
               </InputGroup>
@@ -143,7 +167,9 @@ export default function Register() {
                 fontSize={"sm"}
                 _hover={{
                   bg: 'blue.500',
-                }}>
+                }}
+                onClick={signUp()}
+                >
                 Daftar
               </Button>
               <Box position='relative'>
