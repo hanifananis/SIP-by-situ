@@ -3,7 +3,7 @@ import RedirectPage from '../components/RedirectPage'
 import { Accordion, Flex } from '@chakra-ui/react'
 import DetailHeader from '../components/DetailHeader'
 import GreenAccordion from '../components/GreenAccordion'
-import axios from 'axios';
+import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import Candidates from '../components/Candidates'
 
@@ -15,7 +15,6 @@ const Calon = () => {
     axios.get(`http://localhost:5000/paslons/${_id}`)
       .then(response => {
         setData(response.data);
-        console.log(response.data);
       })
       .catch(error => {
         console.error('Error Fetching Data: ', error);
