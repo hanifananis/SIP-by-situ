@@ -11,12 +11,10 @@ export const registerUser = async (req, res) => {
             return res.status(400).json({ message: 'Passwords do not match' });
         }
 
-        const hashedPassword = await argon2.hash(password);
-
         const user = new User({
             name,
             email,
-            password: hashedPassword,
+            password,
             no_telp,
         });
 
