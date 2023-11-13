@@ -18,27 +18,28 @@ import {
 } from '@chakra-ui/react'
 
 import { useState } from 'react'
-import { Formik, useFormik } from 'formik'
+import { Formik } from 'formik'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { loginSchema } from '../schemas/loginSchema'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 export default function Login() {
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false)
 
-  function onSubmit() 
-  {
+  function onSubmit(values) {
     axios.post(`http://localhost:5000/login`, {
-      email: email,
-      password: password
+      email: values.email,
+      password: values.password
     })
     .then(() => {
       navigate('/');
     })
     .catch((error) => {
       console.log(error);
-    })
+    });
   }
 
   return (
@@ -46,19 +47,22 @@ export default function Login() {
       minH={'100vh'}
       justify={'center'}
       bg={'#FFFFFF'}
-      color={'white'}>
+      color={'white'}
+    >
       <Box
         rounded={'2xl'}
         bg={'#5D1416'}
         p={8}
         my={28}
-        width={{base:"86%", md:"46%", lg:"36%", xl:"26%"}}>
+        width={{base:"86%", md:"46%", lg:"36%", xl:"26%"}}
+      >
           <Stack spacing={4}>
             <Text 
               fontSize='2xl'
               align={'center'}
-              fontWeight={'bold'}>
-                Login
+              fontWeight={'bold'}
+            >
+              Login
             </Text>
             <Formik
               initialValues={{
@@ -99,9 +103,7 @@ export default function Login() {
                     isInvalid={errors.password && touched.password} 
                     mb={4}
                   >
-                    <FormLabel
-                      fontSize={'sm'}
-                    >
+                    <FormLabel fontSize={'sm'}>
                       Kata Sandi
                     </FormLabel>
                     <InputGroup>
@@ -121,7 +123,8 @@ export default function Login() {
                       <InputRightElement h={'full'}>
                         <Button
                           variant='unstyled'
-                          onClick={() => setShowPassword((showPassword) => !showPassword)}>
+                          onClick={() => setShowPassword((showPassword) => !showPassword)}
+                        >
                           {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                         </Button>
                       </InputRightElement>
@@ -145,7 +148,8 @@ export default function Login() {
                       fontSize={"sm"}
                       _hover={{
                         bg: 'blue.500',
-                      }}>
+                      }}
+                    >
                       Masuk
                     </Button>
                     <Box position='relative'>
@@ -158,28 +162,32 @@ export default function Login() {
                       </AbsoluteCenter>
                     </Box>
                     <Button
-                        size="lg"
-                        bg={'white'}
-                        color={'black'}
-                        rounded={'50'}
-                        fontSize={"sm"}
-                        _hover={{
-                          bg: 'blue.500',
-                        }}>
-                        Masuk dengan Google
+                      size="lg"
+                      bg={'white'}
+                      color={'black'}
+                      rounded={'50'}
+                      fontSize={"sm"}
+                      _hover={{
+                        bg: 'blue.500',
+                      }}
+                    >
+                      Masuk dengan Google
                     </Button>
                   </Stack>
                   <Stack pt={6}>
                     <Text 
                       fontSize={'sm'}
-                      align={'center'}>
-                        Belum punya akun? 
-                      <Link 
-                        href='/register' 
-                        textDecorationLine={'underline'}
-                        ml={1}>
-                          Daftar</Link>
-                      </Text>
+                      align={'center'}
+                    >
+                      Belum punya akun? 
+                    <Link 
+                      href='/register' 
+                      textDecorationLine={'underline'}
+                      ml={1}
+                    >
+                      Daftar
+                    </Link>
+                    </Text>
                   </Stack>
                 </form>
               )}
