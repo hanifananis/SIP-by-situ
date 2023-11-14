@@ -44,7 +44,16 @@ export default function Register() {
       confirmPassword: values.confirmPassword
     })
     .then(() => {
-      toast.success('Registered successfully');
+      toast.success('Register berhasil', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
       navigate('/login');
     })
     .catch((error) => {
