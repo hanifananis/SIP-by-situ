@@ -22,7 +22,11 @@ import { Formik } from 'formik'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { loginSchema } from '../schemas/loginSchema'
 import { useNavigate } from 'react-router-dom'
+
 import axios from 'axios'
+
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -35,6 +39,7 @@ export default function Login() {
       password: values.password
     })
     .then(() => {
+      toast.success('Login successfully');
       navigate('/');
     })
     .catch((error) => {
