@@ -1,21 +1,21 @@
-import { Box, Button, Card, Flex, Text } from '@chakra-ui/react'
+import { Box, Button, Card, Flex, Grid, Text, Image } from '@chakra-ui/react'
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Cards = () => {
-  const posts = [
-    {
-      id: 1,
-      title: "Lorem, ipsum dolor sit amet consectetur adipisicing elit",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam maiores id nam sed vitae distinctio aspernatur explicabo debitis, repellat repellendus enim ab quibusdam sunt, consequatur repudiandae nisi eaque commodi ullam.",
-      img: "./src/assets/bg-auth.png"
-    },
-    {
-      id: 2,
-      title: "Lorem, ipsum dolor sit amet consectetur adipisicing elit.",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam maiores id nam sed vitae distinctio aspernatur explicabo debitis, repellat repellendus enim ab quibusdam sunt, consequatur repudiandae nisi eaque commodi ullam.",
-      img: "./src/assets/bg-auth.png"
-    }
-  ];
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:5000/partaiInfos')
+      .then(response => {
+        setData(response.data);
+      })
+      .catch(error => {
+        console.error('Error Fetching Data: ', error);
+      });
+  }, [])
+
   return (
     <Flex
       flexDirection={'column'}>
@@ -25,11 +25,12 @@ const Cards = () => {
         mb={8}>
         Partai Politik
       </Text>
-      <Flex 
+      <Grid
         justify={'space-between'}
         alignItems={'center'}
+        templateColumns={'repeat(4, 1fr)'}
         gap={8}>
-        {posts.map(post => (
+        {data.map(post => (
           <Card
             key={post.id}
             alignItems={'center'}
@@ -38,29 +39,33 @@ const Cards = () => {
             borderColor={'#540302'}
             borderWidth={2}
             minWidth={'17%'}
+            minHeight={72}
             >
-              <Box
-              bg={'black'}
-              color={'white'}
-              py={12}
-              px={14}
+              <Image
               w={'full'}
+              textAlign={'center'}
+              src={post.foto}
+              maxWidth={24}
+              maxHeight={28}>
+              </Image>
+              <Text
               textAlign={'center'}>
-              {post.title}
-              </Box>
-              <Text fontSize={'lg'}>Lorem Ipsum</Text>
-              <Link to={`/partai-politik/${post.id}`}>
+                {post.name}
+              </Text>
+              <Link to={`/partai-politik/${post._id}`}>
                 <Button
                 bgColor={'#4F7B58'}
                 color={'white'}
                 rounded={'3xl'}
-                fontSize={'xs'}
-                size={'sm'}
-                >View here</Button>
+                fontSize={'sm'}
+                w={'44'}
+                >
+                  View here
+                </Button>
               </Link>
           </Card>
         ))}
-      </Flex>
+      </Grid>
     </Flex>
   )
 }

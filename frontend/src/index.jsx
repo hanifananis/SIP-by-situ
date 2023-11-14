@@ -77,7 +77,7 @@ const router = createBrowserRouter([
         element: <PartaiPolitik />,
       },
       {
-        path: "/partai-politik/:id",
+        path: "/partai-politik/:_id",
         element: <Detail />,
       }, 
       {
