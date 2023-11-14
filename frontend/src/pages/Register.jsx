@@ -22,7 +22,11 @@ import { Formik } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { registerSchema } from '../schemas/registerSchema'
+
 import axios from 'axios'
+
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Register() {
   const navigate = useNavigate();
@@ -40,6 +44,7 @@ export default function Register() {
       confirmPassword: values.confirmPassword
     })
     .then(() => {
+      toast.success('Registered successfully');
       navigate('/login');
     })
     .catch((error) => {
