@@ -10,6 +10,7 @@ import '@fontsource/plus-jakarta-sans/700.css'
 import '@fontsource/plus-jakarta-sans/800.css'
 
 import { ChakraProvider } from '@chakra-ui/react'
+import { ToastContainer } from 'react-toastify';
 
 import {
   createBrowserRouter,
@@ -47,6 +48,7 @@ function Layout() {
     <ChakraProvider theme={theme}>
       <Navbar />
       <Outlet />
+      <ToastContainer />
       <Footer />
       <ScrollToTop /> 
     </ChakraProvider>
