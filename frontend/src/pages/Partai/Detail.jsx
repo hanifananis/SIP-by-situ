@@ -1,10 +1,11 @@
-import { Flex, Heading, Accordion } from '@chakra-ui/react'
+import { Flex, Heading, Accordion, Image } from '@chakra-ui/react'
 import GreenAccordion from '../../components/GreenAccordion'
 import RedirectPage from '../../components/RedirectPage'
 import DetailHeader from '../../components/DetailHeader'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import SocialMedia from '../../components/SocialMedia'
 
 const Detail = () => {
   const [data, setData] = useState([]);
@@ -50,21 +51,39 @@ const Detail = () => {
         key={data._id}
         title={data.name}
       />
+      <Image
+        mx={'auto'}
+        alignItems={'center'}
+        src={data.foto}
+        w={'80'}
+      >
+      </Image>
+      <SocialMedia
+        website={data.website}
+        instagram={data.ig_sosmed}
+        facebook={data.fb_sosmed}
+      />
       <Heading
         mt={12}
         mb={2}
         fontSize={48}>
           Profil Partai
       </Heading>
-        <Accordion allowMultiple>
-          {posts.map(post => (
-            <GreenAccordion 
-              key={post.id} 
-              title={post.title} 
-              desc={post.desc} 
-            />
-          ))}
-        </Accordion>
+      <Accordion allowMultiple>
+        {posts.map(post => (
+          <GreenAccordion 
+            key={post.id} 
+            title={post.title} 
+            desc={post.desc} 
+          />
+        ))}
+      </Accordion>
+      <Heading
+        mt={12}
+        mb={2}
+        fontSize={48}>
+          Calon Legislatif 2019
+      </Heading>
     </Flex>
   )
 }

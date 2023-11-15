@@ -1,4 +1,4 @@
-import { Box, Button, Card, Flex, Grid, Text, Image } from '@chakra-ui/react'
+import { Box, Button, Card, Flex, Grid, Text, Image, CardBody } from '@chakra-ui/react'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -33,25 +33,42 @@ const Cards = () => {
         {data.map(post => (
           <Card
             key={post.id}
+            maxW={'sm'}
+            h={72}
             alignItems={'center'}
-            p={6}
-            gap={2.5}
+            textAlign={'center'}
+            pb={4}
+            px={2}
             borderColor={'#540302'}
             borderWidth={2}
-            minWidth={'17%'}
-            minHeight={72}
+            justify={'space-between'}
             >
-              <Image
-              w={'full'}
-              textAlign={'center'}
-              src={post.foto}
-              maxWidth={24}
-              maxHeight={28}>
-              </Image>
-              <Text
-              textAlign={'center'}>
-                {post.name}
-              </Text>
+              <CardBody>
+                <Box
+                  h={24}
+                  display={'grid'}
+                  placeItems={'center'}
+                >
+                <Image
+                  mx={'auto'}
+                  alignItems={'center'}
+                  src={post.foto}
+                  maxWidth={40}
+                  maxHeight={24}
+                >
+                  </Image>
+                </Box>
+                <Text
+                  textAlign={'center'}
+                  fontSize={'lg'}
+                  mt={4}
+                  mb={'auto'}
+                  noOfLines={2}
+                  fontWeight={'bold'}
+                >
+                  {post.name}
+                </Text>
+              </CardBody>
               <Link to={`/partai-politik/${post._id}`}>
                 <Button
                 bgColor={'#4F7B58'}
