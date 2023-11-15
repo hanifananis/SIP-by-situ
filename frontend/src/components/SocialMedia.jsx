@@ -6,7 +6,7 @@ const SocialMedia = (props) => {
   return (
     <Flex
         mx={'auto'}
-        mt={2}
+        mt={4}
         gap={4}
     >
         <Flex gap={2} alignItems={'center'}>

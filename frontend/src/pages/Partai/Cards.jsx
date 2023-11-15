@@ -39,9 +39,11 @@ const Cards = () => {
             textAlign={'center'}
             pb={4}
             px={2}
-            borderColor={'#540302'}
-            borderWidth={2}
+            // borderColor={'#540302'}
+            // borderWidth={2}
             justify={'space-between'}
+            boxShadow={'lg'}
+            bgColor={'#F3EBBD'}
             >
               <CardBody>
                 <Box

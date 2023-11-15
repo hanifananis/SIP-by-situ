@@ -7,7 +7,7 @@ const Banner = ({ title, desc }) => {
         <Text  
             fontSize={48} 
             fontWeight={'bold'}
-            mb={12}
+            mb={10}
             align={'center'}>
             { title }
         </Text>
