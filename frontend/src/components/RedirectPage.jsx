@@ -1,6 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react'
-import { ArrowLeft } from "@phosphor-icons/react";
-import { useNavigate } from 'react-router-dom';
+import { ArrowLeft } from "@phosphor-icons/react"
+import { useNavigate } from 'react-router-dom'
 
 const RedirectPage = ({ title }) => {
     const navigate = useNavigate();
@@ -9,7 +9,8 @@ const RedirectPage = ({ title }) => {
         <Flex
             alignItems={'center'}
             gap={4}
-            fontWeight={'bold'}>
+            fontWeight={'bold'}
+        >
             <button onClick={() => navigate(-1)}><ArrowLeft /></button>
             <Text>Lihat { title } Lainnya</Text>
         </Flex>
