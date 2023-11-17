@@ -20,7 +20,7 @@ const Paslon = new mongoose.Schema({
         type: String,
     },
     misi: {
-        type: String,
+        type: [String],
     },
     partai_pengusung: {
         type: String,
