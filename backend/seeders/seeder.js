@@ -1,28 +1,38 @@
 // Import your seeders
 import { seedUsers } from './userSeeder.js';
 import { seedPartaiInfos } from './partaiInfoSeeder.js';
+import { seedPaslon } from './paslonSeeder.js';
+import { seedForumsAndComments } from './forumSeeder.js';
+import { seedPilpres2019s } from './pilpres2019Seeder.js';
+import { seedDPR2019s } from './suaraDPR2019Seeder.js';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 
-var mongoOptions = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+const mongoOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 };
 
-if(process.env.MONGO_URI){
-    mongoose.connect(process.env.MONGO_URI + '/' + process.env.MONGO_DBNAME,mongoOptions);
-} else{
-    mongoose.connect('mongodb://' + process.env.MONGO_HOST + ':' + process.env.MONGO_PORT + '/' + process.env.MONGO_DBNAME,mongoOptions);
-
-}
+mongoose.connect('mongodb+srv://kharismanisa14:kharismanisa12@kharisma.xjqtvx0.mongodb.net/sip_db', mongoOptions);
 
 // Define a function to run all seeders
 async function runAllSeeders() {
   try {
     // Run the user seeder
-    await seedUsers();
+    // await seedUsers();
 
     // Run the partaiInfo seeder
-    await seedPartaiInfos();
+    // await seedPartaiInfos();
+
+    // await seedPaslon();
+    await seedDPR2019s();
+    // await seedPilpres2019s();
+
+
+    // await seedForumsAndComments();
+
+
 
     console.log('All seeders executed successfully.');
   } catch (error) {
