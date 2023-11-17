@@ -34,31 +34,23 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-  function onSubmit(values)
+  const onSubmit = (values) =>
   {
-    axios.post(`http://localhost:5000/register`, {
-      name: values.name,
-      email: values.email,
-      no_telp: values.no_telp,
-      password: values.password,
-      confirmPassword: values.confirmPassword
-    })
-    .then(() => {
-      toast.success('Register berhasil', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        });
-      navigate('/login');
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+    axios
+      .post(`http://localhost:5000/register`, {
+        name: values.name,
+        email: values.email,
+        no_telp: values.no_telp,
+        password: values.password,
+        confirmPassword: values.confirmPassword
+      })
+      .then(() => {
+        toast.success('Register berhasil');
+        navigate('/login');
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
   
   return (
@@ -111,6 +103,7 @@ export default function Register() {
                       variant='unstyled'
                       padding={4}
                       type="text"
+                      autoComplete="off"
                       value={values.name}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -135,6 +128,7 @@ export default function Register() {
                       variant='unstyled'
                       padding={4}
                       type="email"
+                      autoComplete="off"
                       value={values.email}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -158,6 +152,7 @@ export default function Register() {
                       variant='unstyled'
                       padding={4}
                       type="text"
+                      autoComplete="off"
                       value={values.no_telp}
                       onChange={handleChange}
                       onBlur={handleBlur}

@@ -12,10 +12,12 @@ export const registerSchema = yup.object().shape({
         .required("Email wajib diisi"),
     no_telp: yup
         .string()
+        .min(12, "No telepon minimal 12 angka")
+        .max(12)
         .required("No telepon wajib diisi"),
     password: yup
         .string()
-        .min(5)
+        .min(6)
         .matches(passwordRules, {message: "Please create a stronger password"})
         .required("Password wajib diisi"),
     confirmPassword: yup

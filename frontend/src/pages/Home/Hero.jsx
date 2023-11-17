@@ -1,41 +1,33 @@
-import { Flex, Box, Image, Text, Highlight } from '@chakra-ui/react'
+import { Flex, Image, Button } from '@chakra-ui/react'
 import Banner from '../../components/Banner'
+import { Link } from 'react-router-dom'
 
 const Hero = () => {
   return (
     <Flex 
-        flexDirection={'column'}
-        mb={4}>
-        <Banner title={"Sistem Infomasi Pemilu"} />
-        <Flex 
-          gap={12}
-          flexDirection={{base:'column', md:'row'}}
-          marginX={{base:20, xl:48}}>
-            <Image src='/assets/landing-page.jpg' height={{base:"100%"}} width={{base:"80%", md:"38%", lg:"36%", xl:"26%"}}></Image>
-            <Box>
-            <Text fontWeight={'bold'} fontSize={31} lineHeight='tall'>
-            <Box bg={'#F3EBBD'} p={4} mb={8}>
-            Sebagai mayoritas dari pemilih, peran kita sangat <b style={{ color: '#5D1416' }}>krusial</b> dalam menentukan arah <u>masa depan negara</u>.
-            </Box>
-              <Highlight
-                query={['presiden', 'DPR', 'partai']}
-                styles={{ px: '2', py: '1', rounded: 'full', bg: '#80AF85', color:'white' }}
-              >
-                SIP hadir sebagai wadah informasi lengkap dan terkini untuk pemilu, termasuk pemilihan presiden, anggota DPR, dan partai politik di Indonesia.
-              </Highlight>
-            </Text>
-                {/* <Text
-                fontWeight={'bold'}
-                fontSize={24}>
-                Kenali Proses Pemilu dengan Lebih Dekat
-                </Text>
-                <Text 
-                mt={2}
-                fontWeight={'medium'}>
-                Sebagai mayoritas dari pemilih, peran kita sangat penting dalam menentukan arah masa depan negara. SIP (Sistem Informasi Pemilu) hadir sebagai sebuah aplikasi perangkat lunak yang dirancang untuk memberikan informasi yang lengkap dan terkini terkait dengan pemilihan umum, terutama pemilihan presiden, anggota DPR, dan partai politik di Indonesia.
-                </Text> */}
-            </Box>
-        </Flex>
+      flexDirection={'column'}
+      px={52}
+      textAlign={'center'}
+    >
+      <Banner title={"Kenali Proses Pemilu dengan Lebih Dekat"} desc={"SIP (Sistem Informasi Pemilu) adalah aplikasi yang memberikan informasi terkini seputar pemilihan presiden, anggota DPR, dan partai politik di Indonesia. Melalui forum online, kita dapat berdiskusi dan bertukar ide terkait pemilu serta isu-isu politik, memungkinkan peran aktif dalam membentuk masa depan negara."} />
+      <Link href='/login'>
+        <Button
+          bgColor={'white'}
+          color={'#4F7B58'}
+          borderWidth={2}
+          borderColor={'#4F7B58'}
+          rounded={50}
+          fontSize={'sm'}
+          px={6}
+          _hover={{
+            color: 'white',
+            bgColor: '#4F7B58'
+          }}
+        >
+          Ayo Bergabung di Forum Kami
+        </Button>
+      </Link>
+      <Image src='/assets/home.jpg' width={600} marginX={'auto'} marginBottom={-28} />
     </Flex>
   )
 }

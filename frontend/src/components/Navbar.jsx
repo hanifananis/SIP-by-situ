@@ -12,33 +12,15 @@ const Navbar = () => {
       color='white' 
       justify={'space-between'} 
       align={'center'}
+    >
+      <img src='/assets/logo-green 1.png' alt='SIP' width={120} />
+      <Flex 
+        justify={'space-between'} 
+        gap={8}
+        display={{base: 'none', lg: 'flex'}}
       >
-        <img src='/assets/logo-green 1.png' alt='SIP' width={120} />
-        <Flex 
-          justify={'space-between'} 
-          gap={8}
-          display={{base: 'none', lg: 'flex', xl: 'flex'}}>
-          <Link 
-            href='/'>
-            <Button
-              bgColor={'#5D1416'}
-              color={'inherit'}
-              rounded={50}
-              _hover={{
-                bg: '#F3EBBD',
-                borderColor: '#D0D5DD',
-                color: '#5D1416'
-              }}
-              _active={{
-                bg: '#F3EBBD',
-                borderColor: '#D0D5DD',
-                color: '#5D1416'
-              }}>
-            Home
-            </Button>
-          </Link>
-          <Link href='/partai-politik'>
-            <Button
+        <Link href='/'>
+          <Button
             bgColor={'#5D1416'}
             color={'inherit'}
             rounded={50}
@@ -51,10 +33,30 @@ const Navbar = () => {
               bg: '#F3EBBD',
               borderColor: '#D0D5DD',
               color: '#5D1416'
-            }}>
+            }}
+          >
+            Home
+          </Button>
+        </Link>
+        <Link href='/partai-politik'>
+          <Button
+            bgColor={'#5D1416'}
+            color={'inherit'}
+            rounded={50}
+            _hover={{
+              bg: '#F3EBBD',
+              borderColor: '#D0D5DD',
+              color: '#5D1416'
+            }}
+            _active={{
+              bg: '#F3EBBD',
+              borderColor: '#D0D5DD',
+              color: '#5D1416'
+            }}
+          >
             Partai
-            </Button>
-          </Link>
+          </Button>
+        </Link>
           <Link href='/forum'>
             <Button
             bgColor={'#5D1416'}
@@ -85,22 +87,23 @@ const Navbar = () => {
           icon={<HamburgerIcon />}
           display={{sm: 'flex', md:'flex', lg: 'none', xl: 'none'}}
         />
-        <Link
-        href='/login'>
-          <Button
-            bgColor={'#4F7B58'}
-            color={'inherit'}
-            rounded={50}
-            fontSize={'sm'}
-            px={6}
-            _hover={{
-              bgColor: 'white',
-              color: '#4F7B58'
-            }}
-            display={{base: 'none', lg: 'flex', xl: 'flex'}}>
-            Login
-          </Button>
-        </Link>
+        <Flex display={{base: 'none', lg: 'block'}}>
+          <Link href='/login'>
+            <Button
+              bgColor={'#4F7B58'}
+              color={'inherit'}
+              rounded={50}
+              fontSize={'sm'}
+              px={6}
+              _hover={{
+                bgColor: 'white',
+                color: '#4F7B58'
+              }}
+            >
+              Login
+            </Button>
+          </Link>
+        </Flex>
     </Flex>
   )
 }

@@ -20,9 +20,8 @@ const CandidatesCard = () => {
 
   return (
     <Grid
-      gap={12}
+      gap={8}
       flexDirection={{ base: 'column', md: 'row' }}
-      marginX={20}
       templateColumns={{ base: 'repeat(2, 1fr)', xl: 'repeat(3, 1fr)' }}
     >
       {data.map((val) => (
@@ -46,7 +45,6 @@ const CandidatesCard = () => {
           <Candidates data={[val]} height={60} width={80} />
           <Link to={`/calon-2024/${val._id}`}> {/* Adjust the route and key as needed */}
             <Button
-              onClick={''}
               mt={4}
               bgColor={'#4F7B58'}
               color={'white'}

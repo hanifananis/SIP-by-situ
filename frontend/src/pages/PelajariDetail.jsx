@@ -2,7 +2,7 @@ import { Flex, Grid } from '@chakra-ui/react'
 import CardTransparent from '../components/CardTransparent'
 import Banner from '../components/Banner'
 
-const LearnMore = () => {
+const PelajariDetail = () => {
   const cardData = [
     {
       title: "Apa Itu Pemilihan Umum?",
@@ -39,4 +39,4 @@ const LearnMore = () => {
   )
 }
 
-export default LearnMore
+export default PelajariDetail

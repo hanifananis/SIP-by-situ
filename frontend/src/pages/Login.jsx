@@ -17,6 +17,7 @@ import {
   FormErrorMessage,
 } from '@chakra-ui/react'
 
+import useAuth from '../hooks/useAuth';
 import { useState } from 'react'
 import { Formik } from 'formik'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
@@ -29,31 +30,30 @@ import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
+  const { setAuth } = useAuth();
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false)
 
-  function onSubmit(values) {
-    axios.post(`http://localhost:5000/login`, {
-      email: values.email,
-      password: values.password
-    })
-    .then(() => {
-      toast.success('Login berhasil', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-        });
-      navigate('/');
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  const onSubmit = (values) => 
+  {
+    axios
+      .post(`http://localhost:5000/login`, {
+        email: values.email,
+        password: values.password
+      })
+      .then(() => {
+        // const token = response?.data?.token;
+        // const roles = response?.data?.roles;
+        // setAuth({ email, password, roles, token });      
+        toast.success('Login berhasil');
+
+        navigate('/');
+      })
+      .catch(() => {
+        toast.error('Email atau Password salah');
+      }
+    );
   }
 
   return (
@@ -106,6 +106,7 @@ export default function Login() {
                       variant='unstyled'
                       padding={4}
                       type="email"
+                      autoComplete="off"
                       value={values.email}
                       onChange={handleChange}
                       onBlur={handleBlur}

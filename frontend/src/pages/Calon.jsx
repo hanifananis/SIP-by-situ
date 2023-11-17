@@ -51,13 +51,18 @@ const Calon = () => {
           />
           <Candidates data={[data]} height={72} width={60} />
         <Accordion allowMultiple>
-        {values.map(val => (
           <GreenAccordion 
-            key={val.id}
-            title={val.title}
-            desc={val.desc}
+            title={"Deskripsi"}
+            desc={data.deskripsi}
           />
-        ))}
+          <GreenAccordion 
+            title={"Visi"}
+            desc={data.visi}
+          />
+          <GreenAccordion 
+            title={"Misi"}
+            desc={data.misi}
+          />
         </Accordion>
     </Flex>
   )
