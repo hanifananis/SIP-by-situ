@@ -8,6 +8,7 @@ import LoginRegisterRoute from "./routes/LoginRegisterRoute.js"
 import PartaiInfoRoute from "./routes/PartaiInfoRoute.js"
 import PaslonRoute from "./routes/PaslonRoute.js"
 import ForumRoute from "./routes/ForumRoute.js"
+import KilasBalikRoute from "./routes/KilasBalikRoute.js"
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -36,5 +37,6 @@ app.use(LoginRegisterRoute)
 app.use(PartaiInfoRoute)
 app.use(PaslonRoute)
 app.use(ForumRoute)
+app.use(KilasBalikRoute)
 
 app.listen(5000, ()=> console.log('Server up and running on port 5000'))
