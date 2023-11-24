@@ -23,11 +23,11 @@ async function runAllSeeders() {
     // await seedUsers();
 
     // Run the partaiInfo seeder
-    // await seedPartaiInfos();
+    await seedPartaiInfos();
 
-    // await seedPaslon();
+    await seedPaslon();
     await seedDPR2019s();
-    // await seedPilpres2019s();
+    await seedPilpres2019s();
 
 
     // await seedForumsAndComments();

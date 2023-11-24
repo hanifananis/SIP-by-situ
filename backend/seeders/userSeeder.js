@@ -1,7 +1,5 @@
 import User from '../models/User.js'; // Sesuaikan dengan path model User Anda
-import dotenv from 'dotenv';
-import bcrypt from 'bcrypt';
-dotenv.config();
+import argon2 from 'argon2';
 
 const userData = [
   {
@@ -18,13 +16,12 @@ const userData = [
     no_telp: '9876543210',
     roles: 'admin',
   },
-  // Tambahkan data pengguna lainnya jika diperlukan
 ];
 
-// Function to hash passwords using bcrypt
+// Function to hash passwords using argon2
     async function hashPassword(password) {
         const saltRounds = 10;
-        return bcrypt.hash(password, saltRounds);
+        return argon2.hash(password, saltRounds);
     }
   
   // Function to seed the user data
