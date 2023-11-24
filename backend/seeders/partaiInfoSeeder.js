@@ -1,4 +1,4 @@
-import PartaiInfo from '../models/partaiInfo.js';
+import PartaiInfo from '../models/PartaiInfo.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -11,7 +11,9 @@ const partaiInfoData = [
     x_sosmed: '',
     website: 'https://pkb.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Kebangkitan_Bangsa',
-    foto: 'Logo_PKB.png',
+    koalisi:'Perubahan',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1656538128_Logo%20PKB.png',
+    usungPaslon: 1,
   },
   {
     name: 'Partai Gerakan Indonesia Raya (Gerindra)',
@@ -21,7 +23,9 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/Gerindra/',
     website: 'https://gerindra.or.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Gerakan_Indonesia_Raya',
-    foto: 'Logo_Gerindra.png',
+    koalisi:'Indonesia Maju',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1657710596_Logo%20GERINDRA%2010x10.png',
+    usungPaslon: 2,
   },
   {
     name: 'Partai Demokrasi Indonesia Perjuangan (PDI-P)',
@@ -31,7 +35,9 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/PDIPerjuangan',
     website: 'https://pdiperjuangan.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Demokrasi_Indonesia_Perjuangan',
-    foto: 'Logo_PDIP.png',
+    koalisi:'Kerja Sama',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1656305039_LOGO%20PDI%20PERJUANGAN.png',
+    usungPaslon: 3,
   },
   {
     name: 'Partai Golongan Karya (Golkar)',
@@ -41,7 +47,9 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/golkar_id/',
     website: 'https://www.partaigolkar.com/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Golongan_Karya',
-    foto: 'Logo_Golkar.png',
+    koalisi:'Indonesia Maju',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1656586681_Logo%20Golkar.png',
+    usungPaslon: 2,
   },
   {
     name: 'Partai Nasional Demokrat (NasDem)',
@@ -51,7 +59,9 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/NasDem',
     website: 'https://nasdem.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Nasional_Demokrat',
-    foto: 'Logo_NasDem.png',
+    koalisi:'Perubahan',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1656224727_Logo%20NasDem%20KPU.png',
+    usungPaslon: 1,
   },
   {
     name: 'Partai Buruh',
@@ -61,7 +71,8 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/EXCOPARTAIBURUH',
     website: 'https://partaiburuh.or.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Buruh_(Indonesia)',
-    foto: 'Logo_Buruh.png',
+    koalisi:'',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1659959325_LOGO%20RESMI%20PB.png',
   },
   {
     name: 'Partai Gelombang Rakyat Indonesia (Gelora)',
@@ -71,7 +82,9 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/partaigeloraid',
     website: 'https://www.partaigelora.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Gelombang_Rakyat_Indonesia',
-    foto: 'Logo_Gelora.png',
+    koalisi:'Indonesia Maju',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1658983159_Logo%20Gelora%20Portrait.png',
+    usungPaslon: 2,
   },
   {
     name: 'Partai Keadilan Sejahtera (PKS)',
@@ -81,7 +94,9 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/PKSejahtera',
     website: 'https://pks.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Keadilan_Sejahtera',
-    foto: 'Logo_PKS.jpeg',
+    koalisi:'Perubahan',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1656395115_lambang_pks.png',
+    usungPaslon: 1,
   },
   {
     name: 'Partai Kebangkitan Nusantara (PKN)',
@@ -91,7 +106,8 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/pimnaspkn',
     website: 'https://pimnas-pkn.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Kebangkitan_Nusantara',
-    foto: 'Logo_PKN.png',
+    koalisi:'',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1656155242_logo%20PKN-.png',
   },
   {
     name: 'Partai Hati Nurani Rakyat (Hanura)',
@@ -101,7 +117,9 @@ const partaiInfoData = [
     x_sosmed: '',
     website: 'https://partaihanura.or.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Hati_Nurani_Rakyat',
-    foto: 'Logo_Hanura.png',
+    koalisi:'Kerja Sama',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1659263373_hanura_10x10.png',
+    usungPaslon: 3,
   },
   {
     name: 'Partai Garda Perubahan Indonesia (Garuda)',
@@ -111,7 +129,9 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/dpppartaigaruda',
     website: 'https://partaigaruda.org/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Garda_Perubahan_Indonesia',
-    foto: 'Logo_Garuda.png',
+    koalisi:'Indonesia Maju',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1656406064_Logo%20Partai%20Garuda%20square.png',
+    usungPaslon: 2,
   },
   {
     name: 'Partai Amanat Nasional (PAN)',
@@ -121,7 +141,9 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/official_PAN',
     website: 'https://pan.or.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Amanat_Nasional',
-    foto: 'Logo_PAN.png',
+    koalisi:'Indonesia Maju',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1656404797_LOGO%20PAN.png',
+    usungPaslon: 2,
   },
   {
     name: 'Partai Bulan Bintang (PBB)',
@@ -131,7 +153,9 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/OfficialDPP_PBB',
     website: 'https://partaibulanbintang.or.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Bulan_Bintang',
-    foto: 'Logo_PBB.jpg',
+    koalisi:'Indonesia Maju',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1659262742_LOGO%20PBB.png',
+    usungPaslon: 2,
   },
   {
     name: 'Partai Demokrat',
@@ -141,7 +165,9 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/PDemokrat',
     website: 'https://www.demokrat.or.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Demokrat',
-    foto: 'Logo_Demokrat.png',
+    koalisi:'Indonesia Maju',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1656229496_WhatsApp%20Image%202022-06-26%20at%201.53.14%20PM.png',
+    usungPaslon: 2,
   },
   {
     name: 'Partai Solidaritas Indonesia (PSI)',
@@ -151,7 +177,9 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/psi.id',
     website: 'https://psi.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Solidaritas_Indonesia',
-    foto: 'Logo_PSI.png',
+    koalisi:'Indonesia Maju',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1656419883_logo-10x10.png',
+    usungPaslon: 2,
   },
   {
     name: 'Partai Persatuan Indonesia (Perindo)',
@@ -161,7 +189,9 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/PartaiPerindo',
     website: 'https://www.partaiperindo.com/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Persatuan_Indonesia',
-    foto: 'Logo_Perindo.jpeg',
+    koalisi:'Kerja Sama',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1656144884_LOGO%20PARTAI%20PERINDO%2010x10%20cm%20(RGB).png',
+    usungPaslon: 3,
   },
   {
     name: 'Partai Persatuan Pembangunan (PPP)',
@@ -171,7 +201,9 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/@DPP_PPP',
     website: 'https://www.ppp.or.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Persatuan_Pembangunan',
-    foto: 'Logo_PPP.png',
+    koalisi:'Kerja Sama',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1658455987_Logo%20PPP.png',
+    usungPaslon: 3,
   },
   {
     name: 'Partai Nangroe Aceh (PNA)',
@@ -181,7 +213,8 @@ const partaiInfoData = [
     x_sosmed: '',
     website: '',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Nanggroe_Aceh',
-    foto: 'Logo_PNA.jpeg',
+    koalisi:'',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1657205782_PNA.png',
   },
   {
     name: 'Partai Generasi Atjeh Beusaboh Tha\'at Dan Taqwa (Gabthat)',
@@ -191,7 +224,8 @@ const partaiInfoData = [
     x_sosmed: '',
     website: '',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Gabthat',
-    foto: 'https://example.com/gabthat.jpg',
+    koalisi:'',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1656604360_BENDERA.png',
   },
   {
     name: 'Partai Darul Aceh (PDA)',
@@ -201,7 +235,8 @@ const partaiInfoData = [
     x_sosmed: '',
     website: 'https://www.partaidarulaceh.id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Darul_Aceh',
-    foto: 'Logo_PDA.jpeg',
+    koalisi:'',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1658110917_Gambar%20Partai%20Darul%20Aceh.png',
   },
   {
     name: 'Partai Aceh',
@@ -211,7 +246,8 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/dpp_partaiaceh',
     website: 'https://www.partaiaceh.org/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Aceh',
-    foto: 'Logo_Aceh.jpeg',
+    koalisi:'',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1659435873_LAMBANG%20PARTAI%20ACEH.png',
   },
   {
     name: 'Partai Adil Sejahtera Aceh (PAS Aceh)',
@@ -221,7 +257,8 @@ const partaiInfoData = [
     x_sosmed: '',
     website: 'https://pas-aceh.com/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Adil_Sejahtera_Aceh',
-    foto: 'Logo_PAS.png',
+    koalisi:'',
+    foto: 'https://upload.wikimedia.org/wikipedia/commons/c/ce/Logo_PAS_ACEH.webp',
   },
   {
     name: 'Partai Soliditas Independent Rakyat Aceh (SIRA)',
@@ -231,7 +268,8 @@ const partaiInfoData = [
     x_sosmed: '',
     website: 'https://www.partaisira.org/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_SIRA',
-    foto: 'Logo_SIRA.png',
+    koalisi:'',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1659823143_Logo%20Partai%2010x10%20cm%20unk%20SIPOL_PNG.png',
   },
   {
     name: 'Partai Ummat',
@@ -241,7 +279,9 @@ const partaiInfoData = [
     x_sosmed: 'https://twitter.com/dpp_partaiummat',
     website: 'https://partaiummat.id/id/',
     url_api_wikipedia: 'https://id.wikipedia.org/w/api.php?format=json&action=parse&page=Partai_Ummat',
-    foto: 'Logo_Ummat.jpeg',
+    koalisi:'Perubahan',
+    foto: 'https://infopemilu.kpu.go.id/berkas-sipol/parpol/profil/gambar_parpol/1656157120_LOGO%20PARTAI%20UMMAT%2010X10%20CM%20KPU.png',
+    usungPaslon: 1,
   },
 ];
 
