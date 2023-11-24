@@ -1,4 +1,5 @@
 import Paslon from "../models/Paslon.js";
+import PartaiInfo from "../models/PartaiInfo.js";
 
 export const getPaslons = async (req, res) => {
     try {
@@ -18,12 +19,15 @@ export const getPaslons = async (req, res) => {
 export const getPaslonById = async (req, res) => {
     try {
         const paslon = await Paslon.findById(req.params.id);
-        if (paslon) {
-            const paslonWithStrId = {
-                ...paslon.toObject(),
-                _id: paslon._id.toString()
-            };
-            res.json(paslonWithStrId);
+        const partaiList = await PartaiInfo.find({ usungPaslon: paslon.no_urut });
+        
+        const paslonWithPartai = {
+            ...paslon.toObject(),
+            _id: paslon._id.toString(),
+            partaiInfo: partaiList
+        };
+        if (paslonWithPartai) {
+            res.json(paslonWithPartai);
         } else {
             res.status(404).json({ message: "Paslon not found." });
         }
