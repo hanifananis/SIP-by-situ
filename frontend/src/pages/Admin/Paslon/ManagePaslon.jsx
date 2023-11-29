@@ -3,7 +3,6 @@ import { Container, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@cha
 import axios from 'axios';
 import DetailPaslonModal from './DetailPaslonModal';
 import EditPaslonModal from './EditPaslonModal';
-import DeletePaslonModal from './DeletePaslonModal';
 
 const ManagePaslon = () => {
   const [data, setData] = useState([]);
@@ -31,9 +30,10 @@ const ManagePaslon = () => {
       <Table variant={'simple'}>
         <Thead>
           <Tr>
-            <Th>No Urut</Th>
+            <Th>No</Th>
             <Th>Calon Presiden</Th>
             <Th>Calon Wakil Presiden</Th>
+            <Th>No Urut</Th>
             <Th>Action</Th>
           </Tr>
         </Thead>
@@ -43,6 +43,7 @@ const ManagePaslon = () => {
               <Td>{index + 1}</Td>
               <Td>{paslon.capres}</Td>
               <Td>{paslon.cawapres}</Td>
+              <Td>{paslon.no_urut}</Td>
               <Td>
                 <DetailPaslonModal paslonId={paslon._id} />
                 <EditPaslonModal paslonId={paslon._id} />

@@ -9,14 +9,14 @@ const DetailUserModal = ({ userId }) => {
 
     useEffect(() => {
         axios
-          .get(`http://localhost:5000/users/${userId}`)
-          .then(response => {
-            setData(response.data);
-          })
-          .catch(error => {
-            console.error('Error Fetching Data: ', error)
-          });
-      }, [userId]);
+            .get(`http://localhost:5000/users/${userId}`)
+            .then(response => {
+                setData(response.data);
+            })
+            .catch(error => {
+                console.error('Error Fetching Data: ', error)
+            });
+    }, [userId]);
 
     return (
       <>

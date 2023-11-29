@@ -29,11 +29,12 @@ import ScrollToTop from './components/ScrollToTop';
 import SideBar from './components/SideBar';
 import PelajariDetail from './pages/PelajariDetail';
 import RequireAuth from './components/RequireAuth';
-import ManageForum from './pages/Admin/ManageForum';
-import ManagePartai from './pages/Admin/ManagePartai';
-import ManagePaslon from './pages/Admin/Paslon/ManagePaslon';
 import Profile from './pages/Profile';
+import ManagePaslon from './pages/Admin/Paslon/ManagePaslon';
 import ManageUser from './pages/Admin/User/ManageUser'
+import ManageForum from './pages/Admin/Forum/ManageForum'
+import ManagePartai from './pages/Admin/Partai/ManagePartai'
+import { PartaiProvider } from './context/PartaiProvider'
 
 const App = () => {
   return (
@@ -57,7 +58,7 @@ const App = () => {
         <Route path="/" element={<SideBar />}>       
           <Route path="/admin/manage-forum" element={<ManageForum />} />
           <Route path="/admin/manage-user" element={<UserProvider><ManageUser /></UserProvider>} />
-          <Route path="/admin/manage-partai" element={<ManagePartai />} />
+          <Route path="/admin/manage-partai" element={<PartaiProvider><ManagePartai /></PartaiProvider>} />
           <Route path="/admin/manage-paslon" element={<ManagePaslon />} />
         </Route> 
       </Routes>

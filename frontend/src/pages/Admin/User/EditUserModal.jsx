@@ -1,19 +1,17 @@
-import { Button, FormControl, FormErrorMessage, FormLabel, Input, InputGroup, InputRightElement, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Radio, RadioGroup, Stack, useDisclosure } from '@chakra-ui/react'
+import { Button, FormControl, FormErrorMessage, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Radio, RadioGroup, Stack, useDisclosure } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { Formik } from 'formik'
 import { userSchema } from '../../../schemas/userSchema'
 import axios from 'axios'
-
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { useUserContext } from '../../../context/UserProvider'
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
+import SubmitButton from '../../../components/SubmitButton'
 
 const EditUserModal = ({ userId }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { users, updateUserList } = useUserContext()
 
-    const [showPassword, setShowPassword] = useState(false)
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -34,7 +32,6 @@ const EditUserModal = ({ userId }) => {
                 name: values.name,
                 email: values.email,
                 no_telp: values.no_telp,
-                password: values.password,
                 roles: values.roles
             })
             .then(() => {
@@ -51,7 +48,9 @@ const EditUserModal = ({ userId }) => {
 
     return (
       <>
-        <Button colorScheme='green' mr={2} onClick={onOpen}><i class="ph-bold ph-pencil-simple"></i></Button>
+        <Button colorScheme='green' mr={2} onClick={onOpen}>
+            <i class="ph-bold ph-pencil-simple"></i>
+        </Button>
   
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
@@ -63,7 +62,6 @@ const EditUserModal = ({ userId }) => {
                     name: data.name || '',
                     email: data.email || '',
                     no_telp: data.no_telp || '',
-                    password: data.password || '',
                     roles: data.roles || ''
                 }}
                 validationSchema={userSchema}
@@ -135,66 +133,30 @@ const EditUserModal = ({ userId }) => {
                                 <FormErrorMessage>{errors.no_telp}</FormErrorMessage>
                             </FormControl>
                             <FormControl 
-                            id="password"
-                            isInvalid={errors.password && touched.password}
-                            mb={4}
-                        >
-                            <FormLabel fontSize={'sm'}>
-                            Kata Sandi
-                            </FormLabel>
-                            <InputGroup>
-                                <Input
-                                    _placeholder={{ opacity: 1, color: 'inherit' }}
-                                    fontSize="sm"
-                                    variant='flushed'
-                                    type={showPassword ? 'text' : 'password'}
-                                    value={values.password}
-                                    onChange={handleChange} 
-                                    onBlur={handleBlur}
-                                />
-                                <InputRightElement h={'full'}>
-                                    <Button
-                                    variant='unstyled'
-                                    onClick={() => setShowPassword((showPassword) => !showPassword)}>
-                                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                                    </Button>
-                                </InputRightElement>
-                            </InputGroup>
-                            <FormErrorMessage>{errors.password}</FormErrorMessage>
-                        </FormControl>
-                        <FormControl 
-                            id="roles"
-                            isInvalid={errors.roles && touched.roles}
-                            mb={4}
-                        >
-                            <FormLabel fontSize={'sm'}>
-                                Roles
-                            </FormLabel>
-                            <RadioGroup
-                                name='roles'
-                                onChange={(value) => handleChange({ target: { name: 'roles', value } })}
-                                value={values.roles}
-                                onBlur={handleBlur}
+                                id="roles"
+                                isInvalid={errors.roles && touched.roles}
+                                mb={4}
                             >
-                                <Stack direction='row'>
-                                    <Radio value='admin'>Admin</Radio>
-                                    <Radio value='user'>User</Radio>
-                                </Stack>
-                            </RadioGroup>
-                            <FormErrorMessage>{errors.roles}</FormErrorMessage>
-                        </FormControl>
-                            <ModalFooter>
-                                <Button
-                                    type="submit"
-                                    colorScheme='blue'
-                                    rounded={'50'}
-                                    mx={'auto'}
-                                    w={1/3}
+                                <FormLabel fontSize={'sm'}>
+                                    Roles
+                                </FormLabel>
+                                <RadioGroup
+                                    name='roles'
+                                    onChange={(value) => handleChange({ target: { name: 'roles', value } })}
+                                    value={values.roles}
+                                    onBlur={handleBlur}
                                 >
-                                    Submit
-                                </Button>
-                            </ModalFooter>
+                                    <Stack direction='row'>
+                                        <Radio value='admin'>Admin</Radio>
+                                        <Radio value='user'>User</Radio>
+                                    </Stack>
+                                </RadioGroup>
+                                <FormErrorMessage>{errors.roles}</FormErrorMessage>
+                            </FormControl>
                         </ModalBody>
+                        <ModalFooter>
+                            <SubmitButton />
+                        </ModalFooter>
                     </form>
                 )}
             </Formik>

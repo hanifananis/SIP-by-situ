@@ -9,6 +9,8 @@ import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { useUserContext } from '../../../context/UserProvider'
 import { userSchema } from '../../../schemas/userSchema'
+import SubmitButton from '../../../components/SubmitButton'
+import AddButton from '../../../components/AddButton'
 
 const AddUserModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -40,21 +42,7 @@ const AddUserModal = () => {
 
     return (
       <>
-        <Button 
-            colorScheme='blue'
-            my={4}
-            color={'white'}
-            rounded={10}
-            fontSize={'sm'}
-            px={4}
-            w={32}
-            gap={2}
-            marginLeft={'auto'}
-            onClick={onOpen}
-        >
-            <Plus size={20} />
-            Add User
-        </Button>
+        <AddButton title={'User'} onOpen={onOpen} />
   
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
@@ -190,15 +178,7 @@ const AddUserModal = () => {
                     </ModalBody>
         
                     <ModalFooter>
-                        <Button
-                            type="submit"
-                            colorScheme='blue'
-                            rounded={'50'}
-                            mx={'auto'}
-                            w={1/3}
-                        >
-                            Daftar
-                        </Button>
+                        <SubmitButton />
                     </ModalFooter>
                 </form>
             )}
