@@ -14,6 +14,7 @@ import theme from '../src/theme'
 
 import { Route, Routes } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react'
+import { UserProvider } from './context/UserProvider'
 import { ToastContainer } from 'react-toastify';
 
 import Login from './pages/Login';
@@ -29,11 +30,10 @@ import SideBar from './components/SideBar';
 import PelajariDetail from './pages/PelajariDetail';
 import RequireAuth from './components/RequireAuth';
 import ManageForum from './pages/Admin/ManageForum';
-import ManageUser from './pages/Admin/ManageUser';
 import ManagePartai from './pages/Admin/ManagePartai';
-import ManagePaslon from './pages/Admin/ManagePaslon';
+import ManagePaslon from './pages/Admin/Paslon/ManagePaslon';
 import Profile from './pages/Profile';
-import { UserProvider } from './context/UserProvider'
+import ManageUser from './pages/Admin/User/ManageUser'
 
 const App = () => {
   return (

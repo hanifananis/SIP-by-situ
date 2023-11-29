@@ -5,7 +5,7 @@ import AddUserModal from './AddUserModal';
 import DetailUserModal from './DetailUserModal';
 import EditUserModal from './EditUserModal';
 import DeleteUserModal from './DeleteUserModal';
-import { useUserContext } from '../../context/UserProvider';
+import { useUserContext } from '../../../context/UserProvider';
 
 const ManageUser = () => {
   const [data, setData] = useState([]);

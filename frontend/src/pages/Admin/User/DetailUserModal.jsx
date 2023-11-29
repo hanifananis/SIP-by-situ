@@ -20,7 +20,9 @@ const DetailUserModal = ({ userId }) => {
 
     return (
       <>
-        <Button colorScheme='yellow' mr={2} onClick={onOpen}><i class="ph-bold ph-list"></i></Button>
+        <Button colorScheme='yellow' mr={2} onClick={onOpen}>
+            <i class="ph-bold ph-list"></i>
+        </Button>
   
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />

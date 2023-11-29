@@ -1,4 +1,4 @@
-import { Button, Flex, Grid } from '@chakra-ui/react'
+import { Button, Flex, Grid, Link } from '@chakra-ui/react'
 import Banner from '../../components/Banner'
 import TopicCard from '../../components/TopicCard'
 import { useEffect, useState } from 'react'
@@ -8,7 +8,7 @@ const MainPage = () => {
   const [data, setData] = useState([]);
   
   useEffect(() => {
-    axios.get('http://localhost:5000/forums')
+    axios.get('http://localhost:5000/comments')
       .then(response => {
         setData(response.data);
       })
@@ -41,7 +41,9 @@ const MainPage = () => {
         templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
       >
         {data.map((val) => (
-          <TopicCard judul={val.judul} isi={val.isi} createdAt={val.createdAt} authorName={val.penulis.name}  />
+          <Link to={''}>
+            <TopicCard judul={val.judul} isi={val.isi} createdAt={val.createdAt} authorName={val.penulis.name}  />
+          </Link>
         ))}
       </Grid>
     </Flex>

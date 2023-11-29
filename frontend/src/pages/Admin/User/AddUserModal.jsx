@@ -7,8 +7,8 @@ import axios from 'axios'
 
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { useUserContext } from '../../context/UserProvider'
-import { userSchema } from '../../schemas/userSchema'
+import { useUserContext } from '../../../context/UserProvider'
+import { userSchema } from '../../../schemas/userSchema'
 
 const AddUserModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -34,6 +34,7 @@ const AddUserModal = () => {
             })
             .catch((error) => {
                 console.log(error);
+                toast.error('Add user gagal');
             })
     }
 

@@ -1,12 +1,12 @@
 import { Button, FormControl, FormErrorMessage, FormLabel, Input, InputGroup, InputRightElement, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Radio, RadioGroup, Stack, useDisclosure } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { Formik } from 'formik'
-import { userSchema } from '../../schemas/userSchema'
+import { userSchema } from '../../../schemas/userSchema'
 import axios from 'axios'
 
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { useUserContext } from '../../context/UserProvider'
+import { useUserContext } from '../../../context/UserProvider'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 
 const EditUserModal = ({ userId }) => {
@@ -45,6 +45,7 @@ const EditUserModal = ({ userId }) => {
             })
             .catch((error) => {
                 console.log(error);
+                toast.error('Edit user gagal');
             })
     }
 

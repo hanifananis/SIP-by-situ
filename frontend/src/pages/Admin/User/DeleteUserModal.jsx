@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { useUserContext } from '../../context/UserProvider';
+import { useUserContext } from '../../../context/UserProvider';
 
 const DeleteUserModal = ({ userId }) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -24,6 +24,7 @@ const DeleteUserModal = ({ userId }) => {
             })
             .catch((error) => {
                 console.log(error);
+                toast.error('Delete user gagal');
             })
     }
 
