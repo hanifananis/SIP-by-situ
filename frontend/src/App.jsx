@@ -24,11 +24,16 @@ import Detail from './pages/Partai/Detail';
 import Calon from './pages/Calon';
 import MainPage from './pages/Forum/MainPage';
 import Layout from './components/Layout';
-import ScrollToTop from './components/ScrollToTop'
-import SideBar from './components/SideBar'
-import PelajariDetail from './pages/PelajariDetail'
+import ScrollToTop from './components/ScrollToTop';
+import SideBar from './components/SideBar';
+import PelajariDetail from './pages/PelajariDetail';
 import RequireAuth from './components/RequireAuth';
 import ManageForum from './pages/Admin/ManageForum';
+import ManageUser from './pages/Admin/ManageUser';
+import ManagePartai from './pages/Admin/ManagePartai';
+import ManagePaslon from './pages/Admin/ManagePaslon';
+import Profile from './pages/Profile';
+import { UserProvider } from './context/UserProvider'
 
 const App = () => {
   return (
@@ -43,7 +48,7 @@ const App = () => {
             <Route path="/pemilu-2024" element={<PelajariDetail />} />
             <Route path="/calon-2024/:_id" element={<Calon />} />
             <Route path="/forum" element={<MainPage />} />
-            
+            <Route path="/profile" element={<Profile />} />
             <Route element={<RequireAuth />}>
             </Route>
         </Route> 
@@ -51,7 +56,9 @@ const App = () => {
         
         <Route path="/" element={<SideBar />}>       
           <Route path="/admin/manage-forum" element={<ManageForum />} />
-          <Route path="/admin/manage-user" element={<ManageForum />} />
+          <Route path="/admin/manage-user" element={<UserProvider><ManageUser /></UserProvider>} />
+          <Route path="/admin/manage-partai" element={<ManagePartai />} />
+          <Route path="/admin/manage-paslon" element={<ManagePaslon />} />
         </Route> 
       </Routes>
       <ToastContainer />

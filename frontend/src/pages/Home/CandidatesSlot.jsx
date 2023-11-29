@@ -4,21 +4,23 @@ import CandidatesCard from '../../components/CandidatesCard'
 const CandidatesSlot = () => {
   return (
     <Flex 
-        flexDirection={'column'}
-        align={'center'}
-        backgroundColor={'#540302'}
-        pt={10}
-        pb={16}
-        px={10}
-        color={'black'}>
-        <Text 
-          fontSize={42} 
-          fontWeight={'bold'}
-          mb={8}
-          color={'white'}>
-            Capres dan Cawapres 2024
-        </Text>
-        <CandidatesCard />
+      flexDirection={'column'}
+      align={'center'}
+      backgroundColor={'#540302'}
+      pt={10}
+      pb={16}
+      px={10}
+      color={'black'}
+    >
+      <Text 
+        fontSize={42} 
+        fontWeight={'bold'}
+        mb={8}
+        color={'white'}
+      >
+        Capres dan Cawapres 2024
+      </Text>
+      <CandidatesCard />
     </Flex>
   )
 }

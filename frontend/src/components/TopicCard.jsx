@@ -26,9 +26,9 @@ const TopicCard = (props) => {
       <CardBody>
         <Flex spacing='4'>
           <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-            <Avatar name='Segun Adebayo' src='https://bit.ly/sage-adebayo' size={'sm'} />
+            <Avatar name='Segun Adebayo' src='https://api.dicebear.com/avatar.svg' size={'sm'} />
             <Box>
-              <Text>Segun Adebayo</Text>
+              <Text>{props.authorName}</Text>
               <Text color={'#979797'} fontSize={'sm'}>{formattedDate()}</Text>
             </Box>
           </Flex>
@@ -40,16 +40,6 @@ const TopicCard = (props) => {
           <ChatCircle />
           <Text>Comment</Text>
         </Flex>
-        {/* <Text fontWeight={'medium'} mt={4}>Berikan Komentar</Text>
-        <Input 
-            mt={2}  
-            rounded={'xl'}
-            borderWidth={1}
-            borderColor={'#540302'}
-            focusBorderColor='#540302'
-            _placeholder={{ color: '#979797' }}
-            placeholder='Komentar yang kritis ya Gan Sis'
-         /> */}
       </CardBody>
     </Card>
   )

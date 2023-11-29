@@ -1,8 +1,6 @@
 import { Button, Flex, Grid } from '@chakra-ui/react'
 import Banner from '../../components/Banner'
-import CommentCard from '../../components/CommentCard'
 import TopicCard from '../../components/TopicCard'
-import UrutanKomentar from '../../components/UrutanKomentar'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 
@@ -43,11 +41,9 @@ const MainPage = () => {
         templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
       >
         {data.map((val) => (
-          <TopicCard judul={val.judul} isi={val.isi} createdAt={val.createdAt} />
+          <TopicCard judul={val.judul} isi={val.isi} createdAt={val.createdAt} authorName={val.penulis.name}  />
         ))}
       </Grid>
-      {/* <UrutanKomentar />
-      <CommentCard /> */}
     </Flex>
   )
 }
