@@ -1,99 +1,59 @@
+// forumSeeder.js
 import mongoose from 'mongoose';
-import User from '../models/User.js'; // Sesuaikan path model User
 import Forum from '../models/Forum.js';
-import argon2 from 'argon2';
+import Comment from '../models/Comment.js'; // Assuming you have a Comment model
+import User from '../models/User.js';
+import faker from 'faker';
 
-// Function to hash passwords using argon2
-async function hashPassword(password) {
-  const saltRounds = 10;
-  return argon2.hash(password, { saltLength: saltRounds });
-}
-
-// Seed data for forums
 const forumData = [
   {
-    judul: 'Topik 1',
-    isi: 'Isi dari topik pertama',
-    komentar: [
-      {
-        user: null, // Jika ingin menambahkan komentar tanpa user tertentu
-        content: 'Komentar 1 untuk Topik 1',
-        replies: [
-          {
-            user: null, // Jika ingin menambahkan balasan tanpa user tertentu
-            content: 'Balasan 1 untuk Komentar 1',
-          },
-        ],
-      },
-      // ... (tambahkan komentar dan balasan lainnya jika diperlukan)
-    ],
+    judul: 'Forum 1',
+    isi: 'Isi dari forum pertama',
+    penulis_id: 'user1_id', // Replace with an actual user ID
   },
   {
-    judul: 'Topik 2',
-    isi: 'Isi dari topik kedua',
-    komentar: [
-      {
-        user: null, // Jika ingin menambahkan komentar tanpa user tertentu
-        content: 'Komentar 1 untuk Topik 2',
-        replies: [
-          {
-            user: null, // Jika ingin menambahkan balasan tanpa user tertentu
-            content: 'Balasan 1 untuk Komentar 1',
-          },
-        ],
-      },
-      // ... (tambahkan komentar dan balasan lainnya jika diperlukan)
-    ],
+    judul: 'Forum 2',
+    isi: 'Isi dari forum kedua',
+    penulis_id: 'admin_id', // Replace with an actual user ID
   },
-  {
-    judul: 'Topik 3',
-    isi: 'Isi dari topik ketiga',
-    komentar: [
-      {
-        user: null, // Jika ingin menambahkan komentar tanpa user tertentu
-        content: 'Komentar 1 untuk Topik 3',
-        replies: [
-          {
-            user: null, // Jika ingin menambahkan balasan tanpa user tertentu
-            content: 'Balasan 1 untuk Komentar 1',
-          },
-        ],
-      },
-      // ... (tambahkan komentar dan balasan lainnya jika diperlukan)
-    ],
-  },
-  // ... (tambahkan data topik lainnya jika diperlukan)
+  // Add other forum data as needed
 ];
 
-// Seed function for forums and comments
-async function seedForumsAndComments() {
+async function seedForums() {
   try {
-    await Forum.deleteMany(); // Clear existing forum data
+    // Clear existing forum and comment data
+    await Forum.deleteMany();
+    await Comment.deleteMany();
 
-    const users = await User.find(); // Ambil semua user
+    // Get user IDs from the existing users or use your own logic
+    const users = await User.find(); // Get all users from the database
 
-    const forumsWithAuthorAndComments = forumData.map((forum) => {
-      const user = users[Math.floor(Math.random() * users.length)]; // Pilih user secara acak
-      return {
+    const forumsWithUserData = await Promise.all(forumData.map(async (forum) => {
+      const randomUser = users[Math.floor(Math.random() * users.length)]; // Select a random user
+
+      const newForum = new Forum({
         ...forum,
-        penulis: user._id,
-        komentar: forum.komentar.map((comment) => ({
-          ...comment,
-          user: user._id,
-          replies: comment.replies.map((reply) => ({
-            ...reply,
-            user: user._id,
-          })),
-        })),
-      };
-    });
+        penulis_id: randomUser._id,
+      });
 
-    await Forum.insertMany(forumsWithAuthorAndComments);
+      const savedForum = await newForum.save();
 
-    console.log('Forum data seeded successfully.');
+      // Create a comment for each forum
+      const newComment = new Comment({
+        user_id: randomUser._id,
+        content: faker.lorem.paragraph(),
+        forum_id: savedForum._id,
+      });
+
+      await newComment.save();
+      
+      return savedForum;
+    }));
+
+    console.log('Forums data seeded successfully.');
   } catch (error) {
     console.error('Error seeding forum data:', error);
   }
 }
 
-export { seedForumsAndComments };
+export { seedForums };
