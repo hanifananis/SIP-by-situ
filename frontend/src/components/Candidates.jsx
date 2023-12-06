@@ -16,8 +16,7 @@ const Candidates = (props) => {
           mx={'auto'}
           alignItems={'center'}
         >
-          <Flex
-          gap={6}>
+          <Flex gap={6}>
             <Candidate name={val.capres} position="Calon Presiden" img={val.capres_img_url} height={props.height} width={props.width} />
             <Candidate name={val.cawapres} position="Calon Wakil Presiden" img={val.cawapres_img_url} height={props.height} width={props.width} />
           </Flex>

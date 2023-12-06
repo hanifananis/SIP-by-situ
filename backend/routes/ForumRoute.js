@@ -1,35 +1,30 @@
+// routes.js
 import express from 'express';
 import {
-  getForums,
+  getAllForums,
   getForumById,
   createForum,
-  updateForum,
+  editForum,
   deleteForum,
   createComment,
-  updateComment,
-  deleteComment,
-  createReply,
-  updateReply,
-  deleteReply,
+  addReply,
+  editCommentOrReply,
+  deleteCommentOrReply,
 } from '../controllers/ForumController.js';
 
 const router = express.Router();
 
-// Forums
-router.get('/forums', getForums);
-router.get('/forums/:id', getForumById);
+// Forum routes
+router.get('/forums', getAllForums);
+router.get('/forums/:forumId', getForumById);
 router.post('/forums', createForum);
-router.put('/forums/:id', updateForum);
-router.delete('/forums/:id', deleteForum);
+router.put('/forums/:forumId', editForum);
+router.delete('/forums/:forumId', deleteForum);
 
-// Comments
+// Comment routes
 router.post('/comments', createComment);
-router.put('/comments', updateComment);
-router.delete('/comments/:forumId/:commentId', deleteComment);
-
-// Replies
-router.post('/replies', createReply);
-router.put('/replies', updateReply);
-router.delete('/replies/:forumId/:commentId/:replyId', deleteReply);
+router.post('/comments/:commentId/replies', addReply);
+router.put('/comments/:commentId/:replyId?', editCommentOrReply);
+router.delete('/comments/:commentId/:replyId?', deleteCommentOrReply);
 
 export default router;

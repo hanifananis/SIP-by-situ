@@ -1,250 +1,230 @@
-import Forum from '../models/Forum.js';
-import User from '../models/User.js';
+import Forum from "../models/Forum.js";
+import Comment from "../models/Comment.js";
+import User from "../models/User.js";
 
-export const getForums = async (req, res) => {
-    try {
-        const forums = await Forum.find().populate('penulis').populate({
-            path: 'komentar',
-            populate: {
-                path: 'user replies.user',
-                model: User,
-            },
-        });
-
-        const forumsWithStrIds = forums.map((forum) => {
-            return {
-                ...forum.toObject(),
-                _id: forum._id.toString(),
-            };
-        });
-
-        res.json(forumsWithStrIds);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+// Get all forums
+export const getAllForums = async (req, res) => {
+try {
+    const forums = await Forum.find();
+    const forumsWithUserData = await Promise.all(forums.map(async (forum) => {
+        const user = await User.findById(forum.penulis_id);
+        const { name, roles } = user;
+        return {
+          ...forum.toObject(),
+          penulis: { name, roles },
+        };
+      }));
+      res.json(forumsWithUserData);
+} catch (error) {
+    res.status(500).json({ message: error.message });
+}
 };
 
+// Get forum by ID with associated comments
 export const getForumById = async (req, res) => {
+    const forumId = req.params.forumId;
     try {
-        const forum = await Forum.findById(req.params.id)
-            .populate('penulis')
-            .populate({
-                path: 'komentar',
-                populate: {
-                    path: 'user replies.user',
-                    model: User,
-                },
-            });
-
-        if (forum) {
-            const forumWithStrId = {
-                ...forum.toObject(),
-                _id: forum._id.toString(),
-            };
-            res.json(forumWithStrId);
-        } else {
-            res.status(404).json({ message: 'Forum not found.' });
-        }
+      const forum = await Forum.findById(forumId);
+      if (!forum) {
+        return res.status(404).json({ message: "Forum not found." });
+      }
+  
+      const comments = await Comment.find({ forum_id: forumId });
+      const commentsWithUserData = await Promise.all(comments.map(async (comment) => {
+        const user = await User.findById(comment.user_id);
+        const { name, roles } = user;
+        return {
+          ...comment.toObject(),
+          user: { name, roles },
+        };
+      }));
+  
+      const user = await User.findById(forum.penulis_id);
+      const { name, roles } = user;
+  
+      const forumWithCommentsAndUserData = {
+        ...forum.toObject(),
+        penulis: { name, roles },
+        comments: commentsWithUserData,
+      };
+  
+      res.json(forumWithCommentsAndUserData);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+      res.status(500).json({ message: error.message });
     }
 };
 
+// Create a new forum
 export const createForum = async (req, res) => {
-    const { judul, isi, penulisId } = req.body;
+    const { judul, isi, penulis_id } = req.body;
 
     try {
-        const newForum = new Forum({
-            judul,
-            isi,
-            penulis: penulisId,
-            komentar: [],
-        });
+    const user = await User.findById(penulis_id);
+    if (!user) {
+        return res.status(404).json({ message: "User not found." });
+    }
 
-        const forum = await newForum.save();
-        res.status(201).json(forum);
+    const newForum = new Forum({
+        judul,
+        isi,
+        penulis_id,
+    });
+
+    const savedForum = await newForum.save();
+    const { name, roles } = user;
+    const forumWithUserData = {
+        ...savedForum.toObject(),
+        penulis: { name, roles },
+    };
+
+    res.status(201).json(forumWithUserData);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
     }
 };
 
-export const updateForum = async (req, res) => {
-    try {
-        const updatedForum = await Forum.findByIdAndUpdate(
-            req.params.id,
-            req.body,
-            { new: true }
-        ).populate('penulis');
+// Edit a forum
+export const editForum = async (req, res) => {
+    const { judul, isi } = req.body;
+    const forumId = req.params.forumId;
 
-        res.status(200).json(updatedForum);
+    try {
+    const forum = await Forum.findByIdAndUpdate(
+        forumId,
+        { $set: { judul, isi } },
+        { new: true }
+    );
+
+    res.json(forum);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
     }
 };
 
+// Delete a forum
 export const deleteForum = async (req, res) => {
+    const forumId = req.params.forumId;
+
     try {
-        const deletedForum = await Forum.findByIdAndRemove(req.params.id);
-        res.status(200).json(deletedForum);
+    await Forum.findByIdAndRemove(forumId);
+    res.json({ message: "Forum deleted successfully." });
     } catch (error) {
-        res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
     }
 };
 
-//comment
+// Create a new comment
 export const createComment = async (req, res) => {
-    const { forumId, userId, content } = req.body;
+    const { user_id, content, forum_id } = req.body;
 
     try {
-        const forum = await Forum.findById(forumId);
+    const user = await User.findById(user_id);
+    if (!user) {
+        return res.status(404).json({ message: "User not found." });
+    }
 
-        if (!forum) {
-            return res.status(404).json({ message: 'Forum not found.' });
-        }
+    const newComment = new Comment({
+        user_id,
+        content,
+        forum_id,
+    });
 
-        const newComment = {
-            user: userId,
-            content,
-            replies: [],
-        };
+    const savedComment = await newComment.save();
+    const { name, roles } = user;
+    const commentWithUserData = {
+        ...savedComment.toObject(),
+        user: { name, roles },
+    };
 
-        forum.komentar.push(newComment);
-        const updatedForum = await forum.save();
-
-        res.status(201).json(updatedForum);
+    res.status(201).json(commentWithUserData);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
     }
 };
 
-export const updateComment = async (req, res) => {
-    const { forumId, commentId, content } = req.body;
+// Add a reply to a comment
+export const addReply = async (req, res) => {
+    const { user_id, content } = req.body;
+    const commentId = req.params.commentId;
 
     try {
-        const forum = await Forum.findById(forumId);
+    const user = await User.findById(user_id);
+    if (!user) {
+        return res.status(404).json({ message: "User not found." });
+    }
 
-        if (!forum) {
-            return res.status(404).json({ message: 'Forum not found.' });
-        }
+    const comment = await Comment.findById(commentId);
+    if (!comment) {
+        return res.status(404).json({ message: "Comment not found." });
+    }
 
-        const comment = forum.komentar.id(commentId);
+    const newReply = {
+        user_id,
+        content,
+    };
 
-        if (!comment) {
-            return res.status(404).json({ message: 'Comment not found.' });
-        }
+    comment.replies.push(newReply);
+    await comment.save();
 
-        comment.content = content;
-        const updatedForum = await forum.save();
+    const { name, roles } = user;
+    const replyWithUserData = {
+        ...newReply,
+        user: { name, roles },
+    };
 
-        res.status(200).json(updatedForum);
+    res.status(201).json(replyWithUserData);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
     }
 };
 
-export const deleteComment = async (req, res) => {
-    const { forumId, commentId } = req.params; // Use req.params to get commentId from the URL
+// Edit a comment or reply
+export const editCommentOrReply = async (req, res) => {
+    const { content } = req.body;
+    const { commentId, replyId } = req.params;
 
     try {
-        const forum = await Forum.findById(forumId);
+    let updatedObject;
 
-        if (!forum) {
-            return res.status(404).json({ message: 'Forum not found.' });
-        }
+    if (replyId) {
+        const comment = await Comment.findOneAndUpdate(
+        { "replies._id": replyId },
+        { $set: { "replies.$.content": content } },
+        { new: true }
+        );
+        updatedObject = comment.replies.find((reply) => reply._id.toString() === replyId);
+    } else {
+        const comment = await Comment.findByIdAndUpdate(
+        commentId,
+        { $set: { content: content } },
+        { new: true }
+        );
+        updatedObject = comment;
+    }
 
-        forum.komentar.pull(commentId);
-        const updatedForum = await forum.save();
-
-        res.status(200).json(updatedForum);
+    res.json(updatedObject);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
     }
 };
 
-// reply
-export const createReply = async (req, res) => {
-    const { forumId, commentId, userId, content } = req.body;
+// Delete a comment or reply
+export const deleteCommentOrReply = async (req, res) => {
+    const { commentId, replyId } = req.params;
 
     try {
-        const forum = await Forum.findById(forumId);
-
-        if (!forum) {
-            return res.status(404).json({ message: 'Forum not found.' });
-        }
-
-        const comment = forum.komentar.id(commentId);
-
-        if (!comment) {
-            return res.status(404).json({ message: 'Comment not found.' });
-        }
-
-        const newReply = {
-            user: userId,
-            content,
-        };
-
-        comment.replies.push(newReply);
-        const updatedForum = await forum.save();
-
-        res.status(201).json(updatedForum);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
+    if (replyId) {
+        await Comment.findByIdAndUpdate(
+        commentId,
+        { $pull: { replies: { _id: replyId } } },
+        { new: true }
+        );
+        res.json({ message: "Reply deleted successfully." });
+    } else {
+        await Comment.findByIdAndRemove(commentId);
+        res.json({ message: "Comment deleted successfully." });
     }
-};
-
-export const updateReply = async (req, res) => {
-    const { forumId, commentId, replyId, content } = req.body;
-
-    try {
-        const forum = await Forum.findById(forumId);
-
-        if (!forum) {
-            return res.status(404).json({ message: 'Forum not found.' });
-        }
-
-        const comment = forum.komentar.id(commentId);
-
-        if (!comment) {
-            return res.status(404).json({ message: 'Comment not found.' });
-        }
-
-        const reply = comment.replies.id(replyId);
-
-        if (!reply) {
-            return res.status(404).json({ message: 'Reply not found.' });
-        }
-
-        reply.content = content;
-        const updatedForum = await forum.save();
-
-        res.status(200).json(updatedForum);
     } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-};
-
-export const deleteReply = async (req, res) => {
-    const { forumId, commentId, replyId } = req.params;
-
-    try {
-        const forum = await Forum.findById(forumId);
-
-        if (!forum) {
-            return res.status(404).json({ message: 'Forum not found.' });
-        }
-
-        const comment = forum.komentar.id(commentId);
-
-        if (!comment) {
-            return res.status(404).json({ message: 'Comment not found.' });
-        }
-
-        comment.replies.pull(commentId);
-
-        const updatedForum = await forum.save();
-
-        res.status(200).json(updatedForum);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
+    res.status(500).json({ message: error.message });
     }
 };

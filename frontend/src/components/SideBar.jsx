@@ -1,6 +1,9 @@
 'use client';
 
 import React from 'react';
+
+import { Chats, Users, SignOut, Bank, UserRectangle } from "@phosphor-icons/react"
+
 import {
   IconButton,
   Avatar,
@@ -9,28 +12,17 @@ import {
   Flex,
   HStack,
   VStack,
-  Icon,
   Text,
   Drawer,
   DrawerContent,
   useDisclosure,
 } from '@chakra-ui/react';
+
 import {
-  FiHome,
-  FiTrendingUp,
-  FiCompass,
   FiMenu,
 } from 'react-icons/fi';
-import { Link, Outlet } from 'react-router-dom';
 
-const LinkItems = [
-  { name: 'Manage Forum', icon: FiHome, href:'/admin/manage-forum' },
-  { name: 'Manage User', icon: FiTrendingUp, href:'/admin/manage-user' },
-  { name: 'Log Out', icon: FiCompass, href: '/logout' },
-];
-
-// Find the active link based on the current route
-const activeLink = LinkItems.find((link) => location.pathname === link.href);
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
@@ -48,49 +40,78 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <img src='/assets/logo-green 1.png' alt='SIP' width={80} />
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
-      {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon} href={link.href}>
-          {link.name}
+      <Link to='/admin/manage-forum'>
+        <NavItem>
+          <Chats size={32} />
+          Manage Forum
         </NavItem>
-      ))}
+      </Link>
+      <Link to='/admin/manage-user'>
+        <NavItem>
+          <UserRectangle size={32} />
+          Manage User
+        </NavItem>
+      </Link>
+      <Link to='/admin/manage-partai'>
+        <NavItem>
+          <Bank size={32} />
+          Manage Partai
+        </NavItem>
+      </Link>
+      <Link to='/admin/manage-paslon'>
+        <NavItem>
+          <Users size={32} />
+          Manage Paslon
+        </NavItem>
+      </Link>
+      <Link to='/logout'>
+        <NavItem>
+          <SignOut size={32} />
+          Logout
+        </NavItem>
+      </Link>
     </Box>
   );
 };
 
-const NavItem = ({ icon, href, children, ...rest }) => {
+const NavItem = ({ children, ...rest }) => {
   return (
-    <Link to={href} style={{ textDecoration: 'none' }}>
-      <Flex
-        align="center"
-        p="4"
-        mx="4"
-        borderRadius="lg"
-        role="group"
-        cursor="pointer"
-        _hover={{
-          bg: '#4F7B58',
-          color: 'white',
-        }}
-        {...rest}
-      >
-        {icon && (
-          <Icon
-            mr="4"
-            fontSize="16"
-            _groupHover={{
-              color: 'white',
-            }}
-            as={icon}
-          />
-        )}
-        {children}
-      </Flex>
-    </Link>
+    <Flex
+      align="center"
+      p="4"
+      mx="4"
+      gap={2}
+      borderRadius="lg"
+      role="group"
+      cursor="pointer"
+      _hover={{
+        bg: '#4F7B58',
+        color: 'white',
+      }}
+      {...rest}
+    >
+      {children}
+    </Flex>
   );
 };
 
 const MobileNav = ({ onOpen, name, ...rest }) => {
-  const currentItem = LinkItems.find((item) => item.href === rest.href);
+  const location = useLocation();
+
+  const getCurrentText = () => {
+    switch (location.pathname) {
+      case '/admin/manage-forum':
+        return 'Manage Forum';
+      case '/admin/manage-user':
+        return 'Manage User';
+      case '/admin/manage-partai':
+        return 'Manage Partai';
+      case '/admin/manage-paslon':
+        return 'Manage Paslon';
+      default:
+        return '';
+    }
+  };
 
   return (
     <Flex
@@ -112,22 +133,13 @@ const MobileNav = ({ onOpen, name, ...rest }) => {
         icon={<FiMenu />}
       />
 
-      <Text
-        display={{ base: 'flex', md: 'none' }}
-        fontSize="2xl"
-        fontFamily="monospace"
-        fontWeight="bold"
-      >
-        Logo
-      </Text>
-
-      <Text fontSize={'xl'}>{activeLink ? activeLink.name : ''}</Text>
+    <Text fontSize={{ base: 'md', md: 'xl'}}>{ getCurrentText() }</Text>
         <Flex alignItems={'center'} gap={2} mr={4}>
             <Avatar
-                size={'sm'}
-                src={
-                'https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
-                }
+              size={'sm'}
+              src={
+              'https://api.dicebear.com/avatar.svg'
+              }
             />
             <HStack>
                 <VStack
