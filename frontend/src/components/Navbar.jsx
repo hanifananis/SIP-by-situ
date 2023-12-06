@@ -1,13 +1,12 @@
-'use client'
-
 import { HamburgerIcon } from '@chakra-ui/icons'
 import { Flex, Button, Link, IconButton } from '@chakra-ui/react'
+import GreenButton from './GreenButton'
 
 const Navbar = () => {
   return (
     <Flex 
       bg='#5D1416' 
-      w='100%' 
+      maxW={"100vw"}
       px={24} 
       color='white' 
       justify={'space-between'} 
@@ -89,19 +88,7 @@ const Navbar = () => {
         />
         <Flex display={{base: 'none', lg: 'block'}}>
           <Link href='/login'>
-            <Button
-              bgColor={'#4F7B58'}
-              color={'inherit'}
-              rounded={50}
-              fontSize={'sm'}
-              px={6}
-              _hover={{
-                bgColor: 'white',
-                color: '#4F7B58'
-              }}
-            >
-              Login
-            </Button>
+            <GreenButton title={'Login'} />
           </Link>
         </Flex>
     </Flex>

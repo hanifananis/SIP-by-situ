@@ -4,13 +4,13 @@ import React from 'react'
 const SubmitButton = () => {
   return (
     <Button
-        type="submit"
-        colorScheme='blue'
-        rounded={'50'}
-        mx={'auto'}
-        w={1/3}
+      type="submit"
+      colorScheme='blue'
+      rounded={'50'}
+      mx={'auto'}
+      w={1/3}
     >
-        Submit
+      Submit
     </Button>
   )
 }

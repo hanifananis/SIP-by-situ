@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import RedirectPage from '../components/RedirectPage'
 import { Accordion, Flex } from '@chakra-ui/react'
 import DetailHeader from '../components/DetailHeader'
 import GreenAccordion from '../components/GreenAccordion'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import Candidates from '../components/Candidates'
+import BackToHome from '../components/BackToHome'
 
 const Calon = () => {
   const [data, setData] = useState([]);
@@ -26,7 +26,7 @@ const Calon = () => {
       flexDirection={'column'}
       marginY={16}
       marginX={{base:20, xl:48}}>
-        <RedirectPage title={'Calon'} />
+        <BackToHome />
           <DetailHeader 
             key={data._id}
             title={`Calon ${data.no_urut}`}

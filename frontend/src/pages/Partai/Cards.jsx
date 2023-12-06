@@ -2,6 +2,7 @@ import { Box, Button, Card, Flex, Grid, Text, Image, CardBody } from '@chakra-ui
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import GreenButton from '../../components/GreenButton';
 
 const Cards = () => {
   const [data, setData] = useState([]);
@@ -39,8 +40,6 @@ const Cards = () => {
             textAlign={'center'}
             pb={4}
             px={2}
-            // borderColor={'#540302'}
-            // borderWidth={2}
             justify={'space-between'}
             boxShadow={'lg'}
             bgColor={'#F3EBBD'}
@@ -58,7 +57,7 @@ const Cards = () => {
                   maxWidth={40}
                   maxHeight={24}
                 >
-                  </Image>
+                </Image>
                 </Box>
                 <Text
                   textAlign={'center'}
@@ -72,15 +71,7 @@ const Cards = () => {
                 </Text>
               </CardBody>
               <Link to={`/partai-politik/${post._id}`}>
-                <Button
-                bgColor={'#4F7B58'}
-                color={'white'}
-                rounded={'3xl'}
-                fontSize={'sm'}
-                w={'44'}
-                >
-                  View here
-                </Button>
+                <GreenButton title={'View here'} />
               </Link>
           </Card>
         ))}
