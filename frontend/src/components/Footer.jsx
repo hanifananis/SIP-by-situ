@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <Flex
       bg='#5D1416' 
-      w='100%' 
+      maxW={"100vw"}
       px={24} 
       py={10}
       color='white' 

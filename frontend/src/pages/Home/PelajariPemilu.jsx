@@ -1,5 +1,6 @@
-import { Box, Button, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 import { Link } from 'react-router-dom';
+import GreenTransparentButton from '../../components/GreenTransparentButton';
 
 const PelajariPemilu = () => {
   return (
@@ -17,14 +18,7 @@ const PelajariPemilu = () => {
           Sebuah ringkasan cepat untuk meningkatkan pemahaman tentang Pemilu, institusi pemerintahan, dan organisasi politik menjelang Pemilu 2024.
         </Text>
         <Link to={`/pemilu-2024`}>
-          <Button
-            bgColor={'#4F7B58'}
-            color={'white'}
-            rounded={'3xl'}
-            fontSize={'sm'}
-            size={'md'}>
-              Klik untuk membaca
-          </Button>
+          <GreenTransparentButton title={'Klik untuk membaca'} />
         </Link>
     </Box>
   )

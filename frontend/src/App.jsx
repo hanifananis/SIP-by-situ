@@ -12,10 +12,11 @@ import axios from 'axios';
 
 import theme from '../src/theme'
 
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom'
 import { ChakraProvider } from '@chakra-ui/react'
 import { UserProvider } from './context/UserProvider'
-import { ToastContainer } from 'react-toastify';
+import { PartaiProvider } from './context/PartaiProvider'
+import { ToastContainer } from 'react-toastify'
 
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -31,10 +32,11 @@ import PelajariDetail from './pages/PelajariDetail';
 import RequireAuth from './components/RequireAuth';
 import Profile from './pages/Profile';
 import ManagePaslon from './pages/Admin/Paslon/ManagePaslon';
-import ManageUser from './pages/Admin/User/ManageUser'
-import ManageForum from './pages/Admin/Forum/ManageForum'
-import ManagePartai from './pages/Admin/Partai/ManagePartai'
-import { PartaiProvider } from './context/PartaiProvider'
+import ManageUser from './pages/Admin/User/ManageUser';
+import ManageForum from './pages/Admin/Forum/ManageForum';
+import ManagePartai from './pages/Admin/Partai/ManagePartai';
+import PostDetail from './pages/Forum/PostDetail';
+import MainTabs from './pages/Kilas Balik/MainTabs'
 
 const App = () => {
   return (
@@ -49,7 +51,9 @@ const App = () => {
             <Route path="/pemilu-2024" element={<PelajariDetail />} />
             <Route path="/calon-2024/:_id" element={<Calon />} />
             <Route path="/forum" element={<MainPage />} />
+            <Route path="/forum/:_id" element={<PostDetail />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/kilas-balik" element={<MainTabs />} />
             <Route element={<RequireAuth />}>
             </Route>
         </Route> 

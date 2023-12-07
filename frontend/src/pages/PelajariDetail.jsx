@@ -1,6 +1,7 @@
 import { Flex, Grid } from '@chakra-ui/react'
 import CardTransparent from '../components/CardTransparent'
 import Banner from '../components/Banner'
+import BackToHome from '../components/BackToHome'
 
 const PelajariDetail = () => {
   const cardData = [
@@ -27,6 +28,7 @@ const PelajariDetail = () => {
       flexDirection={'column'}
       mx={12}
       marginY={20}>
+      <BackToHome />
       <Banner title={"Pelajari Pemilu 2024"} />
       <Grid gap={4}>
         {cardData.map((cardData, index) => (     

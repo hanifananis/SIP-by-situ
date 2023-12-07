@@ -1,11 +1,11 @@
 import { Flex, Heading, Accordion, Image } from '@chakra-ui/react'
 import GreenAccordion from '../../components/GreenAccordion'
-import RedirectPage from '../../components/RedirectPage'
 import DetailHeader from '../../components/DetailHeader'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import SocialMedia from '../../components/SocialMedia'
+import RedirectPartai from '../../components/RedirectPartai'
 
 const Detail = () => {
   const [data, setData] = useState([]);
@@ -44,9 +44,7 @@ const Detail = () => {
       flexDirection={'column'}
       marginY={16}
       marginX={{base:20, xl:48}}>
-      <RedirectPage 
-        title={"Partai"}
-      />
+      <RedirectPartai />
       <DetailHeader 
         key={data._id}
         title={data.name}

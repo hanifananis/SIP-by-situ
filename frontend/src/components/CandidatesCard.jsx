@@ -43,7 +43,7 @@ const CandidatesCard = () => {
             Calon {val.no_urut}
           </Text>
           <Candidates data={[val]} height={60} width={80} />
-          <Link to={`/calon-2024/${val._id}`}> {/* Adjust the route and key as needed */}
+          <Link to={`/calon-2024/${val._id}`}>
             <Button
               mt={4}
               bgColor={'#4F7B58'}
