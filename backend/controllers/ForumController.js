@@ -31,7 +31,7 @@ export const getForumById = async (req, res) => {
   
       const comments = await Comment.find({ forum_id: forumId });
       const commentsWithUserData = await Promise.all(comments.map(async (comment) => {
-        const user = await User.findById(comment.user_id);
+        const user = await User.findById(comment.penulis_id);
         const { name, roles } = user;
         return {
           ...comment.toObject(),

@@ -2,7 +2,7 @@
 import { seedUsers } from './userSeeder.js';
 import { seedPartaiInfos } from './partaiInfoSeeder.js';
 import { seedPaslon } from './paslonSeeder.js';
-import { seedForumsAndComments } from './forumSeeder.js';
+import { seedForums } from './forumSeeder.js';
 import { seedPilpres2019s } from './pilpres2019Seeder.js';
 import { seedDPR2019s } from './suaraDPR2019Seeder.js';
 import mongoose from 'mongoose';
@@ -23,14 +23,14 @@ async function runAllSeeders() {
     // await seedUsers();
 
     // Run the partaiInfo seeder
-    await seedPartaiInfos();
+    // await seedPartaiInfos();
 
-    await seedPaslon();
-    await seedDPR2019s();
-    await seedPilpres2019s();
+    // await seedPaslon();
+    // await seedDPR2019s();
+    // await seedPilpres2019s();
 
 
-    // await seedForumsAndComments();
+    await seedForums();
 
 
 
