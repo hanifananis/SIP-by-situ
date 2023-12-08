@@ -115,16 +115,16 @@ export const deleteForum = async (req, res) => {
 
 // Create a new comment
 export const createComment = async (req, res) => {
-    const { user_id, content, forum_id } = req.body;
+    const { penulis_id, content, forum_id } = req.body;
 
     try {
-    const user = await User.findById(user_id);
+    const user = await User.findById(penulis_id);
     if (!user) {
         return res.status(404).json({ message: "User not found." });
     }
 
     const newComment = new Comment({
-        user_id,
+        penulis_id,
         content,
         forum_id,
     });
@@ -144,11 +144,11 @@ export const createComment = async (req, res) => {
 
 // Add a reply to a comment
 export const addReply = async (req, res) => {
-    const { user_id, content } = req.body;
+    const { penulis_id, content } = req.body;
     const commentId = req.params.commentId;
 
     try {
-    const user = await User.findById(user_id);
+    const user = await User.findById(penulis_id);
     if (!user) {
         return res.status(404).json({ message: "User not found." });
     }
@@ -159,7 +159,7 @@ export const addReply = async (req, res) => {
     }
 
     const newReply = {
-        user_id,
+        penulis_id,
         content,
     };
 
