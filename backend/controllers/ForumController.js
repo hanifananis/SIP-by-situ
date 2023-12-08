@@ -20,39 +20,52 @@ try {
 }
 };
 
-// Get forum by ID with associated comments
+// Get forum by ID with associated comments and user info for each reply
 export const getForumById = async (req, res) => {
     const forumId = req.params.forumId;
     try {
-      const forum = await Forum.findById(forumId);
-      if (!forum) {
-        return res.status(404).json({ message: "Forum not found." });
-      }
-  
-      const comments = await Comment.find({ forum_id: forumId });
-      const commentsWithUserData = await Promise.all(comments.map(async (comment) => {
-        const user = await User.findById(comment.penulis_id);
+        const forum = await Forum.findById(forumId);
+        if (!forum) {
+            return res.status(404).json({ message: "Forum not found." });
+        }
+
+        const comments = await Comment.find({ forum_id: forumId });
+        const commentsWithUserData = await Promise.all(comments.map(async (comment) => {
+            const user = await User.findById(comment.penulis_id);
+            const { name, roles } = user;
+
+            const repliesWithUserData = await Promise.all(comment.replies.map(async (reply) => {
+                const replyUser = await User.findById(reply.penulis_id);
+                const { name: replyUserName, roles: replyUserRoles } = replyUser;
+
+                return {
+                    ...reply.toObject(),
+                    user: { name: replyUserName, roles: replyUserRoles },
+                };
+            }));
+
+            return {
+                ...comment.toObject(),
+                user: { name, roles },
+                replies: repliesWithUserData,
+            };
+        }));
+
+        const user = await User.findById(forum.penulis_id);
         const { name, roles } = user;
-        return {
-          ...comment.toObject(),
-          user: { name, roles },
+
+        const forumWithCommentsAndUserData = {
+            ...forum.toObject(),
+            penulis: { name, roles },
+            comments: commentsWithUserData,
         };
-      }));
-  
-      const user = await User.findById(forum.penulis_id);
-      const { name, roles } = user;
-  
-      const forumWithCommentsAndUserData = {
-        ...forum.toObject(),
-        penulis: { name, roles },
-        comments: commentsWithUserData,
-      };
-  
-      res.json(forumWithCommentsAndUserData);
+
+        res.json(forumWithCommentsAndUserData);
     } catch (error) {
-      res.status(500).json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
 };
+
 
 // Create a new forum
 export const createForum = async (req, res) => {
