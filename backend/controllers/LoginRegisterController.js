@@ -50,7 +50,7 @@ export const loginUser = async (req, res) => {
         // Password is correct; you can generate a token for authentication here
         const token = generateToken(user);
 
-        res.status(200).json({ message: 'Login successful', token });
+        res.status(200).json({ message: 'Login successful', token, roles: user.roles });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -69,7 +69,7 @@ function generateToken(user) {
     const payload = {
         userId: user._id,
         email: user.email,
-        // Add any additional claims (user roles, etc.) as needed
+        roles: user.roles, // Include roles in the payload
     };
 
     const secretKey = 'your-secret-key'; // Replace with a secure secret key
