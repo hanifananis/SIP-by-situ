@@ -54,9 +54,13 @@ export default function Login() {
         console.log('Stored Token:', localStorage.getItem('token'));
         console.log('Stored Roles:', localStorage.getItem('roles'));  
         // setAuth({ email: values.email, password: values.password, roles, token });
-  
         toast.success('Login berhasil');
-        navigate('/');
+        if(roles === 'admin'){
+          console.log('test');  
+          navigate('/admin/manage-forum')
+        } else {
+          navigate('/');
+        }
       })
       .catch(() => {
         console.error('Login error:', error);
