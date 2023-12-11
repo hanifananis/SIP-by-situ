@@ -1,9 +1,9 @@
-import { Flex, Grid, GridItem, Link } from '@chakra-ui/react'
+import { Flex, Grid, GridItem } from '@chakra-ui/react'
+import { Link } from 'react-router-dom';
 import Banner from '../../components/Banner'
 import TopicCard from '../../components/TopicCard'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
-import GreenTransparentButton from '../../components/GreenTransparentButton';
 import AddTopikModal from './AddTopikModal';
 
 const MainPage = () => {
@@ -18,6 +18,9 @@ const MainPage = () => {
         console.error('Error Fetching Data: ', error);
       });
   }, []);
+
+  // Check if data.comments is defined before mapping over it
+  const comments = data.comments || [];
 
   return (
     <Flex
@@ -36,13 +39,13 @@ const MainPage = () => {
       >
         {data.map((val) => (
           <GridItem key={val._id}>
-            <Link 
-              to={`/forum/${val._id}`} style={{ textDecoration: 'none'}}>
+            <Link to={`/forum/${val._id}`}>
               <TopicCard
                 judul={val.judul} 
                 isi={val.isi} 
                 createdAt={val.createdAt} 
                 authorName={val.penulis.name}  
+                total={comments.length}
               />
             </Link>
           </GridItem>

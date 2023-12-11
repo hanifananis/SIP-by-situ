@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import Forum from '../models/Forum.js';
 import Comment from '../models/Comment.js'; // Assuming you have a Comment model
 import User from '../models/User.js';
-import faker from 'faker';
+// import faker from 'faker';
 
 const forumData = [
   {

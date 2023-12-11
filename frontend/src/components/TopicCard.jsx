@@ -1,4 +1,4 @@
-import { Avatar, Box, Card, CardBody, CardHeader, Divider, Flex, Heading, Input, Text } from '@chakra-ui/react'
+import { Avatar, Box, Card, CardBody, Divider, Flex, Text } from '@chakra-ui/react'
 import { ChatCircle } from "@phosphor-icons/react"
 import React from 'react'
 
@@ -17,9 +17,9 @@ const TopicCard = (props) => {
 
   return (
     <Card  
-      bgColor={'white'}
-      borderWidth={3}
-      borderColor={'#540302'}
+      bgColor={'#F3EBBD'}
+      // borderWidth={3}
+      // borderColor={'#540302'}
       rounded={'2xl'}
       maxW={'md'}
     >
@@ -38,7 +38,7 @@ const TopicCard = (props) => {
         <Divider borderWidth={1} borderColor={'#540302'} />
         <Flex alignItems={'center'} gap={2} mt={2}>
           <ChatCircle />
-          <Text>Comment</Text>
+          <Text>{ props.total }</Text>
         </Flex>
       </CardBody>
     </Card>
