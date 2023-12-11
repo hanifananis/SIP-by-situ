@@ -17,16 +17,15 @@ const CandidatesCard = () => {
       });
   }, []);
 
-
   return (
     <Grid
       gap={8}
       flexDirection={{ base: 'column', md: 'row' }}
-      templateColumns={{ base: 'repeat(2, 1fr)', xl: 'repeat(3, 1fr)' }}
+      templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', xl: 'repeat(3, 1fr)' }}
     >
       {data.map((val) => (
         <GridItem
-          key={val.id} 
+          key={val._id} 
           border={1}
           borderColor={'red'}
           bgColor={'white'}

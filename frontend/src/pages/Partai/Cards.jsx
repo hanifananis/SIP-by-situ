@@ -1,25 +1,12 @@
-import { Box, Button, Card, Flex, Grid, Text, Image, CardBody } from '@chakra-ui/react'
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { Box, Card, Flex, Grid, Text, Image, CardBody } from '@chakra-ui/react'
 import { Link } from 'react-router-dom';
 import GreenButton from '../../components/GreenButton';
 
-const Cards = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/partaiInfos')
-      .then(response => {
-        setData(response.data);
-      })
-      .catch(error => {
-        console.error('Error Fetching Data: ', error);
-      });
-  }, [])
-
+const Cards = ({ data }) => {
   return (
     <Flex
-      flexDirection={'column'}>
+      flexDirection={'column'}
+    >
       <Text
         fontWeight={'bold'}
         fontSize={42}
@@ -33,7 +20,7 @@ const Cards = () => {
         gap={8}>
         {data.map(post => (
           <Card
-            key={post.id}
+            key={post._id}
             maxW={'sm'}
             h={72}
             alignItems={'center'}

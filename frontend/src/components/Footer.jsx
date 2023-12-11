@@ -20,7 +20,7 @@ const Footer = () => {
         <Flex
           flexDirection={'column'}
           gap={6}>
-          <p>Funding freemium long tail hypotheses first mover advantage assets ownership</p>
+          <p>SIP: Informasi Pemilihan Presiden, DPR, dan Partai Politik Indonesia.</p>
           <Flex
             gap={4}>
             <EnvelopeSimple size={24} /> 
