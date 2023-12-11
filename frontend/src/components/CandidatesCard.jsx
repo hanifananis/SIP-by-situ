@@ -17,7 +17,6 @@ const CandidatesCard = () => {
       });
   }, []);
 
-
   return (
     <Grid
       gap={8}
@@ -26,7 +25,7 @@ const CandidatesCard = () => {
     >
       {data.map((val) => (
         <GridItem
-          key={val.id} 
+          key={val._id} 
           border={1}
           borderColor={'red'}
           bgColor={'white'}

@@ -20,7 +20,7 @@ const Cards = ({ data }) => {
         gap={8}>
         {data.map(post => (
           <Card
-            key={post.id}
+            key={post._id}
             maxW={'sm'}
             h={72}
             alignItems={'center'}

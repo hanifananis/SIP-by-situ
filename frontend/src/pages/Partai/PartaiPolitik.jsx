@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import Banner from '../../components/Banner'
 import Cards from './Cards'
@@ -24,6 +24,14 @@ const PartaiPolitik = () => {
     setSearchInput(e.target.value);
   };
 
+  const fetchedData = (searchInput) => {
+    if (searchInput === '') {
+      return data;
+    } else {
+      return data.filter((partai) => partai.name.toLowerCase().includes(searchInput))
+    }
+  }
+
   return (
     <Flex 
       flexDirection={'column'}
@@ -36,7 +44,9 @@ const PartaiPolitik = () => {
         desc={"Menyelidiki catatan prestasi dan sejarah partai politik yang berpengaruh merupakan langkah yang penting bagi pemilih yang ingin membuat keputusan yang berdasarkan informasi yang mendalam dalam konteks pemilihan politik."}
       />
       <SearchBar searchInput={searchInput} handleChange={handleChange} />
-      <Cards data={searchInput? data.filter((partai) => partai.name.toLowerCase().includes(searchInput)) : data} />
+      { 
+        fetchedData(searchInput).length == 0 ? 'No results found.' : <Cards data={fetchedData(searchInput)} />
+      }
     </Flex>
   )
 }
