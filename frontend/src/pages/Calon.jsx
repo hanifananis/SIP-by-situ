@@ -25,27 +25,28 @@ const Calon = () => {
     <Flex
       flexDirection={'column'}
       marginY={16}
-      marginX={{base:20, xl:48}}>
-        <BackToHome />
-          <DetailHeader 
-            key={data._id}
-            title={`Calon ${data.no_urut}`}
-          />
-          <Candidates data={[data]} height={72} width={60} />
-        <Accordion allowMultiple>
-          <GreenAccordion 
-            title={"Deskripsi"}
-            desc={data.deskripsi}
-          />
-          <GreenAccordion 
-            title={"Visi"}
-            desc={data.visi}
-          />
-          <GreenAccordion 
-            title={"Misi"}
-            desc={data.misi}
-          />
-        </Accordion>
+      marginX={{base:20, xl:48}}
+    >
+      <BackToHome />
+        <DetailHeader 
+          key={data._id}
+          title={`Calon ${data.no_urut}`}
+        />
+        <Candidates data={[data]} height={72} width={60} />
+      <Accordion allowMultiple>
+        <GreenAccordion 
+          title={"Deskripsi"}
+          desc={data.deskripsi}
+        />
+        <GreenAccordion 
+          title={"Visi"}
+          desc={data.visi}
+        />
+        <GreenAccordion 
+          title={"Misi"}
+          desc={data.misi}
+        />
+      </Accordion>
     </Flex>
   )
 }
