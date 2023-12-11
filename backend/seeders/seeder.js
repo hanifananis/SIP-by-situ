@@ -2,7 +2,7 @@
 import { seedUsers } from './userSeeder.js';
 import { seedPartaiInfos } from './partaiInfoSeeder.js';
 import { seedPaslon } from './paslonSeeder.js';
-import { seedForumsAndComments } from './forumSeeder.js';
+import { seedForums } from './forumSeeder.js';
 import { seedPilpres2019s } from './pilpres2019Seeder.js';
 import { seedDPR2019s } from './suaraDPR2019Seeder.js';
 import mongoose from 'mongoose';
@@ -14,13 +14,13 @@ const mongoOptions = {
   useUnifiedTopology: true,
 };
 
-mongoose.connect('mongodb+srv://kharismanisa14:kharismanisa12@kharisma.xjqtvx0.mongodb.net/sip_db', mongoOptions);
+mongoose.connect('mongodb://127.0.0.1:27017/sip_db',mongoOptions)
 
 // Define a function to run all seeders
 async function runAllSeeders() {
   try {
     // Run the user seeder
-    // await seedUsers();
+    await seedUsers();
 
     // Run the partaiInfo seeder
     await seedPartaiInfos();
@@ -30,7 +30,7 @@ async function runAllSeeders() {
     await seedPilpres2019s();
 
 
-    // await seedForumsAndComments();
+    await seedForums();
 
 
 

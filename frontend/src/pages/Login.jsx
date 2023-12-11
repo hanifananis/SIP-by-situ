@@ -42,15 +42,28 @@ export default function Login() {
         email: values.email,
         password: values.password
       })
-      .then(() => {
-        // const token = response?.data?.token;
-        // const roles = response?.data?.roles;
-        // setAuth({ email, password, roles, token });      
+      .then((response) => {
+        const { token, roles } = response.data;
+        console.log('Token:', token);
+        console.log('Roles:', roles);
+  
+        localStorage.setItem('token', token);
+        localStorage.setItem('roles', JSON.stringify(roles));
+  
+        // // Log stored values for verification
+        console.log('Stored Token:', localStorage.getItem('token'));
+        console.log('Stored Roles:', localStorage.getItem('roles'));  
+        // setAuth({ email: values.email, password: values.password, roles, token });
         toast.success('Login berhasil');
-
-        navigate('/');
+        if(roles === 'admin'){
+          console.log('test');  
+          navigate('/admin/manage-forum')
+        } else {
+          navigate('/');
+        }
       })
       .catch(() => {
+        console.error('Login error:', error);
         toast.error('Email atau Password salah');
       }
     );

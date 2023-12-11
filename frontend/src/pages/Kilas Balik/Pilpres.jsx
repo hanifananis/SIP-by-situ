@@ -39,6 +39,26 @@ const Pilpres = () => {
         });
     }, [data])
 
+    const sumUrutSatu = data.reduce((sum, entry) => sum + entry.Capres_01, 0);
+    const sumUrutDua = data.reduce((sum, entry) => sum + entry.Capres_02, 0)
+
+    const labels = ['No Urut 1', 'No Urut 2'];
+    const chartData = {
+        labels: labels,
+        datasets: [{
+            data: [sumUrutSatu, sumUrutDua],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+            ],
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 205, 86)',
+            ],
+            borderWidth: 1
+        }]
+    };
+
     return (
         <Flex flexDirection={'column'} gap={6}>
             <Card rounded={'2xl'}>
@@ -52,17 +72,7 @@ const Pilpres = () => {
                     <Pie
                         key='chart-pie'
                         datasetIdKey='idPie'
-                        data={
-                            {
-                            labels: ['No Urut 1', 'No Urut 2'],
-                            datasets: [
-                                {
-                                    id: 0,
-                                    label: '',
-                                    data: [5, 6],
-                                }
-                            ],
-                        }}
+                        data={chartData}
                         options={{
                             responsive: true
                         }}

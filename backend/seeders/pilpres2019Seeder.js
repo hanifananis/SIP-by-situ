@@ -20,8 +20,6 @@ const seedPilpres2019s = async () => {
     console.log('Election results seeded successfully.');
   } catch (error) {
     console.error('Error seeding election results:', error);
-  } finally {
-    mongoose.disconnect(); // Disconnect from the database after seeding
   }
 };
 

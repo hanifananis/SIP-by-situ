@@ -25,8 +25,6 @@ const seedDPR2019s = async () => {
     console.log('Suara DPR seeded successfully.');
   } catch (error) {
     console.error('Error seeding Suara DPR:', error);
-  } finally {
-    mongoose.disconnect(); // Disconnect from the database after seeding
   }
 };
 

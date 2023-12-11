@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import SocialMedia from '../../components/SocialMedia'
-import RedirectPartai from '../../components/RedirectPartai'
+import Redirect from '../../components/Redirect'
 
 const Detail = () => {
   const [data, setData] = useState([]);
@@ -43,8 +43,9 @@ const Detail = () => {
     <Flex
       flexDirection={'column'}
       marginY={16}
-      marginX={{base:20, xl:48}}>
-      <RedirectPartai />
+      marginX={{base:20, xl:48}}
+    >
+      <Redirect title={'Partai'} />
       <DetailHeader 
         key={data._id}
         title={data.name}

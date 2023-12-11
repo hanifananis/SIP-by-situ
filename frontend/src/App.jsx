@@ -29,14 +29,14 @@ import Layout from './components/Layout';
 import ScrollToTop from './components/ScrollToTop';
 import SideBar from './components/SideBar';
 import PelajariDetail from './pages/PelajariDetail';
-import RequireAuth from './components/RequireAuth';
 import Profile from './pages/Profile';
 import ManagePaslon from './pages/Admin/Paslon/ManagePaslon';
 import ManageUser from './pages/Admin/User/ManageUser';
 import ManageForum from './pages/Admin/Forum/ManageForum';
 import ManagePartai from './pages/Admin/Partai/ManagePartai';
 import PostDetail from './pages/Forum/PostDetail';
-import MainTabs from './pages/Kilas Balik/MainTabs'
+import ProtectedRoute from './components/ProtectedRoute';
+import MainTabs from './pages/Kilas Balik/MainTabs';
 
 const App = () => {
   return (
@@ -54,17 +54,34 @@ const App = () => {
             <Route path="/forum/:_id" element={<PostDetail />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/kilas-balik" element={<MainTabs />} />
-            <Route element={<RequireAuth />}>
-            </Route>
         </Route> 
-
-        
-        <Route path="/" element={<SideBar />}>       
-          <Route path="/admin/manage-forum" element={<ManageForum />} />
-          <Route path="/admin/manage-user" element={<UserProvider><ManageUser /></UserProvider>} />
-          <Route path="/admin/manage-partai" element={<PartaiProvider><ManagePartai /></PartaiProvider>} />
-          <Route path="/admin/manage-paslon" element={<ManagePaslon />} />
-        </Route> 
+        <Route path="/admin/*" element={<SideBar />}>
+          {/* Protected routes */}
+          <Route
+            path="manage-forum"
+            element={
+              <ProtectedRoute roles={['admin']} element={<ManageForum />} />
+            }
+          />
+          <Route
+            path="manage-user"
+            element={
+              <ProtectedRoute roles={['admin']} element={<UserProvider><ManageUser /></UserProvider>} />
+            }
+          />
+          <Route
+            path="manage-partai"
+            element={
+              <ProtectedRoute roles={['admin']} element={<PartaiProvider><ManagePartai /></PartaiProvider>} />
+            }
+          />
+          <Route
+            path="manage-paslon"
+            element={
+              <ProtectedRoute roles={['admin']} element={<ManagePaslon />} />
+            }
+          />
+        </Route>
       </Routes>
       <ToastContainer />
       <ScrollToTop /> 

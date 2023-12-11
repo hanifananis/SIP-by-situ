@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import Forum from '../models/Forum.js';
 import Comment from '../models/Comment.js'; // Assuming you have a Comment model
 import User from '../models/User.js';
-import faker from 'faker';
+// import faker from 'faker';
 
 const forumData = [
   {
@@ -26,33 +26,46 @@ async function seedForums() {
     await Comment.deleteMany();
 
     // Get user IDs from the existing users or use your own logic
-    const users = await User.find(); // Get all users from the database
+    const allUsers = await User.find();
 
-    const forumsWithUserData = await Promise.all(forumData.map(async (forum) => {
-      const randomUser = users[Math.floor(Math.random() * users.length)]; // Select a random user
+    // Seed forums
+    for (const forumInfo of forumData) {
+      const randomUser = allUsers[Math.floor(Math.random() * allUsers.length)];
 
-      const newForum = new Forum({
-        ...forum,
+      const forum = await Forum.create({
+        ...forumInfo,
         penulis_id: randomUser._id,
       });
 
-      const savedForum = await newForum.save();
+      // Seed comments and replies for each forum
+      for (let j = 0; j < 3; j++) {
+        const comment = await Comment.create({
+          penulis_id: randomUser._id,
+          content: `Comment ${j + 1} on ${forumInfo.judul}`,
+          forum_id: forum._id,
+        });
 
-      // Create a comment for each forum
-      const newComment = new Comment({
-        user_id: randomUser._id,
-        content: faker.lorem.paragraph(),
-        forum_id: savedForum._id,
-      });
+        // Seed replies for each comment
+        for (let k = 0; k < 2; k++) {
+          await Comment.findByIdAndUpdate(
+            comment._id,
+            {
+              $push: {
+                replies: {
+                  penulis_id: randomUser._id,
+                  content: `Reply ${k + 1} on Comment ${j + 1} in ${forumInfo.judul}`,
+                },
+              },
+            },
+            { new: true }
+          );
+        }
+      }
+    }
 
-      await newComment.save();
-      
-      return savedForum;
-    }));
-
-    console.log('Forums data seeded successfully.');
+    console.log('Forums data successfully seeded.');
   } catch (error) {
-    console.error('Error seeding forum data:', error);
+    console.error('Error seeding Forums:', error);
   }
 }
 
