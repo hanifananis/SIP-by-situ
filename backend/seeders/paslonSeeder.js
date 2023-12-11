@@ -70,8 +70,6 @@ async function seedPaslon() {
     console.log('Paslon successfully seeded.');
   } catch (error) {
     console.error('Error seeding Paslon:', error);
-  } finally {
-    mongoose.disconnect();
   }
 }
 

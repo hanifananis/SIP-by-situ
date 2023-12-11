@@ -14,20 +14,20 @@ const mongoOptions = {
   useUnifiedTopology: true,
 };
 
-mongoose.connect('mongodb+srv://kharismanisa14:kharismanisa12@kharisma.xjqtvx0.mongodb.net/sip_db', mongoOptions);
+mongoose.connect('mongodb://127.0.0.1:27017/sip_db',mongoOptions)
 
 // Define a function to run all seeders
 async function runAllSeeders() {
   try {
     // Run the user seeder
-    // await seedUsers();
+    await seedUsers();
 
     // Run the partaiInfo seeder
-    // await seedPartaiInfos();
+    await seedPartaiInfos();
 
-    // await seedPaslon();
-    // await seedDPR2019s();
-    // await seedPilpres2019s();
+    await seedPaslon();
+    await seedDPR2019s();
+    await seedPilpres2019s();
 
 
     await seedForums();
