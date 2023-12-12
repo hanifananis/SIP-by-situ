@@ -10,6 +10,7 @@ import SubmitButton from '../../components/SubmitButton'
 import GreenTransparentButton from '../../components/GreenTransparentButton'
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const AddTopikModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -19,6 +20,8 @@ const AddTopikModal = () => {
     const openModal = () => {
         // Check if the user is logged in
         console.log('isLoggedIn:', isLoggedIn);
+        //ini buat penulis id yak
+        console.log(Cookies.get('user_id'))
         if (!isLoggedIn) {
             toast.error('You need to log in first.');
 
@@ -117,7 +120,7 @@ const AddTopikModal = () => {
                                 <FormLabel fontSize={'sm'}>
                                 Kata Sandi
                                 </FormLabel>
-                                <InputGroup>
+                                {/* <InputGroup>
                                     <Input
                                         _placeholder={{ opacity: 1, color: 'inherit' }}
                                         fontSize="sm"
@@ -134,7 +137,7 @@ const AddTopikModal = () => {
                                         {showPassword ? <ViewIcon /> : <ViewOffIcon />}
                                         </Button>
                                     </InputRightElement>
-                                </InputGroup>
+                                </InputGroup> */}
                                 <FormErrorMessage>{errors.password}</FormErrorMessage>
                             </FormControl>
                             <FormControl 

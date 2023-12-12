@@ -47,11 +47,13 @@ export default function Login() {
         password: values.password
       })
       .then((response) => {
-        const { token, roles } = response.data;
-        console.log('Token:', token);
-        console.log('Roles:', roles);
+        const { token, roles, user_id } = response.data;
+        // console.log('Token:', token);
+        // console.log('Roles:', roles);
+        // console.log('id:', user_id);
         Cookies.set('token', token, { path: '/', expires: 1, secure: true, sameSite: 'strict' });
         Cookies.set('role', roles, { path: '/', expires: 1, secure: true, sameSite: 'strict' });
+        Cookies.set('user_id', user_id, { path: '/', expires: 1, secure: true, sameSite: 'strict' });
         login(token);
         toast.success('Login berhasil');
         if (roles.trim() === 'admin') {

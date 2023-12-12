@@ -53,7 +53,7 @@ export const loginUser = async (req, res) => {
         const token = generateToken(user);
 
         const decoded = jwt.verify(token, 'bismillah-ppl2-ini-bisa-beres-2023');
-        res.status(200).json({ message: 'Login successful', token, roles: user.roles });
+        res.status(200).json({ message: 'Login successful', token, roles: user.roles, user_id:user._id });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
