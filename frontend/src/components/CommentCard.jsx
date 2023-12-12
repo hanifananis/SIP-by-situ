@@ -1,53 +1,43 @@
-import { Button, Card, CardBody, Flex, Text, useDisclosure } from '@chakra-ui/react'
+import { Button, Card, CardBody, CardHeader, Flex, Text, useDisclosure } from '@chakra-ui/react'
 import { ChatCircle } from '@phosphor-icons/react'
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import UserForum from './UserForum';
+import Replies from './Replies';
 
-const CommentCard = ({ comment, createdAt, total }) => {
+const CommentCard = (props) => {
   const { getDisclosureProps, getButtonProps } = useDisclosure()
 
-  const [data, setData] = useState([]);
-  const { _id } = useParams();
-
+  const data = props.data;
   const buttonProps = getButtonProps()
   const disclosureProps = getDisclosureProps()
 
-  useEffect(() => {
-    axios.get(`http://localhost:5000/forums/${_id}`)
-      .then(response => {
-        setData(response.data.comments);
-      })
-      .catch(error => {
-        console.error('Error Fetching Data: ', error);
-      })
-  }, [_id])
-
-  // Check if data.comments is defined before mapping over it
-  const comments = data.comments || [];
-
   return (
     <Card  
-      bgColor={'white'}
-      borderWidth={3}
-      borderColor={'#540302'}
+      bgColor={'#F3EBBD'}
+      shadow={'sm'}
       rounded={'2xl'}
     >
-      <CardBody>
-        { comment }
-        <Text color={'#979797'} fontSize={'sm'} mt={2}>{ createdAt }</Text>
+      <CardHeader>
+        <UserForum 
+          authorName={data.user.name} 
+          tanggal={data.created_at} 
+        />
+      </CardHeader>
+      <CardBody pt={0}>
+        <Text>
+          { data.content }
+        </Text>
+        <Button 
+          leftIcon={<ChatCircle />} 
+          variant={'unstyled'} 
+          {...buttonProps}
+        >
+          { data.replies.length }
+        </Button>
 
-        <Flex alignItems={'center'} gap={2} mt={2}>
-          <Button {...buttonProps} variant={'unstyled'}>
-            <ChatCircle />
-            <Text>{ total }</Text>
-          </Button>
-        </Flex>
-        {data.map((val) => (
-          <Text {...disclosureProps}>
-            {val.content}
-          </Text>
-        ))}
+        <Replies 
+          disclosureProps={disclosureProps} 
+          data={data.replies} 
+        />
       </CardBody>
     </Card>
   )
