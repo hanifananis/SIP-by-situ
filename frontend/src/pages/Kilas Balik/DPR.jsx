@@ -53,12 +53,28 @@ const DPR = () => {
         });
     }, [data]);
 
-    const labels = ['Label 1', 'Label 2', 'Label 3', 'Label 1', 'Label 2', 'Label 3', 'Label 1'];
+    const sumPKB = data.reduce((sum, entry) => sum + entry.PKB, 0);
+    const sumGerindra = data.reduce((sum, entry) => sum + entry.Gerindra, 0);
+    const sumPDIP = data.reduce((sum, entry) => sum + entry.PDIP, 0);
+    const sumNasDem = data.reduce((sum, entry) => sum + entry.NasDem, 0);
+    const sumGaruda = data.reduce((sum, entry) => sum + entry.Garuda, 0);
+    const sumBerkarya = data.reduce((sum, entry) => sum + entry.Berkarya, 0);
+    const sumPKS = data.reduce((sum, entry) => sum + entry.PKS, 0);
+    const sumPerindo = data.reduce((sum, entry) => sum + entry.Perindo, 0);
+    const sumPPP = data.reduce((sum, entry) => sum + entry.PPP, 0);
+    const sumPSI = data.reduce((sum, entry) => sum + entry.PSI, 0);
+    const sumPAN = data.reduce((sum, entry) => sum + entry.PAN, 0);
+    const sumHanura = data.reduce((sum, entry) => sum + entry.Hanura, 0);
+    const sumDemokrat = data.reduce((sum, entry) => sum + entry.Demokrat, 0);
+    const sumPBB = data.reduce((sum, entry) => sum + entry.PBB, 0);
+    const sumPKPI = data.reduce((sum, entry) => sum + entry.PKPI, 0);
+
+    const labels = ['PKB', 'Gerindra', 'PDIP', 'NasDem', 'Garuda', 'Berkarya', 'PKS', 'Perindo', 'PPP', 'PSI', 'PAN', 'Hanura', 'Demokrat', 'PBB', 'PKPI'];
     const chartData = {
         labels: labels,
         datasets: [{
-            label: 'My First Dataset',
-            data: [65, 59, 80, 81, 56, 55, 40],
+            label: 'Data Suara Pilpres 2019',
+            data: [sumPKB, sumGerindra, sumPDIP, sumNasDem, sumGaruda, sumBerkarya, sumPKS, sumPerindo, sumPPP, sumPSI, sumPAN, sumHanura, sumDemokrat, sumPBB, sumPKPI],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(255, 159, 64, 0.2)',
@@ -87,19 +103,22 @@ const DPR = () => {
                 <CardHeader bg={'#540302'} color={'white'}>
                     <Heading textAlign={'center'}>Hasil Hitung Suara Legislatif DPR RI 2019</Heading>
                 </CardHeader>
-                <CardBody
-                    width={"50%"}
-                    mx={'auto'}
-                >
                     <Bar
                         key='chart-bar'
                         datasetIdKey='idBar'
                         data={chartData}
                         options={{
-                            responsive: true
+                            responsive: true,
+                            layout: {
+                                padding: 60
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            }
                         }}
                     />
-                </CardBody>
             </Card>
 
             <table 

@@ -1,47 +1,38 @@
-import { Avatar, Box, Card, CardBody, CardHeader, Divider, Flex, Heading, Input, Text } from '@chakra-ui/react'
+import { Card, CardBody, Divider, Flex, Grid, GridItem, Text } from '@chakra-ui/react'
 import { ChatCircle } from "@phosphor-icons/react"
 import React from 'react'
+import { Link } from 'react-router-dom';
+import UserForum from './UserForum';
 
-const TopicCard = (props) => {
-  const formattedDate = () => {
-    const date = new Date(props.createdAt);
-    return date.toLocaleString('en-GB', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    });
-  };
-
+const TopicCard = ({ data }) => {
   return (
-    <Card  
-      bgColor={'white'}
-      borderWidth={3}
-      borderColor={'#540302'}
-      rounded={'2xl'}
-      maxW={'md'}
+    <Grid
+      gap={8}
+      templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
     >
-      <CardBody>
-        <Flex spacing='4'>
-          <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-            <Avatar name='Segun Adebayo' src='https://api.dicebear.com/avatar.svg' size={'sm'} />
-            <Box>
-              <Text>{props.authorName}</Text>
-              <Text color={'#979797'} fontSize={'sm'}>{formattedDate()}</Text>
-            </Box>
-          </Flex>
-        </Flex>
-        <Text fontSize={'lg'} fontWeight={'semibold'} mt={4}>{props.judul}</Text>
-        <Text mt={1} mb={4}>{ props.isi }</Text>
-        <Divider borderWidth={1} borderColor={'#540302'} />
-        <Flex alignItems={'center'} gap={2} mt={2}>
-          <ChatCircle />
-          <Text>Comment</Text>
-        </Flex>
-      </CardBody>
-    </Card>
+      {data.map((val) => (
+        <GridItem key={val._id}>
+          <Link to={`/forum/${val._id}`}>
+            <Card 
+              bgColor={'#F3EBBD'}
+              rounded={'2xl'}
+              maxW={'md'}
+            >
+              <CardBody>
+                <UserForum authorName={val.penulis.name} tanggal={val.createdAt} />
+                <Text fontSize={'lg'} fontWeight={'semibold'} mt={4}>{val.judul}</Text>
+                <Text mt={1} mb={4}>{ val.isi }</Text>
+                <Divider borderWidth={1} borderColor={'#540302'} />
+                <Flex alignItems={'center'} gap={2} mt={2}>
+                  <ChatCircle />
+                  <Text>{ data.comments?.length }</Text>
+                </Flex>
+              </CardBody>
+            </Card>
+          </Link>
+        </GridItem>
+      ))}
+    </Grid>
   )
 }
 

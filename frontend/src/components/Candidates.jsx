@@ -9,7 +9,7 @@ const Candidates = (props) => {
     <div>
       {data.map((val) => (
         <Flex
-          key={val.id}
+          key={val._id}
           flexDirection={'column'}
           gap={8}
           mb={6}

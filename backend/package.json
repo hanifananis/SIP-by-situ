@@ -11,7 +11,7 @@
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
     }
-  },  
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kharismafitrin/ppl2-sip.git"

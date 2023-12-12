@@ -29,7 +29,6 @@ import Layout from './components/Layout';
 import ScrollToTop from './components/ScrollToTop';
 import SideBar from './components/SideBar';
 import PelajariDetail from './pages/PelajariDetail';
-import RequireAuth from './components/RequireAuth';
 import Profile from './pages/Profile';
 import ManagePaslon from './pages/Admin/Paslon/ManagePaslon';
 import ManageUser from './pages/Admin/User/ManageUser';
@@ -37,8 +36,7 @@ import ManageForum from './pages/Admin/Forum/ManageForum';
 import ManagePartai from './pages/Admin/Partai/ManagePartai';
 import PostDetail from './pages/Forum/PostDetail';
 import ProtectedRoute from './components/ProtectedRoute';
-
-// import MainTabs from './pages/Kilas Balik/MainTabs'
+import MainTabs from './pages/Kilas Balik/MainTabs';
 
 const App = () => {
   return (
@@ -55,9 +53,7 @@ const App = () => {
             <Route path="/forum" element={<MainPage />} />
             <Route path="/forum/:_id" element={<PostDetail />} />
             <Route path="/profile" element={<Profile />} />
-            {/* <Route path="/kilas-balik" element={<MainTabs />} /> */}
-            <Route element={<RequireAuth />}>
-            </Route>
+            <Route path="/kilas-balik" element={<MainTabs />} />
         </Route> 
         <Route path="/admin/*" element={<SideBar />}>
           {/* Protected routes */}

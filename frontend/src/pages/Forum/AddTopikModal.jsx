@@ -1,7 +1,6 @@
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { Button, FormControl, FormErrorMessage, FormLabel, Input, InputGroup, InputRightElement, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Radio, RadioGroup, Stack, useDisclosure } from '@chakra-ui/react'
 import { Formik } from 'formik'
-import React, { useState } from 'react'
 import axios from 'axios'
 
 import { toast } from 'react-toastify'
@@ -60,11 +59,8 @@ const AddTopikModal = () => {
                 <ModalCloseButton />
                 <Formik
                     initialValues={{
-                        name: '',
-                        email: '',
-                        no_telp: '',
-                        password: '',
-                        roles: ''
+                        judul: '',
+                        isi: '',
                     }}
                     onSubmit={onSubmit}
                 >
@@ -72,69 +68,48 @@ const AddTopikModal = () => {
                     <form onSubmit={handleSubmit}> 
                         <ModalBody>
                             <FormControl
-                                id="name"
-                                isInvalid={errors.name && touched.name}
+                                id="judul"
+                                isInvalid={errors.judul && touched.judul}
                                 mb={4}
                             >
                                 <FormLabel fontSize={'sm'}>
-                                    Nama Pengguna
+                                    Judul
                                 </FormLabel>
                                 <Input
-                                    name="name"
+                                    name="judul"
                                     _placeholder={{ opacity: 1, color: 'inherit' }}
                                     fontSize="sm"
                                     variant='flushed'
                                     type="text"
                                     autoComplete="off"
-                                    value={values.name}
+                                    value={values.judul}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                <FormErrorMessage>{errors.name}</FormErrorMessage>
+                                <FormErrorMessage>{errors.judul}</FormErrorMessage>
                             </FormControl>
                             <FormControl 
-                                id="email"
-                                isInvalid={errors.email && touched.email}
+                                id="isi"
+                                isInvalid={errors.isi && touched.isi}
                                 mb={4}
                             >
                                 <FormLabel fontSize={'sm'}>
-                                Email
+                                Isi
                                 </FormLabel>
                                 <Input
-                                    name="email"
-                                    _placeholder={{ opacity: 1, color: 'inherit' }}
-                                    fontSize="sm"
-                                    variant='flushed'
-                                    type="email"
-                                    autoComplete="off"
-                                    value={values.email}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                />
-                                <FormErrorMessage>{errors.email}</FormErrorMessage>
-                            </FormControl>
-                            <FormControl 
-                                id="no_telp"
-                                isInvalid={errors.no_telp && touched.no_telp}
-                                mb={4}
-                            >
-                                <FormLabel fontSize={'sm'}>
-                                    No Telepon
-                                </FormLabel>
-                                <Input
-                                    name='no_telp'
+                                    name="isi"
                                     _placeholder={{ opacity: 1, color: 'inherit' }}
                                     fontSize="sm"
                                     variant='flushed'
                                     type="text"
                                     autoComplete="off"
-                                    value={values.no_telp}
+                                    value={values.isi}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
                                 <FormErrorMessage>{errors.no_telp}</FormErrorMessage>
                             </FormControl>
-                            {/* <FormControl 
+                            <FormControl 
                                 id="password"
                                 isInvalid={errors.password && touched.password}
                                 mb={4}
@@ -161,7 +136,7 @@ const AddTopikModal = () => {
                                     </InputRightElement>
                                 </InputGroup>
                                 <FormErrorMessage>{errors.password}</FormErrorMessage>
-                            </FormControl> */}
+                            </FormControl>
                             <FormControl 
                                 id="roles"
                                 isInvalid={errors.roles && touched.roles}
@@ -182,6 +157,7 @@ const AddTopikModal = () => {
                                     </Stack>
                                 </RadioGroup>
                                 <FormErrorMessage>{errors.roles}</FormErrorMessage>
+                                <FormErrorMessage>{errors.isi}</FormErrorMessage>
                             </FormControl>
                         </ModalBody>
             

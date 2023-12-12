@@ -1,23 +1,43 @@
-import { Flex, Grid, GridItem, Link } from '@chakra-ui/react'
+import { Flex, Grid, GridItem } from '@chakra-ui/react'
 import Banner from '../../components/Banner'
 import TopicCard from '../../components/TopicCard'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
-import GreenTransparentButton from '../../components/GreenTransparentButton';
 import AddTopikModal from './AddTopikModal';
+import SearchBar from '../../components/SearchBar';
 
 const MainPage = () => {
   const [data, setData] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
   
   useEffect(() => {
     axios.get('http://localhost:5000/forums')
       .then(response => {
         setData(response.data);
+        console.log(response.data)
       })
       .catch(error => {
         console.error('Error Fetching Data: ', error);
       });
   }, []);
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setSearchInput(e.target.value);
+  }
+
+  const fetchedData = (searchInput) => {
+    if (searchInput === '') {
+      return data;
+    } else {
+      const lowercasedSearchInput = searchInput.toLowerCase();
+  
+      return data.filter((forum) => 
+        forum.judul.toLowerCase().includes(lowercasedSearchInput) ||
+        forum.isi.toLowerCase().includes(lowercasedSearchInput)
+      );
+    }
+  };
 
   return (
     <Flex
@@ -27,27 +47,13 @@ const MainPage = () => {
       gap={6}
     >
       <Banner title={"Forum"} desc={"Kami dengan bangga mempersembahkan wadah ini sebagai tempat bertemunya pikiran-pikiran brilian dan pandangan yang beragam."} />
-      <Flex justify={'end'}>
+      <Flex gap={8}>
+        <SearchBar searchInput={searchInput} handleChange={handleChange} />
         <AddTopikModal />
       </Flex>
-      <Grid
-        gap={8}
-        templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
-      >
-        {data.map((val) => (
-          <GridItem key={val._id}>
-            <Link 
-              to={`/forum/${val._id}`} style={{ textDecoration: 'none'}}>
-              <TopicCard
-                judul={val.judul} 
-                isi={val.isi} 
-                createdAt={val.createdAt} 
-                authorName={val.penulis.name}  
-              />
-            </Link>
-          </GridItem>
-        ))}
-      </Grid>
+      { 
+        fetchedData(searchInput).length == 0 ? 'No results found.' : <TopicCard data={fetchedData(searchInput)} />
+      }
     </Flex>
   )
 }

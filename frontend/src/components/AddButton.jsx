@@ -6,7 +6,7 @@ const AddButton = ({ title, onOpen }) => {
     return (
         <Button 
             colorScheme='blue'
-            my={4}
+            py={4}
             color={'white'}
             rounded={10}
             fontSize={'sm'}

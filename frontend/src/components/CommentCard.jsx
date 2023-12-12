@@ -1,17 +1,43 @@
-import { Card, CardBody, Text } from '@chakra-ui/react'
-import React from 'react'
+import { Button, Card, CardBody, CardHeader, Flex, Text, useDisclosure } from '@chakra-ui/react'
+import { ChatCircle } from '@phosphor-icons/react'
+import UserForum from './UserForum';
+import Replies from './Replies';
 
-const CommentCard = () => {
+const CommentCard = (props) => {
+  const { getDisclosureProps, getButtonProps } = useDisclosure()
+
+  const data = props.data;
+  const buttonProps = getButtonProps()
+  const disclosureProps = getDisclosureProps()
+
   return (
     <Card  
-      bgColor={'white'}
-      borderWidth={3}
-      borderColor={'#540302'}
+      bgColor={'#F3EBBD'}
+      shadow={'sm'}
       rounded={'2xl'}
     >
-      <CardBody>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus itaque corporis velit accusamus vero asperiores, blanditiis quidem qui quis eligendi! Consequatur dicta quisquam at porro! Quibusdam explicabo iusto distinctio corporis?
-        <Text color={'#979797'} fontSize={'sm'} mt={2}>02-10-2023 14.30</Text>
+      <CardHeader>
+        <UserForum 
+          authorName={data.user.name} 
+          tanggal={data.created_at} 
+        />
+      </CardHeader>
+      <CardBody pt={0}>
+        <Text>
+          { data.content }
+        </Text>
+        <Button 
+          leftIcon={<ChatCircle />} 
+          variant={'unstyled'} 
+          {...buttonProps}
+        >
+          { data.replies.length }
+        </Button>
+
+        <Replies 
+          disclosureProps={disclosureProps} 
+          data={data.replies} 
+        />
       </CardBody>
     </Card>
   )

@@ -28,7 +28,7 @@ const UrutanKomentar = () => {
                 gap={2}
             >
                 <Clock />
-                <Text>Terbaru</Text>
+                <Text>Terlama</Text>
             </Flex>
         </HStack>
     </Flex>
