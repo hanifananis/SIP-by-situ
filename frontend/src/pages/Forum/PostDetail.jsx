@@ -43,11 +43,7 @@ const PostDetail = () => {
       <UrutanKomentar />
       
       {comments.map((val) => (
-        <CommentCard 
-          key={val._id} 
-          comment={val.content} 
-          createdAt={val.created_at}
-        />
+        <CommentCard key={val._id} data={val} />
       ))}
     </Flex>
   )

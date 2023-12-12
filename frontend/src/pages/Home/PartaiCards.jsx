@@ -20,7 +20,8 @@ const PartaiCards = () => {
     <Box
       backgroundColor={'#540302'}
       pt={10}
-      pb={16}>
+      pb={16}
+    >
       <Text
         fontWeight={'bold'}
         fontSize={42}

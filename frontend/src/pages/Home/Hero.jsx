@@ -11,7 +11,7 @@ const Hero = () => {
       textAlign={'center'}
     >
       <Banner title={"Kenali Proses Pemilu dengan Lebih Dekat"} desc={"SIP (Sistem Informasi Pemilu) adalah aplikasi yang memberikan informasi terkini seputar pemilihan presiden, anggota DPR, dan partai politik di Indonesia. Melalui forum online, kita dapat berdiskusi dan bertukar ide terkait pemilu serta isu-isu politik, memungkinkan peran aktif dalam membentuk masa depan negara."} />
-      <Link href='/login'>
+      <Link to='/forum'>
         <GreenTransparentButton title={'Ayo Bergabung di Forum Kami'} />
       </Link>
       <Image src='/assets/home.jpg' width={600} marginX={'auto'} marginBottom={-28} />
