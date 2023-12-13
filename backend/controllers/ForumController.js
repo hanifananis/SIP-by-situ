@@ -9,8 +9,11 @@ try {
     const forumsWithUserData = await Promise.all(forums.map(async (forum) => {
         const user = await User.findById(forum.penulis_id);
         const { name, roles } = user;
+        const commentCount = await Comment.countDocuments({ forum_id: forum._id });
+
         return {
           ...forum.toObject(),
+          jumlah_komentar: commentCount,
           penulis: { name, roles },
         };
       }));
