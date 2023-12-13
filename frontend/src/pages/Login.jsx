@@ -17,7 +17,7 @@ import {
   FormErrorMessage,
 } from '@chakra-ui/react'
 
-import useAuth from '../hooks/useAuth';
+// import useAuth from '../hooks/useAuth';
 import { useState } from 'react'
 import { Formik } from 'formik'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
@@ -29,9 +29,13 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
+import Cookies from 'js-cookie';
+import { useAuth } from '../context/AuthContext';
+
 export default function Login() {
-  const { setAuth } = useAuth();
   const navigate = useNavigate();
+  const { login } = useAuth();
+
 
   const [showPassword, setShowPassword] = useState(false)
 
@@ -43,22 +47,20 @@ export default function Login() {
         password: values.password
       })
       .then((response) => {
-        const { token, roles } = response.data;
-        console.log('Token:', token);
-        console.log('Roles:', roles);
-  
-        localStorage.setItem('token', token);
-        localStorage.setItem('roles', JSON.stringify(roles));
-  
-        // // Log stored values for verification
-        console.log('Stored Token:', localStorage.getItem('token'));
-        console.log('Stored Roles:', localStorage.getItem('roles'));  
-        // setAuth({ email: values.email, password: values.password, roles, token });
+        const { token, roles, user_id } = response.data;
+        // console.log('Token:', token);
+        // console.log('Roles:', roles);
+        // console.log('id:', user_id);
+        Cookies.set('token', token, { path: '/', expires: 1, secure: true, sameSite: 'strict' });
+        Cookies.set('role', roles, { path: '/', expires: 1, secure: true, sameSite: 'strict' });
+        Cookies.set('user_id', user_id, { path: '/', expires: 1, secure: true, sameSite: 'strict' });
+        login(token);
         toast.success('Login berhasil');
-        if(roles === 'admin'){
-          console.log('test');  
-          navigate('/admin/manage-forum')
-        } else {
+        if (roles.trim() === 'admin') {
+          // Navigate to the admin page
+          navigate('/admin/manage-forum');
+        } else if (roles.trim() === 'user') {
+          // Navigate to the user page
           navigate('/');
         }
       })

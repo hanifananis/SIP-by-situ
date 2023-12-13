@@ -1,8 +1,10 @@
 import { HamburgerIcon } from '@chakra-ui/icons'
 import { Flex, Button, Link, IconButton } from '@chakra-ui/react'
 import GreenButton from './GreenButton'
+import { useAuth } from '../context/AuthContext'
 
 const Navbar = () => {
+  const { isLoggedIn, logout } = useAuth();
   return (
     <Flex 
       bg='#5D1416' 
@@ -86,11 +88,32 @@ const Navbar = () => {
           icon={<HamburgerIcon />}
           display={{sm: 'flex', md:'flex', lg: 'none', xl: 'none'}}
         />
-        <Flex display={{base: 'none', lg: 'block'}}>
+        <Flex display={{ base: 'none', lg: 'block' }}>
+        {isLoggedIn ? (
+          <Button
+            onClick={logout}
+            bgColor={'#5D1416'}
+            color={'inherit'}
+            rounded={50}
+            _hover={{
+              bg: '#F3EBBD',
+              borderColor: '#D0D5DD',
+              color: '#5D1416'
+            }}
+            _active={{
+              bg: '#F3EBBD',
+              borderColor: '#D0D5DD',
+              color: '#5D1416'
+            }}
+          >
+            Logout
+          </Button>
+        ) : (
           <Link href='/login'>
             <GreenButton title={'Login'} />
           </Link>
-        </Flex>
+        )}
+      </Flex>
     </Flex>
   )
 }
