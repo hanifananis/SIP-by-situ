@@ -27,6 +27,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     Cookies.remove('token');
     Cookies.remove('role');
+    Cookies.remove('user_id');
     setLoggedIn(false);
   };
 
