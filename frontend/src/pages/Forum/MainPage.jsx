@@ -1,4 +1,4 @@
-import { Flex, Grid, GridItem } from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import Banner from '../../components/Banner'
 import TopicCard from '../../components/TopicCard'
 import { useEffect, useState } from 'react'
@@ -19,7 +19,7 @@ const MainPage = () => {
       .catch(error => {
         console.error('Error Fetching Data: ', error);
       });
-  }, []);
+  }, [data]);
 
   const handleChange = (e) => {
     e.preventDefault();

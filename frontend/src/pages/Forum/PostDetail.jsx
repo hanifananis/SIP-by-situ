@@ -19,7 +19,7 @@ const PostDetail = () => {
       .catch(error => {
         console.error('Error Fetching Data: ', error);
       })
-  }, [_id])
+  }, [_id, data])
 
   // Check if data.comments is defined before mapping over it
   const comments = data.comments || [];
@@ -34,6 +34,7 @@ const PostDetail = () => {
       <Redirect title={'Post'} />
       <MainPost 
         key={data._id}
+        forumId={data._id}
         judul={data.judul}
         isi={data.isi}
         namaPenulis={data.penulis?.name}

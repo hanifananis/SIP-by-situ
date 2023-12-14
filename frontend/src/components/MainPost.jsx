@@ -1,9 +1,28 @@
-import { Card, CardBody, CardHeader, Input, Text } from '@chakra-ui/react'
-import React from 'react'
+import { Card, CardBody, CardHeader, Text } from '@chakra-ui/react'
 import UserForum from './UserForum'
 import BerikanKomentar from './BerikanKomentar'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios'
+import Cookies from 'js-cookie';
 
-const MainPost = ({ judul, isi, namaPenulis, rolePenulis, createdAt}) => {
+const MainPost = ({ forumId, judul, isi, namaPenulis, createdAt}) => {
+  const handleClick = (values) => {
+    axios.
+      post(`http://localhost:5000/comments`, {
+        forum_id: forumId,
+        penulis_id: Cookies.get('user_id'),
+        content: values.content
+      })
+      .then(() => {
+        toast.success('Add comment berhasil');
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error('Add comment gagal')
+      })
+  }
+
   return (
     <Card  
       bgColor={'#F3EBBD'}
@@ -20,7 +39,7 @@ const MainPost = ({ judul, isi, namaPenulis, rolePenulis, createdAt}) => {
         <Text pt={2} pb={4}>
           { isi }
         </Text>
-        <BerikanKomentar />
+        <BerikanKomentar handleClick={handleClick} />
       </CardBody>
     </Card>
   )
