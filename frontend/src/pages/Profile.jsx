@@ -10,9 +10,9 @@ const Profile = () => {
   useEffect(() => {
     axios
     .get(`http://localhost:5000/user-info`, {
-      // headers: {
-      //   Authorization: `Bearer ${Cookies.get('user_id')}`,
-      // },
+      headers: {
+        Authorization: `${Cookies.get('token')}`,
+      },
     })
     .then((response) => {
       setData(response.data)
