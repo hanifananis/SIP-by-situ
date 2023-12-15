@@ -2,7 +2,7 @@ import { Input, InputGroup, InputRightElement, Button, FormControl, FormErrorMes
 import { Formik } from 'formik'
 import { contentSchema } from '../schemas/contentSchema'
 
-const BerikanKomentar = ({ handleClick }) => {
+const BerikanKomentar = ({ handleClick, title }) => {
   return (
     <Formik
       initialValues={{
@@ -35,9 +35,9 @@ const BerikanKomentar = ({ handleClick }) => {
                 />
                 <FormErrorMessage>{errors.content}</FormErrorMessage>
               </FormControl>
-              <InputRightElement width='4.5rem'>
-                <Button type='submit' h='1.75rem' size='sm' colorScheme='teal' rounded={'xl'}>
-                  Reply
+              <InputRightElement width='6rem'>
+                <Button type='submit' h='1.75rem' size='sm' colorScheme='teal' rounded={'xl'} ml={'auto'} mr={2}>
+                  { title }
                 </Button>
               </InputRightElement>
             </InputGroup>

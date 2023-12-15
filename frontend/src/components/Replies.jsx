@@ -36,7 +36,7 @@ const Replies = ({disclosureProps, data, commentId}) => {
                         </>
                     ))
                 }
-                <BerikanKomentar handleClick={handleClick} />
+                <BerikanKomentar handleClick={handleClick} title={'Reply'} />
             </Flex>
         </>
     )

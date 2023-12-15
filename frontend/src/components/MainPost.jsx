@@ -39,7 +39,7 @@ const MainPost = ({ forumId, judul, isi, namaPenulis, createdAt}) => {
         <Text pt={2} pb={4}>
           { isi }
         </Text>
-        <BerikanKomentar handleClick={handleClick} />
+        <BerikanKomentar handleClick={handleClick} title={'Comment'} />
       </CardBody>
     </Card>
   )

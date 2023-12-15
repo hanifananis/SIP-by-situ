@@ -16,12 +16,11 @@ const Profile = () => {
     })
     .then((response) => {
       setData(response.data)
-      console.log(response.data)
     })
     .catch(error => {
       console.error('Error Fetching Data: ', error);
     });
-  }, [data])
+  }, [])
 
   return (
     <Flex
@@ -57,21 +56,21 @@ const Profile = () => {
           <Heading>Informasi Akun</Heading>
           <Card gap={4} p={8} mt={4}>
             <Text fontWeight={'semibold'}>Nama</Text>
-            <Text>{ data.name }</Text>
+            <Text>{ data.userinfo.name }</Text>
             <Text fontWeight={'semibold'}>Email</Text>
-            <Text>{ data.email }</Text>
+            <Text>{ data.userinfo.email }</Text>
           </Card>
 
           <Heading mt={8}>Ganti Username</Heading>
           <Card gap={4} p={8} mt={4}>
             <Text fontWeight={'semibold'}>Username Baru</Text>
             <Input 
-                bgColor={'#540302'}
-                _placeholder={{color: 'white'}} 
-                placeholder='Masukkan Username' 
-                size={'sm'}
-                p={6}
-                rounded={'xl'}
+              bgColor={'#540302'}
+              _placeholder={{color: 'white'}} 
+              placeholder='Masukkan Username' 
+              size={'sm'}
+              p={6}
+              rounded={'xl'}
             />
             <Button
               bgColor={'white'}
