@@ -19,7 +19,7 @@ const MainPost = ({ forumId, judul, isi, namaPenulis, createdAt}) => {
       })
       .catch((error) => {
         console.log(error);
-        toast.error('Add comment gagal')
+        toast.error('Login terlebih dahulu')
       })
   }
 

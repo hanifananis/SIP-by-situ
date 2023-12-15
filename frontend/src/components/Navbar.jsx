@@ -1,10 +1,12 @@
-import { HamburgerIcon } from '@chakra-ui/icons'
-import { Flex, Button, Link, IconButton } from '@chakra-ui/react'
+import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons'
+import { Flex, Button, Link, IconButton, Menu, MenuButton, MenuList, MenuItem, MenuDivider } from '@chakra-ui/react'
 import GreenButton from './GreenButton'
 import { useAuth } from '../context/AuthContext'
+import { UserCircle } from '@phosphor-icons/react'
 
 const Navbar = () => {
   const { isLoggedIn, logout } = useAuth();
+  
   return (
     <Flex 
       bg='#5D1416' 
@@ -88,26 +90,36 @@ const Navbar = () => {
           icon={<HamburgerIcon />}
           display={{sm: 'flex', md:'flex', lg: 'none', xl: 'none'}}
         />
-        <Flex display={{ base: 'none', lg: 'block' }}>
+        <Flex display={{ base: 'none', lg: 'block' }} color={'blackAlpha.900'}>
         {isLoggedIn ? (
-          <Button
-            onClick={logout}
-            bgColor={'#5D1416'}
-            color={'inherit'}
-            rounded={50}
-            _hover={{
-              bg: '#F3EBBD',
-              borderColor: '#D0D5DD',
-              color: '#5D1416'
-            }}
-            _active={{
-              bg: '#F3EBBD',
-              borderColor: '#D0D5DD',
-              color: '#5D1416'
-            }}
-          >
-            Logout
-          </Button>
+          <Menu>
+            <MenuButton 
+              px={4}
+              py={2}
+              transition='all 0.2s'
+              rounded={'full'}
+              color={'white'}
+              _hover={{ 
+                bg: '#F3EBBD',
+                borderColor: '#D0D5DD',
+                color: '#5D1416'
+              }}
+              _expanded={{ 
+                bg: '#F3EBBD',
+                borderColor: '#D0D5DD',
+                color: '#5D1416'
+              }}
+            >
+              <Flex alignItems={'center'} gap={2}>
+                <UserCircle size={32} />
+                <ChevronDownIcon />
+              </Flex>
+            </MenuButton>
+            <MenuList>
+              <MenuItem as='a' href='/profile'>Profile</MenuItem>
+              <MenuItem onClick={logout}>Logout</MenuItem>
+            </MenuList>
+          </Menu>
         ) : (
           <Link href='/login'>
             <GreenButton title={'Login'} />

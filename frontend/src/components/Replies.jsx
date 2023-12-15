@@ -17,6 +17,9 @@ const Replies = ({disclosureProps, data, commentId}) => {
         .then(() => {
             toast.success('Add reply berhasil')
         })
+        .catch(() => {
+            toast.error('Login terlebih dahulu')
+        })
     }
 
     return (
