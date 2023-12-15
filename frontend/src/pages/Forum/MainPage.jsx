@@ -13,8 +13,7 @@ const MainPage = () => {
   useEffect(() => {
     axios.get('http://localhost:5000/forums')
       .then(response => {
-        setData(response.data);
-        console.log(response.data)
+        setData(response.data)
       })
       .catch(error => {
         console.error('Error Fetching Data: ', error);
