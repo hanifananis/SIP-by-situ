@@ -52,7 +52,12 @@ const App = () => {
             <Route path="/calon-2024/:_id" element={<Calon />} />
             <Route path="/forum" element={<MainPage />} />
             <Route path="/forum/:_id" element={<PostDetail />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="profile"
+              element={
+                <ProtectedRoute roles={['user']} element={<Profile />} />
+              }
+            />
             <Route path="/kilas-balik" element={<MainTabs />} />
         </Route> 
         <Route path="/admin/*" element={<SideBar />}>
