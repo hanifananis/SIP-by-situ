@@ -6,7 +6,7 @@ const Flashback = () => {
   return (
     <Box
       align={'center'}
-      marginX={24}>
+      >
       <Text 
         fontSize={42} 
         fontWeight={'bold'}

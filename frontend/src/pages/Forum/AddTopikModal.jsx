@@ -18,12 +18,10 @@ const AddTopikModal = () => {
     const openModal = () => {
         if (!isLoggedIn) {
             toast.error('You need to log in first.');
-            // Redirect to the login page
             navigate('/login');
             return;
         }
 
-        // If the user is logged in, open the modal
         onOpen();
     };
 
@@ -48,7 +46,7 @@ const AddTopikModal = () => {
         <>
             <AddButton title={'Topik'} onOpen={openModal} />
     
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal isOpen={isOpen} onClose={onClose} isCentered>
             <ModalOverlay />
             <ModalContent>
                 <ModalHeader>Add Topik</ModalHeader>

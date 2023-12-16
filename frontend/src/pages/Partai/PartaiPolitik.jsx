@@ -1,21 +1,25 @@
 import { Flex, Text } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import Banner from '../../components/Banner'
 import Cards from './Cards'
 import SearchBar from '../../components/SearchBar'
 import axios from 'axios'
+import Loading from '../../components/Loading'
 
 const PartaiPolitik = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     axios.get('http://localhost:5000/partaiInfos')
       .then(response => {
         setData(response.data);
+        setLoading(false);
       })
       .catch(error => {
         console.error('Error Fetching Data: ', error);
+        setLoading(false);
       });
   }, []);
 
@@ -44,9 +48,11 @@ const PartaiPolitik = () => {
         desc={"Menyelidiki catatan prestasi dan sejarah partai politik yang berpengaruh merupakan langkah yang penting bagi pemilih yang ingin membuat keputusan yang berdasarkan informasi yang mendalam dalam konteks pemilihan politik."}
       />
       <SearchBar searchInput={searchInput} handleChange={handleChange} />
-      { 
-        fetchedData(searchInput).length == 0 ? 'No results found.' : <Cards data={fetchedData(searchInput)} />
-      }
+      <Suspense fallback={<Loading type={'bubbles'} color={'#4F7B58'} />}>
+        { 
+          loading ? <Loading type={'bubbles'} color={'#4F7B58'} /> : fetchedData(searchInput).length == 0 ? 'No results found.' : <Cards data={fetchedData(searchInput)} />
+        }
+      </Suspense>
     </Flex>
   )
 }

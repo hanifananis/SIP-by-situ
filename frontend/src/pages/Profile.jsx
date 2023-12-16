@@ -6,19 +6,7 @@ import Cookies from 'js-cookie';
 
 const Profile = () => {
   const [data, setData] = useState([]);
-
-  const openModal = () => {
-    if (!isLoggedIn) {
-        toast.error('You need to log in first.');
-        // Redirect to the login page
-        navigate('/login');
-        return;
-    }
-
-    // If the user is logged in, open the modal
-    onOpen();
-};
-
+  
   useEffect(() => {
     axios
     .get(`http://localhost:5000/user-info`, {
@@ -69,9 +57,9 @@ const Profile = () => {
           <Heading>Informasi Akun</Heading>
           <Card gap={4} p={8} mt={4}>
             <Text fontWeight={'semibold'}>Nama</Text>
-            <Text>{ data.name }</Text>
+            <Text>{ data.userinfo?.name }</Text>
             <Text fontWeight={'semibold'}>Email</Text>
-            <Text>{ data.email }</Text>
+            <Text>{ data.userinfo?.email }</Text>
           </Card>
 
           <Heading mt={8}>Ganti Username</Heading>

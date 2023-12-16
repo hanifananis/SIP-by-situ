@@ -1,4 +1,4 @@
-import { Flex, useDisclosure } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import Banner from '../../components/Banner';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import axios from 'axios';
@@ -13,9 +13,8 @@ const MainPage = () => {
   const [loading, setLoading] = useState(true);
   const [searchInput, setSearchInput] = useState("");
   const [visibleData, setVisibleData] = useState([]);
-  const [nextDataStart, setNextDataStart] = useState(2); // Index to start loading next set of data
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const [nextDataStart, setNextDataStart] = useState(3); // Index to start loading next set of data
+  
   useEffect(() => {
     axios.get('http://localhost:5000/forums')
       .then(response => {
@@ -38,10 +37,10 @@ const MainPage = () => {
     const scrollTop = window.scrollY;
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
+    const scrollPercentage = (scrollTop / (documentHeight - windowHeight)) * 100;
 
-    if (scrollTop + windowHeight >= documentHeight - 100) {
-      // User has scrolled to the bottom
-      setNextDataStart(nextDataStart + 2); // Load the next set of data
+    if (scrollPercentage > 50) {
+      setNextDataStart(nextDataStart + 1); // Load the next set of data
     }
   };
 
@@ -75,9 +74,9 @@ const MainPage = () => {
         <SearchBar searchInput={searchInput} handleChange={handleChange} />
         <AddTopikModal />
       </Flex>
-      <Suspense fallback={<Loading type={'bubbles'} color={'black'} />}>
+      <Suspense fallback={<Loading type={'bubbles'} color={'#4F7B58'} />}>
         { 
-          loading ? <Loading type={'bubbles'} color={'black'} /> :
+          loading ? <Loading type={'bubbles'} color={'#4F7B58'} /> :
           fetchedData(searchInput).length === 0 ? 'No results found.' : <TopicCardPreview data={fetchedData(searchInput)} />
         }
       </Suspense>
