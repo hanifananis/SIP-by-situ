@@ -1,4 +1,5 @@
 import PartaiInfo from "../models/PartaiInfo.js";
+import CalonDPR from "../models/CalonDPR.js";
 
 export const getPartaiInfos = async (req, res) => {
     try {
@@ -19,9 +20,12 @@ export const getPartaiInfoById = async (req, res) => {
     try {
         const partaiInfo = await PartaiInfo.findById(req.params.id);
         if (partaiInfo) {
+            const calonDPRs = await CalonDPR.find({ no_urut_partai: partaiInfo.no_urut });
+
             const partaiInfoWithStrId = {
                 ...partaiInfo.toObject(),
-                _id: partaiInfo._id.toString()
+                _id: partaiInfo._id.toString(),
+                calonDPRs
             };
             res.json(partaiInfoWithStrId);
         } else {
