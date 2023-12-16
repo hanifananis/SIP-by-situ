@@ -9,6 +9,7 @@ import PartaiInfoRoute from "./routes/PartaiInfoRoute.js"
 import PaslonRoute from "./routes/PaslonRoute.js"
 import ForumRoute from "./routes/ForumRoute.js"
 import KilasBalikRoute from "./routes/KilasBalikRoute.js"
+import CalonDPRRoute from "./routes/CalonDPRRoute.js"
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -38,6 +39,7 @@ app.use(PartaiInfoRoute)
 app.use(PaslonRoute)
 app.use(ForumRoute)
 app.use(KilasBalikRoute)
+app.use(CalonDPRRoute)
 
 app.listen(5000, ()=> console.log('Server up and running on port 5000'))
 export default app;
