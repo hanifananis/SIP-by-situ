@@ -7,9 +7,14 @@ import Footer from './Footer';
 
 const Layout = () => {
   return (
-    <Flex flexDir={'column'} >
+    <Flex 
+      flexDir={'column'} 
+      minH={'100vh'}
+    >
       <Navbar />
-      <Outlet />
+      <div style={{ flexGrow: 1 }}>
+        <Outlet />
+      </div>
       <Footer />
     </Flex>
   )

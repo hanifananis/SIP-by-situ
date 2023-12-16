@@ -10,7 +10,8 @@ const Footer = () => {
       px={24} 
       py={10}
       color='white' 
-      flexDirection={'column'}>
+      flexDirection={'column'}
+    >
       <img src='/assets/logo-green 1.png' alt='SIP' width={120} />
       <Flex
       mt={4}

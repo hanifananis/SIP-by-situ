@@ -1,8 +1,28 @@
 import { Button, Card, Flex, Heading, Input, Text } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Banner from '../components/Banner';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const Profile = () => {
+  const [data, setData] = useState([]);
+  
+  useEffect(() => {
+    axios
+    .get(`http://localhost:5000/user-info`, {
+      headers: {
+        Authorization: `${Cookies.get('token')}`,
+      },
+    })
+    .then((response) => {
+      setData(response.data)
+      console.log(response.data)
+    })
+    .catch(error => {
+      console.error('Error Fetching Data: ', error);
+    });
+  }, [])
+
   return (
     <Flex
       display={'grid'}
@@ -37,21 +57,21 @@ const Profile = () => {
           <Heading>Informasi Akun</Heading>
           <Card gap={4} p={8} mt={4}>
             <Text fontWeight={'semibold'}>Nama</Text>
-            <Text>John Doe</Text>
+            <Text>{ data.userinfo?.name }</Text>
             <Text fontWeight={'semibold'}>Email</Text>
-            <Text>John.Doe@gmail.com</Text>
+            <Text>{ data.userinfo?.email }</Text>
           </Card>
 
           <Heading mt={8}>Ganti Username</Heading>
           <Card gap={4} p={8} mt={4}>
             <Text fontWeight={'semibold'}>Username Baru</Text>
             <Input 
-                bgColor={'#540302'}
-                _placeholder={{color: 'white'}} 
-                placeholder='Masukkan Username' 
-                size={'sm'}
-                p={6}
-                rounded={'xl'}
+              bgColor={'#540302'}
+              _placeholder={{color: 'white'}} 
+              placeholder='Masukkan Username' 
+              size={'sm'}
+              p={6}
+              rounded={'xl'}
             />
             <Button
               bgColor={'white'}

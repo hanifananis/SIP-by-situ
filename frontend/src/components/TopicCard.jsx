@@ -8,7 +8,7 @@ const TopicCard = ({ data }) => {
   return (
     <Grid
       gap={8}
-      templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
+      pt={8}
     >
       {data.map((val) => (
         <GridItem key={val._id}>
@@ -16,7 +16,6 @@ const TopicCard = ({ data }) => {
             <Card 
               bgColor={'#F3EBBD'}
               rounded={'2xl'}
-              maxW={'md'}
             >
               <CardBody>
                 <UserForum authorName={val.penulis.name} tanggal={val.createdAt} />
@@ -25,7 +24,7 @@ const TopicCard = ({ data }) => {
                 <Divider borderWidth={1} borderColor={'#540302'} />
                 <Flex alignItems={'center'} gap={2} mt={2}>
                   <ChatCircle />
-                  <Text>{ data.comments?.length }</Text>
+                  <Text>{ val.jumlah_komentar }</Text>
                 </Flex>
               </CardBody>
             </Card>

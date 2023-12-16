@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { Box, Flex, Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
@@ -19,7 +19,7 @@ const PostDetail = () => {
       .catch(error => {
         console.error('Error Fetching Data: ', error);
       })
-  }, [_id])
+  }, [_id, data])
 
   // Check if data.comments is defined before mapping over it
   const comments = data.comments || [];
@@ -32,15 +32,24 @@ const PostDetail = () => {
       gap={6}
     >
       <Redirect title={'Post'} />
-      <MainPost 
-        key={data._id}
-        judul={data.judul}
-        isi={data.isi}
-        namaPenulis={data.penulis?.name}
-        rolePenulis={data.penulis?.roles}
-        createdAt={data.createdAt}
-      />
-      <UrutanKomentar />
+      {/* <Skeleton 
+        height='40px'
+        bg='green.500'
+        color='white'
+        fadeDuration={1}
+        isLoaded={!!data}
+      > */}
+        <MainPost 
+          key={data?._id}
+          forumId={data?._id}
+          judul={data?.judul}
+          isi={data?.isi}
+          namaPenulis={data.penulis?.name}
+          rolePenulis={data.penulis?.roles}
+          createdAt={data?.createdAt}
+        />
+      {/* </Skeleton>
+      <UrutanKomentar /> */}
       
       {comments.map((val) => (
         <CommentCard key={val._id} data={val} />

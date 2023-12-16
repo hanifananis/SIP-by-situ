@@ -36,7 +36,8 @@ const CommentCard = (props) => {
 
         <Replies 
           disclosureProps={disclosureProps} 
-          data={data.replies} 
+          data={data.replies}
+          commentId={data._id}
         />
       </CardBody>
     </Card>
