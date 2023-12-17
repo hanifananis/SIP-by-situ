@@ -24,6 +24,9 @@ const partaiInfo = new mongoose.Schema({
     url_api_wikipedia: {
         type: String,
     },
+    deskripsi: {
+        type: String,
+    },
     koalisi: {
         type: String,
     },
