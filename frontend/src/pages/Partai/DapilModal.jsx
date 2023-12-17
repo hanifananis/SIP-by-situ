@@ -34,8 +34,7 @@ const DapilModal = ({ names, onSelect }) => {
                 </CheckboxGroup>
             </ModalBody>
             <ModalFooter>
-                <Button onClick={handleSubmit}>Submit</Button>
-                <Button onClick={onClose}>Close</Button>
+                <Button colorScheme='blue' onClick={handleSubmit} mx={'auto'}>Submit</Button>
             </ModalFooter>
           </ModalContent>
         </Modal>
