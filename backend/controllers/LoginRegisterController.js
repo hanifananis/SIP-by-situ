@@ -1,4 +1,6 @@
 import User from "../models/User.js"; // Replace with the actual path to your User model
+import Forum from "../models/Forum.js";
+import Comment from "../models/Comment.js";
 import argon2 from 'argon2';
 import jwt from 'jsonwebtoken'; 
 import dotenv from 'dotenv'
@@ -72,7 +74,13 @@ export const getUserInfo = async (req, res) => {
         // Retrieve user information based on the authenticated user's token
         const user = req.user;
         const userinfo = await User.findById(user.userId);
-        res.status(200).json({ userinfo });
+        const userforum = await Forum.find({ penulis_id : user.userId })
+        const userComment = await Comment.find({ penulis_id : user.userId }).select('-replies');
+        res.status(200).json({ 
+            userinfo,
+            userforum,
+            userComment
+        });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
