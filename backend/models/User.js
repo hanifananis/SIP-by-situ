@@ -27,6 +27,10 @@ const userSchema = mongoose.Schema({
   no_telp: {
     type: String,
     required: true,
+    validate: {
+      validator: (value) => isPhoneNumber(value),
+      message: "Invalid phone number",
+    },
   },
   roles: {
     type: String,
@@ -67,6 +71,12 @@ function isStrongPassword(password) {
   // It must contain num and letter
   const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}$/;
   return passwordRegex.test(password);
+}
+
+function isPhoneNumber(phoneNumber) {
+  // Phone number must contain only numbers and have at least 11 digits
+  const phoneRegex = /^\d{10,13}$/;
+  return phoneRegex.test(phoneNumber);
 }
 
 export default mongoose.model("Users", userSchema);
