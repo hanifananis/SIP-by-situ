@@ -50,7 +50,7 @@ const PartaiPolitik = () => {
       <SearchBar searchInput={searchInput} handleChange={handleChange} />
       <Suspense fallback={<Loading type={'bubbles'} color={'#4F7B58'} />}>
         { 
-          loading ? <Loading type={'bubbles'} color={'#4F7B58'} /> : fetchedData(searchInput).length == 0 ? 'No results found.' : <Cards data={fetchedData(searchInput)} />
+          loading ? <Flex mx={'auto'}><Loading type={'bubbles'} color={'#4F7B58'} /></Flex> : fetchedData(searchInput).length == 0 ? 'No results found.' : <Cards data={fetchedData(searchInput)} />
         }
       </Suspense>
     </Flex>

@@ -6,6 +6,7 @@ const PelajariPemilu = () => {
   return (
     <Box
       align={'center'}
+      px={24}
     >
       <Text 
         fontSize={42} 

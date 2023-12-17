@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import argon2 from "argon2";
+import validator from "validator";
 
 const userSchema = mongoose.Schema({
   name: {
@@ -10,10 +11,18 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
     index: { unique: true },
+    validate: {
+      validator: (value) => validator.isEmail(value),
+      message: "Invalid email address",
+    },
   },
   password: {
     type: String,
     required: true,
+    validate: {
+      validator: (value) => isStrongPassword(value),
+      message: "Password is not strong enough",
+    },
   },
   no_telp: {
     type: String,
@@ -52,5 +61,12 @@ userSchema.methods.comparePassword = async function (candidatePassword, cb) {
     return cb(err);
   }
 };
+
+function isStrongPassword(password) {
+  // Password must be at least 8 characters long
+  // It must contain num and letter
+  const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}$/;
+  return passwordRegex.test(password);
+}
 
 export default mongoose.model("Users", userSchema);
