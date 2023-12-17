@@ -32,14 +32,14 @@ const MainPost = ({ forumId, judul, isi, namaPenulis, createdAt }) => {
         {judul ? (
           <Text fontSize={'2xl'}>{judul}</Text>
         ) : (
-          <SkeletonText startColor='whiteAlpha.800' endColor='whiteAlpha.200' noOfLines={1} spacing="4" skeletonHeight='2' py={4} />
+          <SkeletonText startColor='whiteAlpha.800' endColor='whiteAlpha.600' noOfLines={1} spacing="4" skeletonHeight='4' py={4} />
         )}
         {isi ? (
           <Text pt={2} pb={4}>
             {isi}
           </Text>
         ) : (
-          <SkeletonText startColor='whiteAlpha.800' endColor='whiteAlpha.200' pt={2} pb={4} noOfLines={2} spacing='4' skeletonHeight='2' />
+          <SkeletonText startColor='whiteAlpha.800' endColor='whiteAlpha.600' pt={2} pb={4} noOfLines={2} spacing='2' skeletonHeight='2' />
         )}
         <BerikanKomentar handleClick={handleClick} title={'Comment'} />
       </CardBody>

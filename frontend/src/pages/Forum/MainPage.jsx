@@ -13,7 +13,7 @@ const MainPage = () => {
   const [loading, setLoading] = useState(true);
   const [searchInput, setSearchInput] = useState("");
   const [visibleData, setVisibleData] = useState([]);
-  const [nextDataStart, setNextDataStart] = useState(3); // Index to start loading next set of data
+  const [nextDataStart, setNextDataStart] = useState(3); 
   
   useEffect(() => {
     axios.get('http://localhost:5000/forums')
@@ -76,7 +76,7 @@ const MainPage = () => {
       </Flex>
       <Suspense fallback={<Loading type={'bubbles'} color={'#4F7B58'} />}>
         { 
-          loading ? <Loading type={'bubbles'} color={'#4F7B58'} /> :
+          loading ?  <Flex mx={'auto'}><Loading type={'bubbles'} color={'#4F7B58'} /></Flex> :
           fetchedData(searchInput).length === 0 ? 'No results found.' : <TopicCardPreview data={fetchedData(searchInput)} />
         }
       </Suspense>
