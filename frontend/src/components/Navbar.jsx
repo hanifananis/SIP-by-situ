@@ -3,7 +3,7 @@ import { Flex, Button, IconButton, Menu, MenuButton, MenuList, MenuItem, MenuDiv
 import GreenButton from './GreenButton'
 import { useAuth } from '../context/AuthContext'
 import { UserCircle } from '@phosphor-icons/react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import '../../public/css/index.css'
 
 const Navbar = () => {
@@ -74,9 +74,9 @@ const Navbar = () => {
             </MenuList>
           </Menu>
         ) : (
-          <Link to='/login'>
+          <NavLink to='/login'>
             <GreenButton title={'Login'} />
-          </Link>
+          </NavLink>
         )}
       </Flex>
     </Flex>
