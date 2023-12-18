@@ -22,7 +22,7 @@ const Profile = () => {
       },
     })
     .then((response) => {
-      setData(response.data)
+      setData(response.data);
     })
     .catch(error => {
       console.error('Error Fetching Data: ', error);

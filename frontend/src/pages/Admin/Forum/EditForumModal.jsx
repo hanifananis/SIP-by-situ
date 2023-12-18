@@ -4,7 +4,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import SubmitButton from '../../../components/SubmitButton';
-import { createForumSchema } from '../../../schemas/createForumSchema';
+import { forumSchema } from '../../../schemas/forumSchema';
 import { useEffect, useState } from 'react';
 import { useForumContext } from '../../../context/ForumProvider';
 
@@ -51,14 +51,14 @@ const EditForumModal = ({ forumId }) => {
         <Modal isOpen={isOpen} onClose={onClose} isCentered>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Edit Topik</ModalHeader>
+            <ModalHeader>Edit Forum</ModalHeader>
             <ModalCloseButton />
             <Formik
               initialValues={{
                 judul: data.judul || '',
                 isi: data.isi || '',
               }}
-              validationSchema={createForumSchema}
+              validationSchema={forumSchema}
               onSubmit={onSubmit}
             >
             {({ values, errors, touched, handleBlur, handleChange, handleSubmit}) => (

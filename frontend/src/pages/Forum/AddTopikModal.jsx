@@ -8,7 +8,7 @@ import SubmitButton from '../../components/SubmitButton'
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { createForumSchema } from '../../schemas/createForumSchema'
+import { forumSchema } from '../../schemas/forumSchema'
 
 const AddTopikModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -56,7 +56,7 @@ const AddTopikModal = () => {
                         judul: '',
                         isi: '',
                     }}
-                    validationSchema={createForumSchema}
+                    validationSchema={forumSchema}
                     onSubmit={onSubmit}
                 >
                 {({ values, errors, touched, handleBlur, handleChange, handleSubmit}) => (

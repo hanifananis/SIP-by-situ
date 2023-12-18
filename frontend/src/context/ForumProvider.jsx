@@ -1,13 +1,13 @@
-// ForumContext.js
 import React, { createContext, useContext, useState } from 'react';
 
 export const ForumContext = createContext();
 export const CommentContext = createContext();
-
+export const ReplyContext = createContext();
 
 export const ForumProvider = ({ children }) => {
     const [forum, setForum] = useState([]);
     const [comments, setComments] = useState([]);
+    const [replies, setReplies] = useState([]);
 
     const updateForumList = (newForum) => {
         setForum(newForum);
@@ -17,10 +17,16 @@ export const ForumProvider = ({ children }) => {
         setComments(newComments);
     }
 
+    const updateReplyList = (newReplies) => {
+        setReplies(newReplies);
+    }
+
     return (
         <ForumContext.Provider value={{ forum, updateForumList }}>
             <CommentContext.Provider value={{ comments, updateCommentList }}>
-                {children}
+                <ReplyContext.Provider value={{ replies, updateReplyList }}>
+                    {children}
+                </ReplyContext.Provider>
             </CommentContext.Provider>
         </ForumContext.Provider>
     );
@@ -32,4 +38,8 @@ export const useForumContext = () => {
 
 export const useCommentContext = () => {
     return useContext(CommentContext);
+};
+
+export const useReplyContext = () => {
+    return useContext(ReplyContext);
 };

@@ -1,4 +1,4 @@
-import { Button, useDisclosure } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 import { Plus } from '@phosphor-icons/react'
 import React from 'react'
 
