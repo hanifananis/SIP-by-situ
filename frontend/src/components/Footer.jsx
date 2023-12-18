@@ -6,11 +6,12 @@ const Footer = () => {
   return (
     <Flex
       bg='#5D1416' 
-      w='100%' 
+      maxW={"100vw"}
       px={24} 
       py={10}
       color='white' 
-      flexDirection={'column'}>
+      flexDirection={'column'}
+    >
       <img src='/assets/logo-green 1.png' alt='SIP' width={120} />
       <Flex
       mt={4}
@@ -20,7 +21,7 @@ const Footer = () => {
         <Flex
           flexDirection={'column'}
           gap={6}>
-          <p>Funding freemium long tail hypotheses first mover advantage assets ownership</p>
+          <p>SIP: Informasi Pemilihan Presiden, DPR, dan Partai Politik Indonesia.</p>
           <Flex
             gap={4}>
             <EnvelopeSimple size={24} /> 

@@ -1,19 +1,20 @@
 // Import your seeders
 import { seedUsers } from './userSeeder.js';
 import { seedPartaiInfos } from './partaiInfoSeeder.js';
+import { seedPaslon } from './paslonSeeder.js';
+import { seedForums } from './forumSeeder.js';
+import { seedPilpres2019s } from './pilpres2019Seeder.js';
+import { seedDPR2019s } from './suaraDPR2019Seeder.js';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 
-var mongoOptions = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+const mongoOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 };
 
-if(process.env.MONGO_URI){
-    mongoose.connect(process.env.MONGO_URI + '/' + process.env.MONGO_DBNAME,mongoOptions);
-} else{
-    mongoose.connect('mongodb://' + process.env.MONGO_HOST + ':' + process.env.MONGO_PORT + '/' + process.env.MONGO_DBNAME,mongoOptions);
-
-}
+mongoose.connect('mongodb://127.0.0.1:27017/sip_db',mongoOptions)
 
 // Define a function to run all seeders
 async function runAllSeeders() {
@@ -23,6 +24,15 @@ async function runAllSeeders() {
 
     // Run the partaiInfo seeder
     await seedPartaiInfos();
+
+    await seedPaslon();
+    await seedDPR2019s();
+    await seedPilpres2019s();
+
+
+    await seedForums();
+
+
 
     console.log('All seeders executed successfully.');
   } catch (error) {

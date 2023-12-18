@@ -1,11 +1,7 @@
 import mongoose from "mongoose";
-import User from "../models/User.js"; // Import the User model
 
 const replySchema = new mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: User, // Reference to the User model
-    },
+    penulis_id:{ type: String, required: true },
     content: {
         type: String,
         required: true,
@@ -14,14 +10,11 @@ const replySchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-    replies: [],
 });
 
 const commentSchema = new mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: User, // Reference to the User model
-    },
+    penulis_id:{ type: String, required: true },
+    forum_id:{ type: String, required: true },
     content: {
         type: String,
         required: true,

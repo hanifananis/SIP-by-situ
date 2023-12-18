@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@chakra-ui/react": "^2.8.1",
-    "@chakra-ui/theme-tools": "^2.1.1"
-  }
-}

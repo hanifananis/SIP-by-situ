@@ -1,9 +1,16 @@
 import PartaiInfo from "../models/PartaiInfo.js";
+import CalonDPR from "../models/CalonDPR.js";
 
 export const getPartaiInfos = async (req, res) => {
     try {
         const partaiInfos = await PartaiInfo.find();
-        res.json(partaiInfos);
+        const partaiInfosWithStrIds = partaiInfos.map(info => {
+            return {
+                ...info.toObject(),
+                _id: info._id.toString()
+            };
+        });
+        res.json(partaiInfosWithStrIds);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -12,9 +19,20 @@ export const getPartaiInfos = async (req, res) => {
 export const getPartaiInfoById = async (req, res) => {
     try {
         const partaiInfo = await PartaiInfo.findById(req.params.id);
-        res.json(partaiInfo);
+        if (partaiInfo) {
+            const calonDPRs = await CalonDPR.find({ no_urut_partai: partaiInfo.no_urut });
+
+            const partaiInfoWithStrId = {
+                ...partaiInfo.toObject(),
+                _id: partaiInfo._id.toString(),
+                calonDPRs
+            };
+            res.json(partaiInfoWithStrId);
+        } else {
+            res.status(404).json({ message: "PartaiInfo not found." });
+        }
     } catch (error) {
-        res.status(404).json({ message: error.message });
+        res.status(500).json({ message: error.message });
     }
 }
 

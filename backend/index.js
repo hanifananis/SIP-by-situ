@@ -2,9 +2,14 @@ import express from "express"
 import mongoose from "mongoose"
 import cors from "cors"
 import UserRoute from "./routes/UserRoute.js"
-import CommentRoute from "./routes/CommentRoute.js"
+// import CommentRoute from "./routes/CommentRoute.js"
+// import ReplyRoute from "./routes/ReplyRoute.js"
 import LoginRegisterRoute from "./routes/LoginRegisterRoute.js"
 import PartaiInfoRoute from "./routes/PartaiInfoRoute.js"
+import PaslonRoute from "./routes/PaslonRoute.js"
+import ForumRoute from "./routes/ForumRoute.js"
+import KilasBalikRoute from "./routes/KilasBalikRoute.js"
+import CalonDPRRoute from "./routes/CalonDPRRoute.js"
 import dotenv from 'dotenv'
 dotenv.config()
 
@@ -27,8 +32,14 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(UserRoute)
-app.use(CommentRoute)
+// app.use(CommentRoute)
+// app.use(ReplyRoute)
 app.use(LoginRegisterRoute)
 app.use(PartaiInfoRoute)
+app.use(PaslonRoute)
+app.use(ForumRoute)
+app.use(KilasBalikRoute)
+app.use(CalonDPRRoute)
 
 app.listen(5000, ()=> console.log('Server up and running on port 5000'))
+export default app;

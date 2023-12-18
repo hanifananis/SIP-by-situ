@@ -1,22 +1,33 @@
 import User from "../models/User.js"
 
-export const getUsers = async (req, res) => {
+const removePasswordFromUser = (user) => {
+    const { password, ...userWithoutPassword } = user.toObject();
+    return userWithoutPassword;
+  };
+  
+  export const getUsers = async (req, res) => {
     try {
-        const users = await User.find()
-        res.json(users);
+      const users = await User.find();
+      const usersWithoutPassword = users.map(removePasswordFromUser);
+      res.json(usersWithoutPassword);
     } catch (error) {
-        res.status(500).json({message : error.message})
+      res.status(500).json({ message: error.message });
     }
-}
-
-export const getUserById = async (req, res) => {
+  }
+  
+  export const getUserById = async (req, res) => {
     try {
-        const user = await User.findById(req.params.id)
-        res.json(user);
+      const user = await User.findById(req.params.id);
+      if (user) {
+        const userWithoutPassword = removePasswordFromUser(user);
+        res.json(userWithoutPassword);
+      } else {
+        res.status(404).json({ message: "User not found." });
+      }
     } catch (error) {
-        res.status(404).json({message : error.message})
+      res.status(500).json({ message: error.message });
     }
-}
+  }
 
 export const saveUser = async (req, res) => {
     const user = new User(req.body)

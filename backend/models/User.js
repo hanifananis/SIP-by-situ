@@ -1,37 +1,49 @@
 import mongoose from "mongoose";
 import argon2 from "argon2";
+import validator from "validator";
 
-const user = mongoose.Schema({
-    name:{
-        type:String,
-        required: true,
-    },
-  email:{
-    type:String,
+const userSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
     required: true,
     index: { unique: true },
+    validate: {
+      validator: (value) => validator.isEmail(value),
+      message: "Invalid email address",
+    },
   },
-  password:{
-    type:String,
+  password: {
+    type: String,
     required: true,
+    validate: {
+      validator: (value) => isStrongPassword(value),
+      message: "Password is not strong enough",
+    },
   },
-  no_telp:{
-    type:String,
+  no_telp: {
+    type: String,
     required: true,
+    validate: {
+      validator: (value) => isPhoneNumber(value),
+      message: "Invalid phone number",
+    },
   },
   roles: {
     type: String,
-    enum: ['admin', 'user'],
-    default: 'user',
+    enum: ["admin", "user"],
+    default: "user",
   },
 });
 
-user.set('timestamps', true);
+userSchema.set("timestamps", true);
 
-user.pre("save", async function (next) {
+userSchema.pre("save", async function (next) {
   const user = this;
 
-  // Check if the password field is modified or if it's a new user
   if (!user.isModified("password")) return next();
 
   try {
@@ -45,7 +57,7 @@ user.pre("save", async function (next) {
   }
 });
 
-user.methods.comparePassword = async function (candidatePassword, cb) {
+userSchema.methods.comparePassword = async function (candidatePassword, cb) {
   try {
     const isMatch = await argon2.verify(this.password, candidatePassword);
     cb(null, isMatch);
@@ -54,12 +66,17 @@ user.methods.comparePassword = async function (candidatePassword, cb) {
   }
 };
 
-user.virtual('id').get(function () {
-  return this._id.toHexString();
-});
+function isStrongPassword(password) {
+  // Password must be at least 8 characters long
+  // It must contain num and letter
+  const passwordRegex = /^.{8,}$/;
+  return passwordRegex.test(password);
+}
 
-user.set('toObject', {
-  virtuals: true,
-});
+function isPhoneNumber(phoneNumber) {
+  // Phone number must contain only numbers and have at least 11 digits
+  const phoneRegex = /^\d{10,13}$/;
+  return phoneRegex.test(phoneNumber);
+}
 
-export default mongoose.model('Users', user);
+export default mongoose.model("Users", userSchema);
