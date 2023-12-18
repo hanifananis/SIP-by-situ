@@ -5,6 +5,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import DeleteReplyModal from './Admin/Forum/DeleteReplyModal'
 import { useReplyContext } from '../context/ForumProvider'
+import EditReplyModal from './Admin/Forum/EditReplyModal'
 
 const ProfileReply = () => {
     const [data, setData] = useState([]);
@@ -33,6 +34,7 @@ const ProfileReply = () => {
                             <Td>{val.reply.content}</Td>
                             <Td>
                                 <GoToForum id={val.parentComment.forum_id} />
+                                <EditReplyModal commentId={val.parentComment._id} replyId={val.reply._id} userId={userId} />
                                 <DeleteReplyModal commentId={val.parentComment._id} replyId={val.reply._id} userId={userId} />
                             </Td>
                         </Tr>

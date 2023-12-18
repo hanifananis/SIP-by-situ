@@ -6,6 +6,24 @@ import GreenButton from '../components/GreenButton'
 const EditProfileModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
+  const onSubmit = (values) =>
+  {
+    axios
+      .patch(`http://localhost:5000/users/${userId}`, {
+        name: values.name,
+      })
+      .then(() => {
+        toast.success('Edit profile berhasil');
+        onClose();
+        const updatedUsers = axios.get('http://localhost:5000/users/');
+        updateUserList(updatedUsers.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error('Edit profile gagal');
+      })
+  }
+
   return (
     <>
       <GreenButton title={'Edit Profile'} onClick={onOpen} />
@@ -15,21 +33,21 @@ const EditProfileModal = () => {
         <ModalContent>
           <ModalCloseButton />
           <ModalBody py={12}>
-              <Heading fontSize={'2xl'} fontWeight={'semibold'}>Ganti Username</Heading>
-              <Card gap={4} p={8} mt={4}>
-                <Text fontWeight={'semibold'}>Username Baru</Text>
-                <RedInput val={'Masukkan Username'} />
-                <GreenTransparentButton title={'Simpan'} />
-              </Card>
+            <Heading fontSize={'2xl'} fontWeight={'semibold'}>Ganti Username</Heading>
+            <Card gap={4} p={8} mt={4}>
+              <Text fontWeight={'semibold'}>Username Baru</Text>
+              <RedInput val={'Masukkan Username'} />
+              <GreenTransparentButton title={'Simpan'} onClick={''} />
+            </Card>
 
-              <Heading fontSize={'2xl'} fontWeight={'semibold'} mt={8}>Ganti Kata Sandi</Heading>
-              <Card gap={4} p={8} mt={4}>
-                <Text fontWeight={'semibold'}>Kata Sandi Baru</Text>
-                <RedInput val={'Kata Sandi Baru'} />
-                <Text fontWeight={'semibold'}>Konfirmasi Kata Sandi Baru</Text>
-                <RedInput val={'Konfirmasi Kata Sandi Baru'} />
-                <GreenTransparentButton title={'Simpan'} />
-              </Card>
+            <Heading fontSize={'2xl'} fontWeight={'semibold'} mt={8}>Ganti Kata Sandi</Heading>
+            <Card gap={4} p={8} mt={4}>
+              <Text fontWeight={'semibold'}>Kata Sandi Baru</Text>
+              <RedInput val={'Kata Sandi Baru'} />
+              <Text fontWeight={'semibold'}>Konfirmasi Kata Sandi Baru</Text>
+              <RedInput val={'Konfirmasi Kata Sandi Baru'} />
+              <GreenTransparentButton title={'Simpan'} />
+            </Card>
           </ModalBody>
         </ModalContent>
       </Modal>

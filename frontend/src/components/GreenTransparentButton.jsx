@@ -1,7 +1,7 @@
 import { Button } from '@chakra-ui/react'
 import React from 'react'
 
-const GreenTransparentButton = ({ title }) => {
+const GreenTransparentButton = ({ title, onClick }) => {
   return (
     <Button
       bgColor={'white'}
@@ -12,9 +12,10 @@ const GreenTransparentButton = ({ title }) => {
       fontSize={'sm'}
       px={6}
       _hover={{
-      color: 'white',
-      bgColor: '#4F7B58'
+        color: 'white',
+        bgColor: '#4F7B58'
       }}
+      onClick={onClick}
     >
       { title }
     </Button>
