@@ -10,8 +10,8 @@ export const userSchema = yup.object().shape({
         .required("Email wajib diisi"),
     no_telp: yup
         .string()
-        .min(12, "No telepon minimal 12 angka")
-        .max(12)
+        .min(10, "No telepon minimal 10 angka")
+        .max(13)
         .required("No telepon wajib diisi"),
     roles: yup
         .string()

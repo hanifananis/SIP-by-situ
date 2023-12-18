@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-const passwordRules = /^(?=.*[a-z])(?=.*[a-zA-Z]).{5,}$/;
+const passwordRules = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}$/;
 
 export const registerSchema = yup.object().shape({
     name: yup
@@ -12,12 +12,12 @@ export const registerSchema = yup.object().shape({
         .required("Email wajib diisi"),
     no_telp: yup
         .string()
-        .min(12, "No telepon minimal 12 angka")
-        .max(12)
+        .min(10, "No telepon minimal 10 angka")
+        .max(13)
         .required("No telepon wajib diisi"),
     password: yup
         .string()
-        .min(6)
+        .min(8)
         .matches(passwordRules, {message: "Please create a stronger password"})
         .required("Password wajib diisi"),
     confirmPassword: yup
