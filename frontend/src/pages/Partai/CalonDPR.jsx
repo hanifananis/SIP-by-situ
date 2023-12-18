@@ -52,7 +52,7 @@ const CalonDPR = ({ data }) => {
     return (
         <>
             <Heading pt={12} pb={8} fontSize={48}>
-                Calon Legislatif 2019
+                Calon Legislatif 2024
             </Heading>
             <Box bg='#80AF85' w='100%' p={4} color='white' rounded={'xl'}>
                 <DapilModal names={dapilNames} onSelect={handleDapilSelect} />
