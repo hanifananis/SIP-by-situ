@@ -69,7 +69,7 @@ userSchema.methods.comparePassword = async function (candidatePassword, cb) {
 function isStrongPassword(password) {
   // Password must be at least 8 characters long
   // It must contain num and letter
-  const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}$/;
+  const passwordRegex = /^.{8,}$/;
   return passwordRegex.test(password);
 }
 
