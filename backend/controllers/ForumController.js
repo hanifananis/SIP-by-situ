@@ -293,7 +293,6 @@ export const getAllRepliesByAuthorId = async (req, res) => {
                     // Include the parent comment along with the reply
                     const parentComment = await Comment.findById(comment._id).select('-replies');;
                     const user_comment =  await User.findById(comment.penulis_id);
-                    console.log(user_comment)
                     repliesWithParentComments.push({
                         parentComment: {
                             ...parentComment.toObject(),
