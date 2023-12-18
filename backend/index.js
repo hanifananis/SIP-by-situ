@@ -10,8 +10,6 @@ import PaslonRoute from "./routes/PaslonRoute.js"
 import ForumRoute from "./routes/ForumRoute.js"
 import KilasBalikRoute from "./routes/KilasBalikRoute.js"
 import CalonDPRRoute from "./routes/CalonDPRRoute.js"
-import dotenv from 'dotenv'
-dotenv.config()
 
 const app = express()
 var mongoOptions = {
