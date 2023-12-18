@@ -69,7 +69,9 @@ const Navbar = () => {
               </Flex>
             </MenuButton>
             <MenuList>
-              <MenuItem as='a' href='/profile'>Profile</MenuItem>
+              <Link to='/profile'>
+                <MenuItem>Profile</MenuItem>
+              </Link>
               <MenuItem onClick={logout}>Logout</MenuItem>
             </MenuList>
           </Menu>
