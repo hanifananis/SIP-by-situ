@@ -1,9 +1,9 @@
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons'
-import { Flex, Button, Link, IconButton, Menu, MenuButton, MenuList, MenuItem, MenuDivider } from '@chakra-ui/react'
+import { Flex, Button, IconButton, Menu, MenuButton, MenuList, MenuItem, MenuDivider } from '@chakra-ui/react'
 import GreenButton from './GreenButton'
 import { useAuth } from '../context/AuthContext'
 import { UserCircle } from '@phosphor-icons/react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import '../../public/css/index.css'
 
 const Navbar = () => {
@@ -74,7 +74,7 @@ const Navbar = () => {
             </MenuList>
           </Menu>
         ) : (
-          <Link href='/login'>
+          <Link to='/login'>
             <GreenButton title={'Login'} />
           </Link>
         )}
