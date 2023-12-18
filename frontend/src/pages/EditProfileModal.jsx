@@ -9,13 +9,13 @@ const EditProfileModal = () => {
   const onSubmit = (values) =>
   {
     axios
-      .patch(`http://localhost:5000/users/${userId}`, {
+      .patch(`${import.meta.env.VITE_URL}/users/${userId}`, {
         name: values.name,
       })
       .then(() => {
         toast.success('Edit profile berhasil');
         onClose();
-        const updatedUsers = axios.get('http://localhost:5000/users/');
+        const updatedUsers = axios.get(`${import.meta.env.VITE_URL}/users/`);
         updateUserList(updatedUsers.data);
       })
       .catch((error) => {

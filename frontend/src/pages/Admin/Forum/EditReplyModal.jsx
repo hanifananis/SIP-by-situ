@@ -15,7 +15,7 @@ const EditReplyModal = ({ commentId, replyId, userId }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/comments/${commentId}/${replyId}`)
+      .get(`${import.meta.env.VITE_URL}/comments/${commentId}/${replyId}`)
       .then(response => {
         setData(response.data);
       })
@@ -26,13 +26,13 @@ const EditReplyModal = ({ commentId, replyId, userId }) => {
 
   const onSubmit = (values) => {
     axios
-      .put(`http://localhost:5000/comments/${commentId}/${replyId}`, {
+      .put(`${import.meta.env.VITE_URL}/comments/${commentId}/${replyId}`, {
         content: values.content,
       })
       .then(() => {
         toast.success('Edit reply berhasil');
         onClose();
-        const updatedReply = axios.get(`http://localhost:5000/replies-by-author/${userId}`);
+        const updatedReply = axios.get(`${import.meta.env.VITE_URL}/replies-by-author/${userId}`);
         updateReplyList(updatedReply.data);
       })
       .catch((error) => {

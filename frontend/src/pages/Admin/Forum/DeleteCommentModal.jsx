@@ -14,11 +14,11 @@ const DeleteCommentModal = ({ commentId }) => {
     const onSubmit = () =>
     {
       axios
-        .delete(`http://localhost:5000/comments/${commentId}`)
+        .delete(`${import.meta.env.VITE_URL}/comments/${commentId}`)
         .then(() => {
           toast.success('Delete comment berhasil');
           onClose();
-          const updatedComment = axios.get('http://localhost:5000/comments');
+          const updatedComment = axios.get(`${import.meta.env.VITE_URL}/comments`);
           updateCommentList(updatedComment.data);
         })
         .catch((error) => {

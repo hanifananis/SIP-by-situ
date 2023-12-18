@@ -16,7 +16,7 @@ const EditUserModal = ({ userId }) => {
 
     useEffect(() => {
         axios
-          .get(`http://localhost:5000/users/${userId}`)
+          .get(`${import.meta.env.VITE_URL}/users/${userId}`)
           .then(response => {
             setData(response.data);
           })
@@ -28,7 +28,7 @@ const EditUserModal = ({ userId }) => {
     const onSubmit = (values) =>
     {
         axios
-            .patch(`http://localhost:5000/users/${userId}`, {
+            .patch(`${import.meta.env.VITE_URL}/users/${userId}`, {
                 name: values.name,
                 email: values.email,
                 no_telp: values.no_telp,
@@ -37,7 +37,7 @@ const EditUserModal = ({ userId }) => {
             .then(() => {
                 toast.success('Edit user berhasil');
                 onClose();
-                const updatedUsers = axios.get('http://localhost:5000/users');
+                const updatedUsers = axios.get(`${import.meta.env.VITE_URL}/users`);
                 updateUserList(updatedUsers.data);
             })
             .catch((error) => {

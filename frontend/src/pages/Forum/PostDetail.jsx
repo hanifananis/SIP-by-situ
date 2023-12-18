@@ -13,7 +13,7 @@ const PostDetail = () => {
   const { _id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/forums/${_id}`)
+    axios.get(`${import.meta.env.VITE_URL}/forums/${_id}`)
       .then(response => {
         setData(response.data);
         setSortedData(response.data.comments || []);

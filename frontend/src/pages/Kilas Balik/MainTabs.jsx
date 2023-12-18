@@ -1,7 +1,7 @@
 import { Tabs, Tab, TabList, TabPanels, TabPanel, Flex, TabIndicator } from '@chakra-ui/react'
 import React from 'react'
 import DPR from './DPR'
-import Pilpres from './pilpres'
+import Pilpres from './Pilpres'
 import Banner from '../../components/Banner'
 import BackToHome from '../../components/BackToHome'
 

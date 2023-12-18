@@ -27,7 +27,7 @@ const AddTopikModal = () => {
 
     const onSubmit = (values) => {
         axios
-            .post(`http://localhost:5000/forums`, {
+            .post(`${import.meta.env.VITE_URL}/forums`, {
                 judul: values.judul,
                 isi: values.isi,
                 penulis_id: Cookies.get('user_id'),

@@ -16,7 +16,7 @@ const Profile = () => {
   
   useEffect(() => {
     axios
-    .get(`http://localhost:5000/user-info`, {
+    .get(`${import.meta.env.VITE_URL}/user-info`, {
       headers: {
         Authorization: `${Cookies.get('token')}`,
       },

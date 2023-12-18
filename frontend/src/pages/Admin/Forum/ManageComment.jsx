@@ -10,7 +10,7 @@ const ManageComment = () => {
     const { comment, updateCommentList } = useCommentContext();
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/comments`)
+        axios.get(`${import.meta.env.VITE_URL}/comments`)
         .then((response) => {
             setData(response.data)
         })

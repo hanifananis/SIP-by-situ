@@ -1,5 +1,3 @@
-'use client'
-
 import {
   Flex,
   Box,
@@ -37,7 +35,7 @@ export default function Register() {
   const onSubmit = (values) =>
   {
     axios
-      .post(`http://localhost:5000/register`, {
+      .post(`${import.meta.env.VITE_URL}/register`, {
         name: values.name,
         email: values.email,
         no_telp: values.no_telp,

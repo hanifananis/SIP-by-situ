@@ -15,7 +15,7 @@ const Detail = () => {
   const { _id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/partaiInfos/${_id}`)
+    axios.get(`${import.meta.env.VITE_URL}/partaiInfos/${_id}`)
       .then(response => {
         setData(response.data);
         setLoading(false);

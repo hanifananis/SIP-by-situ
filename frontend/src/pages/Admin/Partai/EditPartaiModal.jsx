@@ -16,7 +16,7 @@ const EditPartaiModal = ({ partaiId}) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/partaiInfos/${partaiId}`)
+      .get(`${import.meta.env.VITE_URL}/partaiInfos/${partaiId}`)
       .then(response => {
         setData(response.data);
       })
@@ -28,7 +28,7 @@ const EditPartaiModal = ({ partaiId}) => {
   const onSubmit = (values) =>
   {
     axios
-      .put(`http://localhost:5000/partaiInfos/${partaiId}`, {
+      .put(`${import.meta.env.VITE_URL}/partaiInfos/${partaiId}`, {
         name: values.name,
         no_urut: values.no_urut,
         ig_sosmed: values.ig_sosmed,
@@ -40,7 +40,7 @@ const EditPartaiModal = ({ partaiId}) => {
       .then(() => {
         toast.success('Edit partai berhasil');
         onClose();
-        const updatedPartai = axios.get('http://localhost:5000/partaiInfos');
+        const updatedPartai = axios.get(`${import.meta.env.VITE_URL}/partaiInfos`);
         updatePartaiList(updatedPartai.data);
       })
       .catch((error) => {

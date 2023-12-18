@@ -15,7 +15,7 @@ const EditForumModal = ({ forumId }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/forums/${forumId}`)
+      .get(`${import.meta.env.VITE_URL}/forums/${forumId}`)
       .then(response => {
         setData(response.data);
       })
@@ -26,14 +26,14 @@ const EditForumModal = ({ forumId }) => {
 
   const onSubmit = (values) => {
     axios
-      .put(`http://localhost:5000/forums/${forumId}`, {
+      .put(`${import.meta.env.VITE_URL}/forums/${forumId}`, {
         judul: values.judul,
         isi: values.isi,
       })
       .then(() => {
         toast.success('Edit forum berhasil');
         onClose();
-        const updatedForum = axios.get('http://localhost:5000/forums');
+        const updatedForum = axios.get(`${import.meta.env.VITE_URL}/forums`);
         updateForumList(updatedForum.data);
       })
       .catch((error) => {

@@ -10,7 +10,7 @@ const ManageForum = () => {
     const { forum, updateForumList } = useForumContext();
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/forums`)
+        axios.get(`${import.meta.env.VITE_URL}/forums`)
         .then((response) => {
             setData(response.data)
         })

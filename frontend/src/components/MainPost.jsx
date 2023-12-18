@@ -9,7 +9,7 @@ import Cookies from 'js-cookie';
 const MainPost = ({ forumId, judul, isi, namaPenulis, createdAt }) => {
   const handleClick = (values) => {
     axios
-      .post(`http://localhost:5000/comments`, {
+      .post(`${import.meta.env.VITE_URL}/comments`, {
         forum_id: forumId,
         penulis_id: Cookies.get('user_id'),
         content: values.content,

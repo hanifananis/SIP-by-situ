@@ -14,11 +14,11 @@ const DeleteReplyModal = ({ commentId, replyId, userId }) => {
     const onSubmit = () =>
     {
       axios
-        .delete(`http://localhost:5000/comments/${commentId}/${replyId}`)
+        .delete(`${import.meta.env.VITE_URL}/comments/${commentId}/${replyId}`)
         .then(() => {
           toast.success('Delete reply berhasil');
           onClose();
-          const updatedReply = axios.get(`http://localhost:5000/replies-by-author/${userId}`);
+          const updatedReply = axios.get(`${import.meta.env.VITE_URL}/replies-by-author/${userId}`);
           updateReplyList(updatedReply.data);
         })
         .catch((error) => {

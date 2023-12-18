@@ -13,7 +13,7 @@ const ProfileReply = () => {
     const { reply, updateReplyList } = useReplyContext();
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/replies-by-author/${userId}`)
+        axios.get(`${import.meta.env.VITE_URL}/replies-by-author/${userId}`)
         .then((response) => {
             setData(response.data);
         })

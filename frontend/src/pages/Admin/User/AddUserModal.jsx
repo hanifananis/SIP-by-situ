@@ -20,7 +20,7 @@ const AddUserModal = () => {
     const onSubmit = (values) =>
     {
         axios
-            .post(`http://localhost:5000/users`, {
+            .post(`${import.meta.env.VITE_URL}/users`, {
                 name: values.name,
                 email: values.email,
                 no_telp: values.no_telp,
@@ -30,7 +30,7 @@ const AddUserModal = () => {
             .then(() => {
                 toast.success('Add user berhasil');
                 onClose();
-                const updatedUsers = axios.get('http://localhost:5000/users');
+                const updatedUsers = axios.get(`${import.meta.env.VITE_URL}/users`);
                 updateUserList(updatedUsers.data);
             })
             .catch((error) => {

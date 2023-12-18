@@ -9,7 +9,7 @@ const DetailPaslonModal = ({ paslonId}) => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:5000/paslons/${paslonId}`)
+            .get(`${import.meta.env.VITE_URL}/paslons/${paslonId}`)
             .then(response => {
                 setData(response.data);
             })

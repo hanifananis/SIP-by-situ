@@ -15,7 +15,7 @@ const EditCommentModal = ({ commentId }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/comments/${commentId}`)
+      .get(`${import.meta.env.VITE_URL}/comments/${commentId}`)
       .then(response => {
         setData(response.data);
       })
@@ -26,13 +26,13 @@ const EditCommentModal = ({ commentId }) => {
 
   const onSubmit = (values) => {
     axios
-      .put(`http://localhost:5000/comments/${commentId}`, {
+      .put(`${import.meta.env.VITE_URL}/comments/${commentId}`, {
         content: values.content,
       })
       .then(() => {
         toast.success('Edit comment berhasil');
         onClose();
-        const updatedComment = axios.get('http://localhost:5000/comments');
+        const updatedComment = axios.get(`${import.meta.env.VITE_URL}/comments`);
         updateCommentList(updatedComment.data);
       })
       .catch((error) => {
