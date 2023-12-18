@@ -25,6 +25,7 @@ const ManagePaslon = () => {
     py={6} 
     px={8} 
     rounded={'lg'}
+    mt={4}
   >
     <TableContainer>
       <Table variant={'simple'}>

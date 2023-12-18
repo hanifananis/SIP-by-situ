@@ -16,6 +16,7 @@ import { Route, Routes } from 'react-router-dom'
 import { ChakraProvider } from '@chakra-ui/react'
 import { UserProvider } from './context/UserProvider'
 import { PartaiProvider } from './context/PartaiProvider'
+import { ForumProvider } from './context/ForumProvider'
 import { ToastContainer } from 'react-toastify'
 
 import Login from './pages/Login';
@@ -32,11 +33,11 @@ import PelajariDetail from './pages/PelajariDetail';
 import Profile from './pages/Profile';
 import ManagePaslon from './pages/Admin/Paslon/ManagePaslon';
 import ManageUser from './pages/Admin/User/ManageUser';
-import ManageForum from './pages/Admin/Forum/ManageForum';
 import ManagePartai from './pages/Admin/Partai/ManagePartai';
 import PostDetail from './pages/Forum/PostDetail';
 import ProtectedRoute from './components/ProtectedRoute';
 import MainTabs from './pages/Kilas Balik/MainTabs';
+import ManageForum from './pages/Admin/Forum/ManageForum'
 
 const App = () => {
   return (
@@ -55,7 +56,7 @@ const App = () => {
             <Route
               path="profile"
               element={
-                <ProtectedRoute roles={['user']} element={<Profile />} />
+                <ProtectedRoute roles={['user']} element={<ForumProvider><Profile /></ForumProvider>} />
               }
             />
             <Route path="/kilas-balik" element={<MainTabs />} />
@@ -65,7 +66,7 @@ const App = () => {
           <Route
             path="manage-forum"
             element={
-              <ProtectedRoute roles={['admin']} element={<ManageForum />} />
+              <ProtectedRoute roles={['admin']} element={<ForumProvider><ManageForum /></ForumProvider>} />
             }
           />
           <Route

@@ -44,12 +44,12 @@ const AddTopikModal = () => {
     
     return (
         <>
-            <AddButton title={'Topik'} onOpen={openModal} />
+            <AddButton title={'Forum'} onOpen={openModal} />
     
             <Modal isOpen={isOpen} onClose={onClose} isCentered>
             <ModalOverlay />
             <ModalContent>
-                <ModalHeader>Add Topik</ModalHeader>
+                <ModalHeader>Add Forum</ModalHeader>
                 <ModalCloseButton />
                 <Formik
                     initialValues={{

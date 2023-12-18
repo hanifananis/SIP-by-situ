@@ -1,4 +1,4 @@
-import { Card, CardBody, CardHeader, Text, SkeletonText } from '@chakra-ui/react';
+import { Card, CardBody, CardHeader, Text, SkeletonText, Skeleton } from '@chakra-ui/react';
 import UserForum from './UserForum';
 import BerikanKomentar from './BerikanKomentar';
 import { toast } from 'react-toastify';
@@ -39,7 +39,11 @@ const MainPost = ({ forumId, judul, isi, namaPenulis, createdAt }) => {
             {isi}
           </Text>
         ) : (
-          <SkeletonText startColor='whiteAlpha.800' endColor='whiteAlpha.600' pt={2} pb={4} noOfLines={2} spacing='2' skeletonHeight='2' />
+          <Skeleton startColor='whiteAlpha.800' endColor='whiteAlpha.600'>
+            <Text pt={2} pb={6} mb={4}>
+              {isi}
+            </Text>
+          </Skeleton>
         )}
         <BerikanKomentar handleClick={handleClick} title={'Comment'} />
       </CardBody>

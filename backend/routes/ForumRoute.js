@@ -10,6 +10,7 @@ import {
   addReply,
   editCommentOrReply,
   deleteCommentOrReply,
+  getAllCommentWithReply
 } from '../controllers/ForumController.js';
 
 const router = express.Router();
@@ -22,6 +23,7 @@ router.put('/forums/:forumId', editForum);
 router.delete('/forums/:forumId', deleteForum);
 
 // Comment routes
+router.get('/comments', getAllCommentWithReply);
 router.post('/comments', createComment);
 router.post('/comments/:commentId/replies', addReply);
 router.put('/comments/:commentId/:replyId?', editCommentOrReply);

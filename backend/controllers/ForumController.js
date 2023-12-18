@@ -244,3 +244,32 @@ export const deleteCommentOrReply = async (req, res) => {
     res.status(500).json({ message: error.message });
     }
 };
+
+export const getAllCommentWithReply = async (req, res) => {
+    try{
+        const comments = await Comment.find();
+        const commentsWithUserData = await Promise.all(comments.map(async (comment) => {
+            const user = await User.findById(comment.penulis_id);
+            const { name, roles } = user;
+
+            const repliesWithUserData = await Promise.all(comment.replies.map(async (reply) => {
+                const replyUser = await User.findById(reply.penulis_id);
+                const { name: replyUserName, roles: replyUserRoles } = replyUser;
+
+                return {
+                    ...reply.toObject(),
+                    user: { name: replyUserName, roles: replyUserRoles },
+                };
+            }));
+
+            return {
+                ...comment.toObject(),
+                user: { name, roles },
+                replies: repliesWithUserData,
+            };
+        }));
+        res.json(commentsWithUserData);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};

@@ -21,7 +21,7 @@ const BerikanKomentar = ({ handleClick, title }) => {
               >
                 <Input
                   name="content"
-                  _placeholder='Berikan Komentar'
+                  placeholder={`Berikan ${title}`}
                   fontSize="sm"
                   bg={'whiteAlpha.800'}
                   focusBorderColor='#F3EBBD'
