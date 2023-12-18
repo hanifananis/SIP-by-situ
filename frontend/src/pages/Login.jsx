@@ -9,7 +9,6 @@ import {
   Stack,
   Button,
   Text,
-  Link,
   Divider,
   AbsoluteCenter,
   FormErrorMessage,
@@ -20,7 +19,7 @@ import { useState } from 'react'
 import { Formik } from 'formik'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { loginSchema } from '../schemas/loginSchema'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import axios from 'axios'
 
@@ -160,7 +159,7 @@ export default function Login() {
                     <FormErrorMessage>{errors.password}</FormErrorMessage>
                   </FormControl>
                   <Link 
-                    href='#' 
+                    to='#' 
                     textDecorationLine={'underline'}
                     fontSize={'sm'}
                   >
@@ -209,7 +208,7 @@ export default function Login() {
                     >
                       Belum punya akun? 
                     <Link 
-                      href='/register' 
+                      to='/register' 
                       textDecorationLine={'underline'}
                       ml={1}
                     >
