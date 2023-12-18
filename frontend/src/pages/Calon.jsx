@@ -12,7 +12,7 @@ const Calon = () => {
   const { _id } = useParams();
   
   useEffect(() => {
-    axios.get(`http://localhost:5000/paslons/${_id}`)
+    axios.get(`${import.meta.env.VITE_URL}/paslons/${_id}`)
       .then(response => {
         setData(response.data);
       })

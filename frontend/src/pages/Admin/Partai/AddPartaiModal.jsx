@@ -16,7 +16,7 @@ const AddPartaiModal = () => {
   const onSubmit = (values) =>
   {
     axios
-      .post(`http://localhost:5000/partaiInfos`, {
+      .post(`${import.meta.env.VITE_URL}/partaiInfos`, {
         name: values.name,
         no_urut: values.no_urut,
         ig_sosmed: values.ig_sosmed,
@@ -28,7 +28,7 @@ const AddPartaiModal = () => {
       .then(() => {
         toast.success('Add partai berhasil');
         onClose();
-        const updatedPartai = axios.get('http://localhost:5000/partaiInfos');
+        const updatedPartai = axios.get(`${import.meta.env.VITE_URL}/partaiInfos`);
         updatePartaiList(updatedPartai.data);
       })
       .catch((error) => {

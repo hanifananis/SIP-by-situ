@@ -14,11 +14,11 @@ const DeleteUserModal = ({ userId }) => {
     const onSubmit = () =>
     {
       axios
-        .delete(`http://localhost:5000/users/${userId}`)
+        .delete(`${import.meta.env.VITE_URL}/users/${userId}`)
         .then(() => {
           toast.success('Delete user berhasil');
           onClose();
-          const updatedUsers = axios.get('http://localhost:5000/users');
+          const updatedUsers = axios.get(`${import.meta.env.VITE_URL}/users`);
           updateUserList(updatedUsers.data);
         })
         .catch((error) => {

@@ -14,11 +14,11 @@ const DeletePartaiModal = ({ partaiId }) => {
     const onSubmit = () => 
     {
       axios
-        .delete(`http://localhost:5000/partaiInfos/${partaiId}`)
+        .delete(`${import.meta.env.VITE_URL}/partaiInfos/${partaiId}`)
         .then(() => {
           toast.success('Delete partai berhasil');
           onClose();
-          const updatedPartai = axios.get('http://localhost:5000/partaiInfos');
+          const updatedPartai = axios.get(`${import.meta.env.VITE_URL}/partaiInfos`);
           updatePartaiList(updatedPartai.data);
         })
         .catch((error) => {

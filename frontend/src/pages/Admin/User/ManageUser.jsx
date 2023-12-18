@@ -13,7 +13,7 @@ const ManageUser = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/users')
+      .get(`${import.meta.env.VITE_URL}/users`)
       .then(response => {
         setData(response.data);
       })

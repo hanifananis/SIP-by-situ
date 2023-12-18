@@ -13,7 +13,7 @@ const ManagePartai = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/partaiInfos')
+      .get(`${import.meta.env.VITE_URL}/partaiInfos`)
       .then(response => {
         setData(response.data);
       })

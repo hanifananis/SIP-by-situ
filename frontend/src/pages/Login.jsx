@@ -42,7 +42,7 @@ export default function Login() {
   const onSubmit = (values) => 
   {
     axios
-      .post(`http://localhost:5000/login`, {
+      .post(`${import.meta.env.VITE_URL}/login`, {
         email: values.email,
         password: values.password
       })

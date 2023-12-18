@@ -9,7 +9,7 @@ const ManagePaslon = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:5000/paslons')
+      .get(`${import.meta.env.VITE_URL}/paslons`)
       .then(response => {
         setData(response.data);
       })

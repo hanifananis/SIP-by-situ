@@ -7,7 +7,7 @@ const PartaiCards = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/partaiInfos')
+    axios.get(`${import.meta.env.VITE_URL}/partaiInfos`)
       .then(response => {
         setData(response.data);
       })

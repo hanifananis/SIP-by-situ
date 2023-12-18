@@ -14,11 +14,11 @@ const DeleteForumModal = ({ forumId }) => {
     const onSubmit = () =>
     {
       axios
-        .delete(`http://localhost:5000/forums/${forumId}`)
+        .delete(`${import.meta.env.VITE_URL}/forums/${forumId}`)
         .then(() => {
           toast.success('Delete forum berhasil');
           onClose();
-          const updatedForum = axios.get('http://localhost:5000/forums');
+          const updatedForum = axios.get(`${import.meta.env.VITE_URL}/forums`);
           updateForumList(updatedForum.data);
         })
         .catch((error) => {

@@ -14,7 +14,7 @@ const Pilpres = () => {
     const tableRef = useRef(null);
   
     useEffect(() => {
-      axios.get('http://localhost:5000/datapilpres2019')
+      axios.get(`${import.meta.env.VITE_URL}/datapilpres2019`)
         .then(response => {
           setData(response.data);
         })

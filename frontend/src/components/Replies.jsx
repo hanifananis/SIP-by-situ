@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Replies = ({disclosureProps, data, commentId}) => {
     const handleClick = (values) => {
         axios
-        .post(`http://localhost:5000/comments/${commentId}/replies`, {
+        .post(`${import.meta.env.VITE_URL}/comments/${commentId}/replies`, {
             penulis_id: Cookies.get('user_id'),
             content: values.content
         })

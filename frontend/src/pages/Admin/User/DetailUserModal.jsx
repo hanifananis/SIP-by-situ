@@ -9,7 +9,7 @@ const DetailUserModal = ({ userId }) => {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:5000/users/${userId}`)
+            .get(`${import.meta.env.VITE_URL}/users/${userId}`)
             .then(response => {
                 setData(response.data);
             })
