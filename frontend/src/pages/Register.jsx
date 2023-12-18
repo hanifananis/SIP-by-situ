@@ -254,21 +254,25 @@ export default function Register() {
                       Daftar dengan Google
                     </Button>
                   </Stack>
-                  <Stack pt={6}>
-                    <Text 
-                      fontSize={'sm'}
-                      align={'center'}>
-                        Sudah punya akun? 
-                      <Link 
-                        to='/login' 
-                        textDecorationLine={'underline'}
-                        ml={1}>
-                          Masuk</Link>
-                      </Text>
-                  </Stack>
                 </form>
               )}
             </Formik>
+            <Flex pt={2} gap={2} mx={'auto'}>
+              <Text 
+                fontSize={'sm'}
+                align={'center'}
+              >
+                Sudah punya akun? 
+              </Text>
+                <Text 
+                  textDecorationLine={'underline'}
+                  fontSize={'sm'}
+                >
+                <Link to='/login'>
+                  Masuk
+              </Link>
+                </Text>
+            </Flex>
           </Stack>
         </Box>
     </Flex>

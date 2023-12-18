@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-const passwordRules = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{8,}$/;
+const passwordRules = /^.{8,}$/;
 
 export const registerSchema = yup.object().shape({
     name: yup

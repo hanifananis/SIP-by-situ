@@ -12,6 +12,7 @@ import {
   Divider,
   AbsoluteCenter,
   FormErrorMessage,
+  HStack,
 } from '@chakra-ui/react'
 
 // import useAuth from '../hooks/useAuth';
@@ -200,25 +201,26 @@ export default function Login() {
                     >
                       Masuk dengan Google
                     </Button>
-                  </Stack>
-                  <Stack pt={6}>
-                    <Text 
-                      fontSize={'sm'}
-                      align={'center'}
-                    >
-                      Belum punya akun? 
-                    <Link 
-                      to='/register' 
-                      textDecorationLine={'underline'}
-                      ml={1}
-                    >
-                      Daftar
-                    </Link>
-                    </Text>
-                  </Stack>
+                  </Stack>  
                 </form>
               )}
             </Formik>
+            <Flex pt={2} gap={2} mx={'auto'}>
+              <Text 
+                fontSize={'sm'}
+                align={'center'}
+              >
+                Belum punya akun? 
+              </Text>
+                <Text 
+                  textDecorationLine={'underline'}
+                  fontSize={'sm'}
+                >
+                <Link to='/register'>
+                  Daftar
+              </Link>
+                </Text>
+            </Flex>
           </Stack>
         </Box>
     </Flex>
