@@ -4,17 +4,19 @@ import PartaiInfo from "../models/PartaiInfo.js";
 export const getPaslons = async (req, res) => {
     try {
         const paslons = await Paslon.find();
-        const paslonsWithStrIds = paslons.map(paslon => {
-            return {
-                ...paslon.toObject(),
-                _id: paslon._id.toString()
-            };
-        });
+        const paslonsWithStrIds = paslons.map(paslon => ({
+            ...paslon.toObject(),
+            _id: paslon._id.toString()
+        }));
+
+        // Sort the array by the 'no_urut' property
+        paslonsWithStrIds.sort((a, b) => a.no_urut - b.no_urut);
+
         res.json(paslonsWithStrIds);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-}
+};
 
 export const getPaslonById = async (req, res) => {
     try {
