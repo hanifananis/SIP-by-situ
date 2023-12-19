@@ -27,7 +27,7 @@ beforeEach(() => {
 //         cy.contains('Capres dan Cawapres 2024');
 
 //         // open card Calon 1
-//         cy.get('a:contains("Lihat Profil Calon")').eq(2).click();
+//         cy.get('a:contains("Lihat Profil Calon")').eq(0).click();
 //         cy.contains('Deskripsi').click();
 //         cy.contains('Visi').click();
 //         cy.contains('Misi').click();
@@ -41,7 +41,7 @@ beforeEach(() => {
 //         cy.go('back');
 
 //         // open card Calon 3
-//         cy.get('a:contains("Lihat Profil Calon")').eq(0).click();
+//         cy.get('a:contains("Lihat Profil Calon")').eq(2).click();
 //         cy.contains('Deskripsi').click();
 //         cy.contains('Visi').click();
 //         cy.contains('Misi').click();
@@ -59,7 +59,6 @@ beforeEach(() => {
 // mengakses Partai Page dari Landing Page
 // describe('Partai Page', () => {
 //     beforeEach(() => {
-//         cy.viewport(1920, 1080);
 //         cy.visit('http://localhost:5173');
 //         cy.on('uncaught:exception', (err, runnable) => {
 //             console.error('Uncaught Exception:', err.message);
@@ -114,8 +113,11 @@ beforeEach(() => {
 //             cy.get(`a[href^="/partai-politik/${_id}"]`).click()
 //             // akses isi Detail Partai Page
 //             cy.contains('Deskripsi').click()
-//             cy.contains('Tokoh').click()
-//             cy.contains('Fakta Unik').click()
+//             cy.contains('Koalisi').click()
+//             cy.contains('Calon Legislatif 2024')
+//             cy.contains('Filter Dapil').click()
+//             // cy.contains('Bali').check(['Bali', 'Papua'])
+//             // cy.get('Submit').click();
 
 //             // cek social media partai
 //             if (website != ''){cy.contains(`${website}`)}
@@ -126,25 +128,58 @@ beforeEach(() => {
 //     });
 // });
 
-
 // akses Forum Page sebelum login
-describe('Forum Page', () => {
-    it('successfully accessed Forum Page', () => {
-        cy.contains('Forum').click();
-        cy.url().should('include', '/forum')
-    });
-});
+// describe('Forum Page', () => {
+//     beforeEach(() => {
+//         cy.contains('Forum').click();
+//         cy.url().should('include', '/forum')
+//     });
 
+//     it('successfully accessed Forum Page', () => {
+//         cy.contains('Kami dengan bangga mempersembahkan wadah ini sebagai tempat bertemunya pikiran-pikiran brilian dan pandangan yang beragam.')
+//         cy.contains('Add Forum').click().go('back');
+//         cy.contains('Debat Capres Pertama').click();
+//     });
 
-
-// describe('Login Page', () => {
-//     it('should login by email', () => {
-//         cy.contains('Login').click();
-//         {
-//             auth: {
-//             username: 'wile',
-//             password: 'coyote',
-//           }
-//         }
+//     it('find forum using the search bar', () => {
+//         cy.get('input[placeholder="Search"]').type('debat{enter}');
+//         cy.wait(1000);
+//         cy.get('input[placeholder="Search"]').clear().type('forum{enter}');
+//         cy.wait(1000);
 //     });
 // });
+
+// resgiter dan login
+// describe('Register & Login Page', () => {
+//     it('should register a new account', () => {
+//         cy.contains('Login').click();
+//         cy.contains('Daftar').click();
+
+//         cy.get('input[name=name]').type('User')
+//         cy.get('input[name=email]').type('user@gmail.com')
+//         cy.get('input[id=no_telp]').type('01234567891')
+//         cy.get('input[id=password]').type('password123')
+//         cy.get('input[id=confirmPassword]').type('password123{enter}')
+//     });
+
+//     it('should login by email', () => {
+//         cy.contains('Login').click();
+//         cy.get('input[name=email]').type('user@gmail.com')
+//         cy.get('input[id=password]').type('password123{enter}')
+//     });
+// });
+
+// akses profil
+describe('Profile Page', () => {
+    beforeEach(() => {
+        cy.contains('Login').click();
+        cy.get('input[name=email]').type('user@gmail.com')
+        cy.get('input[id=password]').type('password123{enter}')
+        cy.wait(10000)
+    });
+
+    it('should accessed detail profile', () => {
+        cy.get('#menu-button-:r7t:').click();
+        cy.contains('Profile').click();
+    });
+});
