@@ -14,7 +14,7 @@ const DPR = () => {
     const tableRef = useRef(null);
 
     useEffect(() => {
-      axios.get('http://localhost:5000/datahasildpr2019')
+      axios.get(`${import.meta.env.VITE_URL}/datahasildpr2019`)
         .then(response => {
           setData(response.data);
         })

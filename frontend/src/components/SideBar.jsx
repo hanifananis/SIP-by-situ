@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 
 import { Chats, Users, SignOut, Bank, UserRectangle } from "@phosphor-icons/react"

@@ -4,41 +4,40 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import SubmitButton from '../../../components/SubmitButton';
-import { forumSchema } from '../../../schemas/forumSchema';
 import { useEffect, useState } from 'react';
-import { useForumContext } from '../../../context/ForumProvider';
+import { useReplyContext } from '../../../context/ForumProvider';
+import { commentSchema } from '../../../schemas/commentSchema';
 
-const EditForumModal = ({ forumId }) => {
+const EditReplyModal = ({ commentId, replyId, userId }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { forum, updateForumList } = useForumContext();
+  const { reply, updateReplyList } = useReplyContext();
   const [data, setData] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_URL}/forums/${forumId}`)
+      .get(`${import.meta.env.VITE_URL}/comments/${commentId}/${replyId}`)
       .then(response => {
         setData(response.data);
       })
       .catch(error => {
         console.error('Error Fetching Data: ', error)
       });
-  }, [forumId]);
+  }, [commentId, replyId]);
 
   const onSubmit = (values) => {
     axios
-      .put(`${import.meta.env.VITE_URL}/forums/${forumId}`, {
-        judul: values.judul,
-        isi: values.isi,
+      .put(`${import.meta.env.VITE_URL}/comments/${commentId}/${replyId}`, {
+        content: values.content,
       })
       .then(() => {
-        toast.success('Edit forum berhasil');
+        toast.success('Edit reply berhasil');
         onClose();
-        const updatedForum = axios.get(`${import.meta.env.VITE_URL}/forums`);
-        updateForumList(updatedForum.data);
+        const updatedReply = axios.get(`${import.meta.env.VITE_URL}/replies-by-author/${userId}`);
+        updateReplyList(updatedReply.data);
       })
       .catch((error) => {
         console.log(error);
-        toast.error('Edit forum gagal');
+        toast.error('Edit reply gagal');
       });
   };
   
@@ -51,60 +50,35 @@ const EditForumModal = ({ forumId }) => {
         <Modal isOpen={isOpen} onClose={onClose} isCentered>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Edit Forum</ModalHeader>
+            <ModalHeader>Edit Reply</ModalHeader>
             <ModalCloseButton />
             <Formik
               initialValues={{
-                judul: data.judul || '',
-                isi: data.isi || '',
+                content: data.content || '',
               }}
-              validationSchema={forumSchema}
+              validationSchema={commentSchema}
               onSubmit={onSubmit}
             >
             {({ values, errors, touched, handleBlur, handleChange, handleSubmit}) => (
               <form onSubmit={handleSubmit}> 
                 <ModalBody>
                   <FormControl
-                    id="judul"
-                    isInvalid={errors.judul && touched.judul}
+                    id="content"
+                    isInvalid={errors.content && touched.content}
                     mb={4}
                   >
-                    <FormLabel fontSize={'sm'}>
-                      Judul
-                    </FormLabel>
                     <Input
-                      name="judul"
+                      name="content"
                       _placeholder={{ opacity: 1, color: 'inherit' }}
                       fontSize="sm"
                       variant='flushed'
                       type="text"
                       autoComplete="off"
-                      value={values.judul}
+                      value={values.content}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    <FormErrorMessage>{errors.judul}</FormErrorMessage>
-                  </FormControl>
-                  <FormControl 
-                    id="isi"
-                    isInvalid={errors.isi && touched.isi}
-                    mb={4}
-                  >
-                    <FormLabel fontSize={'sm'}>
-                      Isi
-                    </FormLabel>
-                    <Input
-                      name="isi"
-                      _placeholder={{ opacity: 1, color: 'inherit' }}
-                      fontSize="sm"
-                      variant='flushed'
-                      type="text"
-                      autoComplete="off"
-                      value={values.isi}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    <FormErrorMessage>{errors.isi}</FormErrorMessage>
+                    <FormErrorMessage>{errors.content}</FormErrorMessage>
                   </FormControl>
                 </ModalBody>
       
@@ -120,4 +94,4 @@ const EditForumModal = ({ forumId }) => {
   )
 }
 
-export default EditForumModal
+export default EditReplyModal

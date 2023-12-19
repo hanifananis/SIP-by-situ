@@ -8,7 +8,7 @@ const CandidatesCard = () => {
   const [data, setData] = useState([]);
   
   useEffect(() => {
-    axios.get('http://localhost:5000/paslons')
+    axios.get(`${import.meta.env.VITE_URL}/paslons`)
       .then(response => {
         setData(response.data);
       })

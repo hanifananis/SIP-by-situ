@@ -4,6 +4,7 @@ import React from 'react'
 const GreenTransparentButton = ({ title }) => {
   return (
     <Button
+      type="submit"
       bgColor={'white'}
       color={'#4F7B58'}
       borderWidth={2}
@@ -12,8 +13,8 @@ const GreenTransparentButton = ({ title }) => {
       fontSize={'sm'}
       px={6}
       _hover={{
-      color: 'white',
-      bgColor: '#4F7B58'
+        color: 'white',
+        bgColor: '#4F7B58'
       }}
     >
       { title }

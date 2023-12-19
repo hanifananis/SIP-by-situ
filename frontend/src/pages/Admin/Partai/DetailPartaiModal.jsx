@@ -8,7 +8,7 @@ const DetailPartaiModal = ({ partaiId }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/partaiInfos/${partaiId}`)
+      .get(`${import.meta.env.VITE_URL}/partaiInfos/${partaiId}`)
       .then(response => {
         setData(response.data);
       })

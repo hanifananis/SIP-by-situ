@@ -1,5 +1,3 @@
-'use client'
-
 import {
   Flex,
   Box,
@@ -11,7 +9,6 @@ import {
   Stack,
   Button,
   Text,
-  Link,
   Divider,
   AbsoluteCenter,
   FormErrorMessage,
@@ -19,7 +16,7 @@ import {
 
 import { useState } from 'react'
 import { Formik } from 'formik'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { registerSchema } from '../schemas/registerSchema'
 
@@ -37,7 +34,7 @@ export default function Register() {
   const onSubmit = (values) =>
   {
     axios
-      .post(`http://localhost:5000/register`, {
+      .post(`${import.meta.env.VITE_URL}/register`, {
         name: values.name,
         email: values.email,
         no_telp: values.no_telp,
@@ -257,21 +254,25 @@ export default function Register() {
                       Daftar dengan Google
                     </Button>
                   </Stack>
-                  <Stack pt={6}>
-                    <Text 
-                      fontSize={'sm'}
-                      align={'center'}>
-                        Sudah punya akun? 
-                      <Link 
-                        href='/login' 
-                        textDecorationLine={'underline'}
-                        ml={1}>
-                          Masuk</Link>
-                      </Text>
-                  </Stack>
                 </form>
               )}
             </Formik>
+            <Flex pt={2} gap={2} mx={'auto'}>
+              <Text 
+                fontSize={'sm'}
+                align={'center'}
+              >
+                Sudah punya akun? 
+              </Text>
+                <Text 
+                  textDecorationLine={'underline'}
+                  fontSize={'sm'}
+                >
+                <Link to='/login'>
+                  Masuk
+              </Link>
+                </Text>
+            </Flex>
           </Stack>
         </Box>
     </Flex>

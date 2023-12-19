@@ -10,8 +10,6 @@ import PaslonRoute from "./routes/PaslonRoute.js"
 import ForumRoute from "./routes/ForumRoute.js"
 import KilasBalikRoute from "./routes/KilasBalikRoute.js"
 import CalonDPRRoute from "./routes/CalonDPRRoute.js"
-import dotenv from 'dotenv'
-dotenv.config()
 
 const app = express()
 var mongoOptions = {
@@ -41,5 +39,5 @@ app.use(ForumRoute)
 app.use(KilasBalikRoute)
 app.use(CalonDPRRoute)
 
-app.listen(5000, ()=> console.log('Server up and running on port 5000'))
+app.listen(process.env.PORT, ()=> console.log('Server up and running on port ' + process.env.PORT))
 export default app;

@@ -16,7 +16,7 @@ const MainPage = () => {
   const [nextDataStart, setNextDataStart] = useState(3); 
   
   useEffect(() => {
-    axios.get('http://localhost:5000/forums')
+    axios.get(`${import.meta.env.VITE_URL}/forums`)
       .then(response => {
         setData(response.data);
         setLoading(false);

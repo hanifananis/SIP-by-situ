@@ -273,3 +273,42 @@ export const getAllCommentWithReply = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+// Get all replies by author ID
+export const getAllRepliesByAuthorId = async (req, res) => {
+    const penulis_id = req.params.penulis_id;
+    const userReply = await User.findById(penulis_id)
+    try {
+        // Find all comments and replies by the author ID
+        const comments = await Comment.find();
+
+        const repliesWithParentComments = [];
+
+        // Iterate through each comment
+        for (const comment of comments) {
+            // Iterate through each reply in the comment
+            for (const reply of comment.replies) {
+                // Check if the reply's author ID matches the specified penulis_id
+                if (reply.penulis_id === penulis_id) {
+                    // Include the parent comment along with the reply
+                    const parentComment = await Comment.findById(comment._id).select('-replies');;
+                    const user_comment =  await User.findById(comment.penulis_id);
+                    repliesWithParentComments.push({
+                        parentComment: {
+                            ...parentComment.toObject(),
+                            user: { name: user_comment.name, roles : user_comment.roles},
+                        },
+                        reply: {
+                            ...reply.toObject(),
+                            user: { name: userReply.name, roles: userReply.roles },
+                        },
+                    });
+                }
+            }
+        }
+
+        res.json(repliesWithParentComments);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};

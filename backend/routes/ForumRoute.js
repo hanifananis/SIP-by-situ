@@ -10,7 +10,8 @@ import {
   addReply,
   editCommentOrReply,
   deleteCommentOrReply,
-  getAllCommentWithReply
+  getAllCommentWithReply,
+  getAllRepliesByAuthorId
 } from '../controllers/ForumController.js';
 
 const router = express.Router();
@@ -28,5 +29,6 @@ router.post('/comments', createComment);
 router.post('/comments/:commentId/replies', addReply);
 router.put('/comments/:commentId/:replyId?', editCommentOrReply);
 router.delete('/comments/:commentId/:replyId?', deleteCommentOrReply);
+router.get('/replies-by-author/:penulis_id', getAllRepliesByAuthorId);
 
 export default router;

@@ -16,13 +16,13 @@ const Profile = () => {
   
   useEffect(() => {
     axios
-    .get(`http://localhost:5000/user-info`, {
+    .get(`${import.meta.env.VITE_URL}/user-info`, {
       headers: {
         Authorization: `${Cookies.get('token')}`,
       },
     })
     .then((response) => {
-      setData(response.data)
+      setData(response.data);
     })
     .catch(error => {
       console.error('Error Fetching Data: ', error);
@@ -50,7 +50,7 @@ const Profile = () => {
             <Text>{ data.userinfo?.name }</Text>
             <Text fontWeight={'semibold'}>Email</Text>
             <Text>{ data.userinfo?.email }</Text>
-            <EditProfileModal />
+            <EditProfileModal userId={data.userinfo?._id} />
           </Card>
         </Flex>
 

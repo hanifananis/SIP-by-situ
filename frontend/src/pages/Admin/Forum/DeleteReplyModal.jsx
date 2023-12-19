@@ -3,33 +3,33 @@ import React, { useRef } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import { useCommentContext } from '../../../context/ForumProvider';
+import { useReplyContext } from '../../../context/ForumProvider';
 import DeleteModal from '../../../components/DeleteModal';
 
-const DeleteCommentModal = ({ commentId }) => {
+const DeleteReplyModal = ({ commentId, replyId, userId }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const cancelRef = useRef();
-    const { comment, updateCommentList } = useCommentContext();
+    const { reply, updateReplyList } = useReplyContext();
 
     const onSubmit = () =>
     {
       axios
-        .delete(`${import.meta.env.VITE_URL}/comments/${commentId}`)
+        .delete(`${import.meta.env.VITE_URL}/comments/${commentId}/${replyId}`)
         .then(() => {
-          toast.success('Delete comment berhasil');
+          toast.success('Delete reply berhasil');
           onClose();
-          const updatedComment = axios.get(`${import.meta.env.VITE_URL}/comments`);
-          updateCommentList(updatedComment.data);
+          const updatedReply = axios.get(`${import.meta.env.VITE_URL}/replies-by-author/${userId}`);
+          updateReplyList(updatedReply.data);
         })
         .catch((error) => {
           console.log(error);
-          toast.error('Delete comment gagal');
+          toast.error('Delete reply gagal');
         })
     }
 
     return (
       <DeleteModal
-        title={'Comment'}
+        title={'Reply'}
         onSubmit={onSubmit}
         onOpen={onOpen}
         onClose={onClose}
@@ -39,4 +39,4 @@ const DeleteCommentModal = ({ commentId }) => {
     )
 }
 
-export default DeleteCommentModal
+export default DeleteReplyModal

@@ -37,7 +37,7 @@ import ManagePartai from './pages/Admin/Partai/ManagePartai';
 import PostDetail from './pages/Forum/PostDetail';
 import ProtectedRoute from './components/ProtectedRoute';
 import MainTabs from './pages/Kilas Balik/MainTabs';
-import ManageForum from './pages/Admin/Forum/ManageForum'
+import ForumTabs from './pages/Admin/Forum/ForumTabs';
 
 const App = () => {
   return (
@@ -66,7 +66,7 @@ const App = () => {
           <Route
             path="manage-forum"
             element={
-              <ProtectedRoute roles={['admin']} element={<ForumProvider><ManageForum /></ForumProvider>} />
+              <ProtectedRoute roles={['admin']} element={<ForumProvider><ForumTabs /></ForumProvider>} />
             }
           />
           <Route

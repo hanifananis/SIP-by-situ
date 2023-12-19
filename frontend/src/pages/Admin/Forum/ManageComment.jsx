@@ -3,18 +3,18 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import EditForumModal from './EditForumModal';
 import DeleteForumModal from './DeleteForumModal';
-import { useForumContext } from '../../../context/ForumProvider';
+import { useCommentContext } from '../../../context/ForumProvider';
 
-const ManageForum = () => {
+const ManageComment = () => {
     const [data, setData] = useState([]);
-    const { forum, updateForumList } = useForumContext();
+    const { comment, updateCommentList } = useCommentContext();
 
     useEffect(() => {
-        axios.get(`${import.meta.env.VITE_URL}/forums`)
+        axios.get(`${import.meta.env.VITE_URL}/comments`)
         .then((response) => {
             setData(response.data)
         })
-    }, [updateForumList])
+    }, [updateCommentList])
     
     return (
         <Flex flexDirection={'column'}>
@@ -32,8 +32,7 @@ const ManageForum = () => {
                         <Tr>
                             <Th>No</Th>
                             <Th>Username</Th>
-                            <Th>Judul</Th>
-                            <Th>Isi</Th>
+                            <Th>Comment</Th>
                             <Th>Action</Th>
                         </Tr>
                         </Thead>
@@ -41,9 +40,8 @@ const ManageForum = () => {
                         {data.map((post, index) => (
                             <Tr key={index}>
                                 <Td>{index + 1}</Td>
-                                <Td>{post.penulis.name}</Td>
-                                <Td>{post.judul}</Td>
-                                <Td>{post.isi}</Td>
+                                <Td>{post.user.name}</Td>
+                                <Td>{post.content}</Td>
                                 <Td>
                                     <EditForumModal forumId={post._id} />
                                     <DeleteForumModal forumId={post._id} />
@@ -58,4 +56,4 @@ const ManageForum = () => {
     )
 }
 
-export default ManageForum
+export default ManageComment

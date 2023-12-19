@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       // Make a request to your server's logout endpoint using Axios
-      await axios.post('http://localhost:5000/logout');
+      await axios.post(`${import.meta.env.VITE_URL}/logout`);
 
       // Clear cookies and update state
       Cookies.remove('token');

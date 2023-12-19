@@ -13,7 +13,7 @@ const EditPaslonModal = ({ paslonId }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/paslons/${paslonId}`)
+      .get(`${import.meta.env.VITE_URL}/paslons/${paslonId}`)
       .then(response => {
         console.log(response.data)
         setData(response.data);
@@ -26,7 +26,7 @@ const EditPaslonModal = ({ paslonId }) => {
   const onSubmit = (values) =>
   {
     axios
-      .put(`http://localhost:5000/paslons/${userId}`, {
+      .put(`${import.meta.env.VITE_URL}/paslons/${userId}`, {
         capres: values.capres,
         cawapres: values.cawapres,
         no_urut: values.no_urut,

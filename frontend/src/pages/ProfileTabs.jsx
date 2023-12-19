@@ -2,6 +2,7 @@ import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 import React from 'react'
 import ProfileComment from './ProfileComment'
 import ProfileForum from './ProfileForum'
+import ProfileReply from './ProfileReply'
 
 const ProfileTabs = ({ dataComment, dataForum }) => {
   return (
@@ -9,6 +10,7 @@ const ProfileTabs = ({ dataComment, dataForum }) => {
       <TabList>
         <Tab>Forum</Tab>
         <Tab>Comment</Tab>
+        <Tab>Reply</Tab>
       </TabList>
       <TabPanels>
         <TabPanel>
@@ -16,6 +18,9 @@ const ProfileTabs = ({ dataComment, dataForum }) => {
         </TabPanel>
         <TabPanel>
           <ProfileComment data={dataComment} />
+        </TabPanel>
+        <TabPanel>
+          <ProfileReply />
         </TabPanel>
       </TabPanels>
     </Tabs>
