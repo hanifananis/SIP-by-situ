@@ -1,15 +1,20 @@
 import { Input } from '@chakra-ui/react'
 import React from 'react'
 
-const RedInput = ({val}) => {
+const RedInput = ({isi, val, nameInput, formChange, formBlur }) => {
   return (
     <Input 
-        bgColor={'#540302'}
-        _placeholder={{color: 'white'}} 
-        placeholder={val} 
-        size={'sm'}
-        p={6}
-        rounded={'xl'}
+      name={nameInput}
+      bgColor={'#540302'}
+      color={'white'}
+      _placeholder={{color: 'white'}} 
+      placeholder={isi} 
+      size={'sm'}
+      p={6}
+      rounded={'xl'}
+      value={val}
+      onChange={formChange}
+      onBlur={formBlur}
     />
   )
 }

@@ -1,9 +1,10 @@
 import { Button } from '@chakra-ui/react'
 import React from 'react'
 
-const GreenTransparentButton = ({ title, onClick }) => {
+const GreenTransparentButton = ({ title }) => {
   return (
     <Button
+      type="submit"
       bgColor={'white'}
       color={'#4F7B58'}
       borderWidth={2}
@@ -15,7 +16,6 @@ const GreenTransparentButton = ({ title, onClick }) => {
         color: 'white',
         bgColor: '#4F7B58'
       }}
-      onClick={onClick}
     >
       { title }
     </Button>
