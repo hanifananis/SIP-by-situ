@@ -14,7 +14,7 @@ const Navbar = () => {
     <Flex 
       bg='#5D1416' 
       maxW={"100vw"}
-      px={24} 
+      px={{base: 6, md: 24}} 
       color='white' 
       justify={'space-between'} 
       align={'center'}

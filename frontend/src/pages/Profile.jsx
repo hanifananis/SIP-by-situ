@@ -50,7 +50,7 @@ const Profile = () => {
             <Text>{ data.userinfo?.name }</Text>
             <Text fontWeight={'semibold'}>Email</Text>
             <Text>{ data.userinfo?.email }</Text>
-            <EditProfileModal />
+            <EditProfileModal userId={data.userinfo?._id} />
           </Card>
         </Flex>
 

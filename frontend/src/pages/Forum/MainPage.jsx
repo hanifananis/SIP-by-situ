@@ -66,7 +66,7 @@ const MainPage = () => {
     <Flex
       flexDirection={'column'}
       marginY={16}
-      marginX={{base:20, xl:48}}
+      px={{base: 6, md: 48}}
       gap={6}
     >
       <Banner title={"Forum"} desc={"Kami dengan bangga mempersembahkan wadah ini sebagai tempat bertemunya pikiran-pikiran brilian dan pandangan yang beragam."} />
