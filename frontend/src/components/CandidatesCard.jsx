@@ -21,7 +21,7 @@ const CandidatesCard = () => {
     <Grid
       gap={8}
       flexDirection={{ base: 'column', md: 'row' }}
-      templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', xl: 'repeat(3, 1fr)' }}
+      templateColumns={{ base: 'repeat(1, 1fr)', lg: 'repeat(3, 1fr)' }}
     >
       {data.map((val) => (
         <GridItem
@@ -29,8 +29,8 @@ const CandidatesCard = () => {
           border={1}
           borderColor={'red'}
           bgColor={'white'}
-          p={8}
-          minW={'md'}
+          p={{base: 4, md: 8}}
+          minW={{md: 'md'}}
           align={'center'}
           rounded={'2xl'}
         >
@@ -41,7 +41,7 @@ const CandidatesCard = () => {
           >
             Calon {val.no_urut}
           </Text>
-          <Candidates data={[val]} height={60} width={80} />
+          <Candidates data={[val]} height={{base: 40, md: 60}} width={{base: 60, md: 80}} />
           <Link to={`/calon-2024/${val._id}`}>
             <Button
               mt={4}

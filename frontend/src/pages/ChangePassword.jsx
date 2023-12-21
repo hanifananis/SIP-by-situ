@@ -8,6 +8,8 @@ const ChangePassword = () => {
     <>
         <Heading fontSize={'2xl'} fontWeight={'semibold'} mt={8}>Ganti Kata Sandi</Heading>
         <Card gap={4} p={8} mt={4}>
+            <Text fontWeight={'semibold'}>Kata Sandi Lama</Text>
+            <RedInput isi={'Kata Sandi Baru'} />
             <Text fontWeight={'semibold'}>Kata Sandi Baru</Text>
             <RedInput isi={'Kata Sandi Baru'} />
             <Text fontWeight={'semibold'}>Konfirmasi Kata Sandi Baru</Text>

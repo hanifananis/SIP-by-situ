@@ -1,4 +1,4 @@
-import { Button, Card, Heading, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Text, useDisclosure } from '@chakra-ui/react'
+import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, useDisclosure } from '@chakra-ui/react'
 import GreenButton from '../components/GreenButton'
 import { EditUsername } from './EditUsername'
 import ChangePassword from './ChangePassword'

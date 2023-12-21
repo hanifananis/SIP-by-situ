@@ -9,7 +9,7 @@ const LandingPage = () => {
   return (
     <Flex
       flexDirection={'column'}
-      marginY={16}
+      marginY={{base: 12, md: 16}}
       gap={14}
     >
       <Hero />

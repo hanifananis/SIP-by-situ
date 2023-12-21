@@ -4,10 +4,11 @@ import { Card, FormControl, FormErrorMessage, Heading, Text } from '@chakra-ui/r
 import RedInput from '../components/RedInput';
 import GreenTransparentButton from '../components/GreenTransparentButton';
 import { Formik } from 'formik';
-import { userSchema } from '../schemas/userSchema';
+import { usernameSchema } from '../schemas/usernameSchema';
+import { toast } from 'react-toastify';
 
 export const EditUsername = ({ userId }) => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState("");
 
     useEffect(() => {
         axios
@@ -29,7 +30,6 @@ export const EditUsername = ({ userId }) => {
             })
             .then(() => {
                 toast.success('Edit username berhasil');
-                onClose();
             })
             .catch((error) => {
                 console.log(error);
@@ -45,27 +45,27 @@ export const EditUsername = ({ userId }) => {
                     initialValues={{
                         name: data || '',
                     }}
-                    validationSchema={userSchema}
+                    validationSchema={usernameSchema}
                     onSubmit={onSubmit}
                 >
                     {({ values, errors, touched, handleBlur, handleChange, handleSubmit}) => (
                         <form onSubmit={handleSubmit}>
-                                <FormControl
-                                    id="name"
-                                    isInvalid={errors.name && touched.name}
-                                    mb={4}
-                                >
-                                    <Text fontWeight={'semibold'} pb={4}>Username Baru</Text>
-                                    <RedInput 
-                                        isi={'Masukkan Username'} 
-                                        val={values.name} 
-                                        nameInput={"name"} 
-                                        formChange={handleChange}
-                                        formBlur={handleBlur}
-                                    />
-                                    <FormErrorMessage>{errors.name}</FormErrorMessage>
-                                </FormControl>
-                                <GreenTransparentButton title={'Simpan'} />
+                            <FormControl
+                                id="name"
+                                isInvalid={errors.name && touched.name}
+                                mb={4}
+                            >
+                                <Text fontWeight={'semibold'} pb={4}>Username Baru</Text>
+                                <RedInput 
+                                    isi={'Masukkan Username'} 
+                                    val={values.name} 
+                                    nameInput={"name"} 
+                                    formChange={handleChange}
+                                    formBlur={handleBlur}
+                                />
+                                <FormErrorMessage>{errors.name}</FormErrorMessage>
+                            </FormControl>
+                            <GreenTransparentButton title={'Simpan'} />
                         </form>
                     )}
                 </Formik>

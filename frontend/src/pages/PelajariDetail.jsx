@@ -46,7 +46,7 @@ const PelajariDetail = () => {
   return (
     <Flex
       flexDirection={'column'}
-      mx={12}
+      px={{base: 6, md: 24}}
       marginY={20}>
       <BackToHome />
       <Banner title={"Pelajari Pemilu 2024"} />
