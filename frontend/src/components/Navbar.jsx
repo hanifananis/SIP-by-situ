@@ -1,5 +1,5 @@
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons'
-import { Flex, Button, IconButton, Menu, MenuButton, MenuList, MenuItem, MenuDivider } from '@chakra-ui/react'
+import { Flex, IconButton, Menu, MenuButton, MenuList, MenuItem, useDisclosure, Drawer, DrawerOverlay, DrawerContent, DrawerHeader, ModalCloseButton } from '@chakra-ui/react'
 import GreenButton from './GreenButton'
 import { useAuth } from '../context/AuthContext'
 import { UserCircle } from '@phosphor-icons/react'
@@ -9,6 +9,7 @@ import '../../public/css/index.css'
 const Navbar = () => {
   const { isLoggedIn, logout } = useAuth();
   const location = useLocation();
+  const { isOpen, onOpen, onClose } = useDisclosure()
   
   return (
     <Flex 
@@ -37,12 +38,37 @@ const Navbar = () => {
         </NavLink>
       </Flex>
         <IconButton
-          aria-label="Open Menu"
           size={'lg'}
           mr={2}
           icon={<HamburgerIcon />}
           display={{sm: 'flex', md:'flex', lg: 'none', xl: 'none'}}
+          onClick={onOpen}
         />
+        <Drawer placement='right' onClose={onClose} isOpen={isOpen}>
+          <DrawerOverlay />
+          <DrawerContent 
+            bg='#5D1416' 
+            color='white' 
+            pt={8}
+          >
+          <ModalCloseButton p={6} />
+            <DrawerHeader>
+              <Link to='/' onClick={onClose}>
+                Home
+              </Link>
+            </DrawerHeader>
+            <DrawerHeader>
+              <Link to='/partai-politik' onClick={onClose}>
+                Partai
+              </Link>
+            </DrawerHeader>
+            <DrawerHeader>
+              <Link to="/forum" onClick={onClose}>
+                Forum
+              </Link>
+            </DrawerHeader>
+          </DrawerContent>
+        </Drawer>
         <Flex display={{ base: 'none', lg: 'block' }} color={'blackAlpha.900'}>
         {isLoggedIn ? (
           <Menu>

@@ -31,8 +31,8 @@ const Detail = () => {
         loading ? <Flex alignItems="center" justifyContent="center" height="100vh"><Loading type={'spin'} color={'#4F7B58'} /></Flex> : 
         <Flex
           flexDirection={'column'}
-          marginY={16}
-          marginX={{base:20, xl:48}}
+          marginY={{base: 12, md: 16}}
+          px={{base: 6, md: 42, lg: 52}}
         >
           <Redirect title={'Partai'} />
           <DetailHeader 
@@ -53,7 +53,8 @@ const Detail = () => {
           <Heading
             mt={12}
             mb={2}
-            fontSize={48}>
+            fontSize={48}
+          >
               Profil Partai
           </Heading>
           <Accordion allowMultiple>

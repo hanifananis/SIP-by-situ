@@ -39,9 +39,9 @@ const PartaiPolitik = () => {
   return (
     <Flex 
       flexDirection={'column'}
-      marginY={16}
-      marginX={{base:20, xl:48}}
-      gap={14}
+      marginY={{base: 12, md: 16}}
+      px={{base: 6, md: 42, xl: 52}}
+      gap={{base: 6, md: 14}}
     >
       <Banner 
         title={"Partai Politik Indonesia"}

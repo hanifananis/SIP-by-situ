@@ -7,16 +7,10 @@ const Cards = ({ data }) => {
     <Flex
       flexDirection={'column'}
     >
-      <Text
-        fontWeight={'bold'}
-        fontSize={42}
-        mb={8}>
-        Partai Politik
-      </Text>
       <Grid
         justify={'space-between'}
         alignItems={'center'}
-        templateColumns={'repeat(4, 1fr)'}
+        templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }}
         gap={8}>
         {data.map(post => (
           <Card
@@ -26,7 +20,6 @@ const Cards = ({ data }) => {
             alignItems={'center'}
             textAlign={'center'}
             pb={4}
-            px={2}
             justify={'space-between'}
             boxShadow={'lg'}
             bgColor={'#F3EBBD'}
