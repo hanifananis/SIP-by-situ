@@ -110,7 +110,7 @@ const DPR = () => {
                         options={{
                             responsive: true,
                             layout: {
-                                padding: 60
+                                padding: 2
                             },
                             plugins: {
                                 legend: {
@@ -119,6 +119,22 @@ const DPR = () => {
                             }
                         }}
                     />
+                    {/* <Bar
+                        key='chart-bar'
+                        datasetIdKey='idBar'
+                        data={chartData}
+                        options={{
+                            responsive: true,
+                            // layout: {
+                            //     padding: 60
+                            // },
+                            plugins: {
+                                legend: {
+                                    display: false
+                                }
+                            }
+                        }}
+                    /> */}
             </Card>
 
             <table 

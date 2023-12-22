@@ -29,6 +29,7 @@ const Pilpres = () => {
         }
 
         $(tableRef.current).DataTable({
+            scrollX: true,
             data: data,
             columns: [
                 { title: 'No', data: null, render: (data, type, row, meta)=> type === 'display' ? meta.row + 1 : meta.row },

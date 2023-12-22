@@ -7,9 +7,10 @@ const DetailHeader = ({ title, img }) => {
       maxW='container.sm'
     >  
       <Heading
-        my={8}
-        fontSize={48}
-        textAlign={'center'}
+        fontSize={{base: 32, md: 48}} 
+        fontWeight={'bold'}
+        my={{base: 6, md: 10}}
+        align={'center'}
       > 
         {title}
       </Heading>

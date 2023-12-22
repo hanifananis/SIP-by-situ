@@ -49,7 +49,7 @@ const EditCommentModal = ({ commentId }) => {
 
         <Modal isOpen={isOpen} onClose={onClose} isCentered>
           <ModalOverlay />
-          <ModalContent>
+          <ModalContent mx={{base: 4, md: 0}}>
             <ModalHeader>Edit Comment</ModalHeader>
             <ModalCloseButton />
             <Formik

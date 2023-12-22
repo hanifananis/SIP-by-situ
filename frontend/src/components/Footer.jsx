@@ -11,6 +11,7 @@ const Footer = () => {
       py={10}
       color='white' 
       flexDirection={'column'}
+      zIndex={5}
     >
       <img src='/assets/logo-green 1.png' alt='SIP' width={120} />
       <Flex

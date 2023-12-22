@@ -1,7 +1,7 @@
 import { Button } from '@chakra-ui/react'
 import React from 'react'
 
-const GreenTransparentButton = ({ title }) => {
+const GreenTransparentButton = ({ title, width }) => {
   return (
     <Button
       type="submit"
@@ -16,6 +16,7 @@ const GreenTransparentButton = ({ title }) => {
         color: 'white',
         bgColor: '#4F7B58'
       }}
+      w={width}
     >
       { title }
     </Button>

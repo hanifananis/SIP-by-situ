@@ -12,7 +12,7 @@ const EditProfileModal = ({ userId }) => {
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent mx={{base: 4, md: 0}}>
           <ModalCloseButton />
           <ModalBody py={12}>
             <EditUsername userId={userId} />

@@ -51,14 +51,20 @@ const CalonDPR = ({ data }) => {
 
     return (
         <>
-            <Heading pt={12} pb={8} fontSize={48}>
+            <Heading 
+                pt={12} 
+                pb={{base: 4, md: 8}} 
+                textAlign={{base: 'center', md: 'left'}}
+                fontSize={{base: 32, md: 48}}
+                fontWeight={'bold'}
+            >
                 Calon Legislatif 2024
             </Heading>
             <Box bg='#80AF85' w='100%' p={4} color='white' rounded={'xl'}>
                 <DapilModal names={dapilNames} onSelect={handleDapilSelect} />
                 <Grid
                     flexDirection={{ base: 'column', md: 'row' }}
-                    templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', xl: 'repeat(4, 1fr)' }}
+                    templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)', xl: 'repeat(4, 1fr)' }}
                     gap={4}
                     pt={4}
                 >

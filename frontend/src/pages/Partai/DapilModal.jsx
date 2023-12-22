@@ -21,7 +21,7 @@ const DapilModal = ({ names, onSelect }) => {
 
         <Modal onClose={onClose} isOpen={isOpen}>
           <ModalOverlay />
-          <ModalContent>
+          <ModalContent mx={{base: 4, md: 0}}>
             <ModalHeader>Pilih Daerah Pemilihan</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
