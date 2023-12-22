@@ -67,6 +67,29 @@ const Navbar = () => {
                 Forum
               </Link>
             </DrawerHeader>
+            {isLoggedIn ? (
+              <>
+              <DrawerHeader>
+                <Link to="/profile" onClick={onClose}>
+                  Profile
+                </Link>
+              </DrawerHeader>
+              <DrawerHeader>
+                <Link onClick={() => {
+                  logout();
+                  onClose();
+                }}>
+                  Logout
+                </Link>
+              </DrawerHeader>
+              </>
+            ) : (
+              <DrawerHeader>
+                <Link to='/login' onClick={onClose}>
+                  Login
+                </Link>
+              </DrawerHeader>
+            )}
           </DrawerContent>
         </Drawer>
         <Flex display={{ base: 'none', lg: 'block' }} color={'blackAlpha.900'}>

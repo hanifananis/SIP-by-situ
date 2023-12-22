@@ -30,14 +30,14 @@ const Cards = ({ data }) => {
                 display={'grid'}
                 placeItems={'center'}
               >
-              <Image
-                mx={'auto'}
-                alignItems={'center'}
-                src={post.foto}
-                maxWidth={40}
-                maxHeight={24}
-              >
-              </Image>
+                <Image
+                  mx={'auto'}
+                  alignItems={'center'}
+                  src={post.foto}
+                  maxWidth={40}
+                  maxHeight={24}
+                >
+                </Image>
               </Box>
               <Text
                 textAlign={'center'}

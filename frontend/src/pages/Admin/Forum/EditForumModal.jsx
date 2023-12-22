@@ -50,7 +50,7 @@ const EditForumModal = ({ forumId }) => {
 
         <Modal isOpen={isOpen} onClose={onClose} isCentered>
           <ModalOverlay />
-          <ModalContent>
+          <ModalContent mx={{base: 4, md: 0}}>
             <ModalHeader>Edit Forum</ModalHeader>
             <ModalCloseButton />
             <Formik

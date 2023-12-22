@@ -32,7 +32,7 @@ const Detail = () => {
         <Flex
           flexDirection={'column'}
           marginY={{base: 12, md: 16}}
-          px={{base: 6, md: 42, lg: 52}}
+          px={{base: 6, md: 42, xl: 52}}
         >
           <Redirect title={'Partai'} />
           <DetailHeader 
@@ -52,8 +52,10 @@ const Detail = () => {
           />
           <Heading
             mt={12}
-            mb={2}
-            fontSize={48}
+            pb={{base: 0, md: 8}} 
+            textAlign={{base: 'center', md: 'left'}}
+            fontSize={{base: 32, md: 48}}
+            fontWeight={'bold'}
           >
               Profil Partai
           </Heading>

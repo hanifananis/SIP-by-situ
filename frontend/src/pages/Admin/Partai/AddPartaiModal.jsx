@@ -43,7 +43,7 @@ const AddPartaiModal = () => {
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent mx={{base: 4, md: 0}}>
           <ModalHeader>Add Partai</ModalHeader>
           <ModalCloseButton />
           <Formik
