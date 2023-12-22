@@ -40,7 +40,6 @@ export const EditUsername = ({ userId }) => {
     return (
         <>
             <Heading fontSize={'2xl'} fontWeight={'semibold'}>Ganti Username</Heading>
-            <Card gap={4} p={8} mt={4}>
                 <Formik
                     initialValues={{
                         name: data || '',
@@ -53,11 +52,10 @@ export const EditUsername = ({ userId }) => {
                             <FormControl
                                 id="name"
                                 isInvalid={errors.name && touched.name}
-                                mb={4}
+                                my={4}
                             >
-                                <Text fontWeight={'semibold'} pb={4}>Username Baru</Text>
                                 <RedInput 
-                                    isi={'Masukkan Username'} 
+                                    isi={'Masukkan Username Baru'} 
                                     val={values.name} 
                                     nameInput={"name"} 
                                     formChange={handleChange}
@@ -65,11 +63,10 @@ export const EditUsername = ({ userId }) => {
                                 />
                                 <FormErrorMessage>{errors.name}</FormErrorMessage>
                             </FormControl>
-                            <GreenTransparentButton title={'Simpan'} />
+                            <GreenTransparentButton title={'Simpan'} width={'full'} />
                         </form>
                     )}
                 </Formik>
-            </Card>
         </>
     )
 }
