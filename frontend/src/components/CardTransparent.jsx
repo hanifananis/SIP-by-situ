@@ -11,7 +11,10 @@ const CardTransparent = ({ title, value }) => {
       <CardHeader>
         <Heading
           fontSize={28}
-          fontWeight={'semibold'}>{title}</Heading>
+          fontWeight={'semibold'}
+        >
+          {title}
+        </Heading>
       </CardHeader>
 
       <CardBody>
