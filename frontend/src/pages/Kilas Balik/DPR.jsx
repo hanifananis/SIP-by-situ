@@ -99,15 +99,19 @@ const DPR = () => {
     
     return (
         <Flex flexDirection={'column'} gap={6}>
-              <Bar
+            <Card rounded={'2xl'}>
+                <CardHeader bg={'#540302'} color={'white'}>
+                    <Heading textAlign={'center'}>Hasil Hitung Suara Legislatif DPR RI 2019</Heading>
+                </CardHeader>
+                    <Bar
                         key='chart-bar'
                         datasetIdKey='idBar'
                         data={chartData}
                         options={{
-                            // responsive: true,
-                            // layout: {
-                            //     padding: 60
-                            // },
+                            responsive: true,
+                            layout: {
+                                padding: 2
+                            },
                             plugins: {
                                 legend: {
                                     display: false
@@ -115,10 +119,6 @@ const DPR = () => {
                             }
                         }}
                     />
-            <Card rounded={'2xl'}>
-                <CardHeader bg={'#540302'} color={'white'}>
-                    <Heading textAlign={'center'}>Hasil Hitung Suara Legislatif DPR RI 2019</Heading>
-                </CardHeader>
                     {/* <Bar
                         key='chart-bar'
                         datasetIdKey='idBar'
