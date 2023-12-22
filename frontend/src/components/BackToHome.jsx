@@ -11,6 +11,7 @@ const BackToHome = () => {
             alignItems={'center'}
             gap={4}
             fontWeight={'bold'}
+            mb={{base: 6, md: 10}}
         >
             <button onClick={() => navigate(-1)}><ArrowLeft /></button>
             <Text>Back to Home</Text>
