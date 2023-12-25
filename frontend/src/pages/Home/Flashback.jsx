@@ -6,10 +6,10 @@ const Flashback = () => {
   return (
     <Box
       align={'center'}
-      px={24}
+      px={{base: 6, md: 24}}
     >
       <Text 
-        fontSize={42} 
+        fontSize={{base: 32, md: 48}}
         fontWeight={'bold'}
         mb={8}
       >
@@ -17,6 +17,7 @@ const Flashback = () => {
       </Text>
       <Text
         mb={8}
+        fontSize={{base: 'sm', md: 'md'}}
       >
         Tahun 2019 adalah sebuah bab yang kini terpahat dalam sejarah. Tak lupa, dalam kilas balik 2019, kita juga akan menjelajahi hasil suara dan pilihan yang dibuat oleh masyarakat pada tahun itu, memahami bagaimana keputusan politik dan tren sosial pada masa itu.
       </Text>

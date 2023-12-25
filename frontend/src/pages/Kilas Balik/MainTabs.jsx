@@ -11,7 +11,7 @@ const KilasBalik = () => {
         flexDirection={'column'}
         maxW={"100vw"}
         paddingY={16}
-        paddingX={{base:20, xl:48}}
+        px={{base: 6, md: 24}}
         gap={6}
     >
         <BackToHome />

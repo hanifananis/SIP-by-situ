@@ -1,4 +1,4 @@
-import { FormControl, FormErrorMessage, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react'
+import { Box, FormControl, FormErrorMessage, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from '@chakra-ui/react'
 import { Formik } from 'formik'
 import axios from 'axios'
 import { toast } from 'react-toastify'
@@ -9,6 +9,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { forumSchema } from '../../schemas/forumSchema'
+import AddButtonMobile from '../../components/AddButtonMobile';
 
 const AddTopikModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -44,11 +45,17 @@ const AddTopikModal = () => {
     
     return (
         <>
-            <AddButton title={'Forum'} onOpen={openModal} />
+            <Box display={{base: 'none', md: 'block'}}>
+                <AddButton title={'Forum'} onOpen={openModal} />
+            </Box>
+
+            <Box display={{base: 'block', md: 'none'}}>
+                <AddButtonMobile onOpen={openModal} />
+            </Box>
     
             <Modal isOpen={isOpen} onClose={onClose} isCentered>
             <ModalOverlay />
-            <ModalContent>
+            <ModalContent mx={{base: 4, md: 0}}>
                 <ModalHeader>Add Forum</ModalHeader>
                 <ModalCloseButton />
                 <Formik

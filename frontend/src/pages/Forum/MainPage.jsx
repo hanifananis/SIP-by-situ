@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex, Box } from '@chakra-ui/react';
 import Banner from '../../components/Banner';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import axios from 'axios';
@@ -65,12 +65,12 @@ const MainPage = () => {
   return (
     <Flex
       flexDirection={'column'}
-      marginY={16}
-      marginX={{base:20, xl:48}}
+      marginY={{base: 12, md: 16}}
+      px={{base: 6, md: 24, xl: 52}}
       gap={6}
     >
       <Banner title={"Forum"} desc={"Kami dengan bangga mempersembahkan wadah ini sebagai tempat bertemunya pikiran-pikiran brilian dan pandangan yang beragam."} />
-      <Flex gap={8}>
+      <Flex gap={{base: 2, md: 8}} flexDir={{base: 'column', md: 'row'}}>
         <SearchBar searchInput={searchInput} handleChange={handleChange} />
         <AddTopikModal />
       </Flex>

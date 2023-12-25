@@ -11,8 +11,6 @@ const Candidates = (props) => {
         <Flex
           key={val._id}
           flexDirection={'column'}
-          gap={8}
-          mb={6}
           mx={'auto'}
           alignItems={'center'}
         >

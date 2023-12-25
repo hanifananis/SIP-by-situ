@@ -30,8 +30,8 @@ const PostDetail = () => {
   return (
     <Flex
       flexDirection={'column'}
-      marginY={16}
-      marginX={{base:20, xl:48}}
+      marginY={{base: 12, md: 16}}
+      px={{base: 6, md: 24, xl: 52}}
       gap={6}
     >
       <Redirect title={'Post'} />
@@ -45,7 +45,7 @@ const PostDetail = () => {
         createdAt={data?.createdAt}
       />
       
-      <UrutanKomentar data={sortedData} onSort={handleSortData} />
+      {/* <UrutanKomentar data={sortedData} onSort={handleSortData} /> */}
 
       {sortedData.map((val) => (
         <CommentCard key={val._id} data={val} />

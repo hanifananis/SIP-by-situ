@@ -26,7 +26,7 @@ const DetailUserModal = ({ userId }) => {
   
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
-          <ModalContent>
+          <ModalContent mx={{base: 4, md: 0}}>
             <ModalHeader>Detail User</ModalHeader>
             <ModalCloseButton />
                 <ModalBody>

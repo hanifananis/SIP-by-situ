@@ -24,7 +24,7 @@ const PartaiCards = () => {
     >
       <Text
         fontWeight={'bold'}
-        fontSize={42}
+        fontSize={{base: 32, md: 48}}
         color={'white'}
         textAlign={'center'}
         mb={8}

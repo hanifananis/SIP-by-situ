@@ -24,8 +24,8 @@ const Calon = () => {
   return (
     <Flex
       flexDirection={'column'}
-      marginY={16}
-      marginX={{base:20, xl:48}}
+      marginY={{base: 12, md: 16}}
+      px={{base: 6, md: 42, xl: 52}}
     >
       <BackToHome />
         <DetailHeader 
@@ -33,7 +33,7 @@ const Calon = () => {
           title={`Calon ${data.no_urut}`}
         />
         <Candidates data={[data]} height={72} width={60} />
-      <Accordion allowMultiple>
+      <Accordion allowMultiple mt={8}>
         <GreenAccordion 
           title={"Deskripsi"}
           desc={data.deskripsi}

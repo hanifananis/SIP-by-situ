@@ -3,6 +3,7 @@ import { Button, Grid, GridItem, Text } from '@chakra-ui/react';
 import Candidates from './Candidates';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import GreenTransparentButton from './GreenTransparentButton';
 
 const CandidatesCard = () => {
   const [data, setData] = useState([]);
@@ -19,9 +20,9 @@ const CandidatesCard = () => {
 
   return (
     <Grid
-      gap={8}
-      flexDirection={{ base: 'column', md: 'row' }}
-      templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', xl: 'repeat(3, 1fr)' }}
+      gap={{base: 8, lg: 4, xl: 8}}
+      flexDirection={{ base: 'column' }}
+      templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
     >
       {data.map((val) => (
         <GridItem
@@ -29,30 +30,22 @@ const CandidatesCard = () => {
           border={1}
           borderColor={'red'}
           bgColor={'white'}
-          p={8}
-          minW={'md'}
+          p={{base: 4, md: 8}}
           align={'center'}
           rounded={'2xl'}
+          display={'grid'}
+          alignItems={'center'}
+          gap={8}
         >
           <Text
             fontWeight={'bold'}
             fontSize={24}
-            mb={6}
           >
             Calon {val.no_urut}
           </Text>
-          <Candidates data={[val]} height={60} width={80} />
+          <Candidates data={[val]} height={{base: 40, xl: 60}} width={{base: 60, lg: 80, xl: 200}} />
           <Link to={`/calon-2024/${val._id}`}>
-            <Button
-              mt={4}
-              bgColor={'#4F7B58'}
-              color={'white'}
-              rounded={'3xl'}
-              fontSize={'sm'}
-              w={'full'}
-            >
-              Lihat Profil Calon {val.no_urut}
-            </Button>
+            <GreenTransparentButton title={`Lihat Profil Calon ${val.no_urut}`} width={'full'} />
           </Link>
         </GridItem>
       ))}

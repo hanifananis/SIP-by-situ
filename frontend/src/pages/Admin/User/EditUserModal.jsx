@@ -54,7 +54,7 @@ const EditUserModal = ({ userId }) => {
   
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
-          <ModalContent>
+          <ModalContent mx={{base: 4, md: 0}}>
             <ModalHeader>Edit User</ModalHeader>
             <ModalCloseButton />
             <Formik
