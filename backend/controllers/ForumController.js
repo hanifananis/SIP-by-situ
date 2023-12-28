@@ -5,7 +5,7 @@ import User from "../models/User.js";
 // Get all forums
 export const getAllForums = async (req, res) => {
 try {
-    const forums = await Forum.find();
+    const forums = await Forum.find().sort({createdAt: -1});
     const forumsWithUserData = await Promise.all(forums.map(async (forum) => {
         const user = await User.findById(forum.penulis_id);
         const { name, roles } = user;
@@ -32,7 +32,7 @@ export const getForumById = async (req, res) => {
             return res.status(404).json({ message: "Forum not found." });
         }
 
-        const comments = await Comment.find({ forum_id: forumId });
+        const comments = await Comment.find({ forum_id: forumId }).sort({created_at: -1});
         const commentsWithUserData = await Promise.all(comments.map(async (comment) => {
             const user = await User.findById(comment.penulis_id);
             const { name, roles } = user;
