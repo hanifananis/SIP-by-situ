@@ -49,6 +49,10 @@ export const savePartaiInfo = async (req, res) => {
 
 export const updatePartaiInfo = async (req, res) => {
     try {
+        const partaiInfo = await PartaiInfo.findById(req.params.id);
+        if (!partaiInfo) {
+            res.status(404).json({ message: "PartaiInfo not found." });
+        }
         const updatedPartaiInfo = await PartaiInfo.updateOne({ _id: req.params.id }, { $set: req.body });
         res.status(200).json(updatedPartaiInfo);
     } catch (error) {
@@ -58,6 +62,10 @@ export const updatePartaiInfo = async (req, res) => {
 
 export const deletePartaiInfo = async (req, res) => {
     try {
+        const partaiInfo = await PartaiInfo.findById(req.params.id);
+        if (!partaiInfo) {
+            res.status(404).json({ message: "PartaiInfo not found." });
+        }
         const deletedPartaiInfo = await PartaiInfo.deleteOne({ _id: req.params.id });
         res.status(200).json(deletedPartaiInfo);
     } catch (error) {
