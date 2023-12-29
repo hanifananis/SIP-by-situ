@@ -3,7 +3,7 @@ import CalonDPR from "../models/CalonDPR.js";
 
 export const getPartaiInfos = async (req, res) => {
     try {
-        const partaiInfos = await PartaiInfo.find();
+        const partaiInfos = await PartaiInfo.find().sort({no_urut: 1});
         const partaiInfosWithStrIds = partaiInfos.map(info => {
             return {
                 ...info.toObject(),
