@@ -49,25 +49,26 @@ export const updateUser = async (req, res) => {
         }
 
         // Validasi email
-        if (req.body.email && !validator.isEmail(req.body.email)) {
+        if (req.body.email !== undefined && !validator.isEmail(req.body.email)) {
           return res.status(400).json({ message: "Invalid email address." });
         }
 
         // Validasi password
-        if (req.body.password && !isStrongPassword(req.body.password)) {
+        if (req.body.password !== undefined && !isStrongPassword(req.body.password)) {
             return res.status(400).json({ message: "Password is not strong enough." });
         }
 
         // Validasi nomor telepon
-        if (req.body.no_telp && !isPhoneNumber(req.body.no_telp)) {
+        if (req.body.no_telp !== undefined && !isPhoneNumber(req.body.no_telp)) {
             return res.status(400).json({ message: "Invalid phone number." });
         }
-        if(req.body.name){
+        if(req.body.name !== undefined){
           const updatedName = req.body.name.trim(); // Remove leading and trailing whitespaces
           if (!updatedName) {
               return res.status(400).json({ message: "Name cannot be empty or consist only of whitespace." });
           }
         }
+        
         if (req.body.password) {
           const hashedPassword = await argon2.hash(req.body.password);
           req.body.password = hashedPassword;
