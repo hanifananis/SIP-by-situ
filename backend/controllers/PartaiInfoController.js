@@ -51,7 +51,7 @@ export const updatePartaiInfo = async (req, res) => {
     try {
         const partaiInfo = await PartaiInfo.findById(req.params.id);
         if (!partaiInfo) {
-            res.status(404).json({ message: "PartaiInfo not found." });
+            return res.status(404).json({ message: "PartaiInfo not found." });
         }   
         if (req.body.name !== undefined){
             const updatedName = req.body.name.trim(); // Remove leading and trailing whitespaces
