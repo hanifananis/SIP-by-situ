@@ -5,11 +5,15 @@ import argon2 from 'argon2';
 import jwt from 'jsonwebtoken'; 
 import dotenv from 'dotenv'
 dotenv.config()
+import validator from "validator";
 
 export const registerUser = async (req, res) => {
     try {
         const { name, email, no_telp, password, confirmPassword } = req.body;
-
+        const insertedName = req.body.name.trim(); // Remove leading and trailing whitespaces
+        if (!insertedName) {
+            return res.status(400).json({ message: "Name cannot be empty or consist only of whitespace." });
+        }
         // Check if the passwords match
         if (password !== confirmPassword) {
             return res.status(400).json({ message: 'Passwords do not match' });
@@ -53,8 +57,6 @@ export const loginUser = async (req, res) => {
 
         // Password is correct; you can generate a token for authentication here
         const token = generateToken(user);
-
-        const decoded = jwt.verify(token, 'bismillah-ppl2-ini-bisa-beres-2023');
         res.status(200).json({ message: 'Login successful', token, roles: user.roles, user_id:user._id });
     } catch (error) {
         res.status(500).json({ message: error.message });

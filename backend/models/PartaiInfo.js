@@ -7,7 +7,12 @@ const partaiInfo = new mongoose.Schema({
     },
     no_urut: {
         type: Number,
+        index: { unique: true },
         required: true,
+        validate: {
+            validator: (value) => value > 0,
+            message: "no_urut must be greater than 0.",
+        },
     },
     ig_sosmed: {
         type: String,
